@@ -190,23 +190,21 @@
             const frame = document.getElementById("templateFrame");
             const modal = document.getElementById("templateModal");
 
+            frame.src = "http://localhost:8000/templates/" + filename;
+
             frame.onload = () => {
                 modal.classList.add("show");
             };
-
-            frame.onerror = () => {
-                alert("❌ Темплейтът не може да се зареди: " + filename);
-            };
-
-            frame.src = "http://localhost:8000/templates/" + filename + ".html";
         }
-
 
         function closeModal() {
             const modal = document.getElementById("templateModal");
             modal.classList.remove("show");
             document.getElementById("templateFrame").src = "";
         }
+
+
+
 
         function confirmTemplate() {
             document.getElementById("templateModal").classList.remove("show");
