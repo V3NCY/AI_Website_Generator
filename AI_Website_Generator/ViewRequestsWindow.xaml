@@ -1,44 +1,23 @@
 ﻿<Window x:Class="AI_Website_Generator.ViewRequestsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="View Requests" WindowState="Maximized">
+        Title="View Requests" Height="600" Width="1000"
+        MouseRightButtonUp="RequestsList_MouseRightButtonUp">
     <Grid>
-        <StackPanel Margin="20">
-            <TextBlock Text="📜 Заявки" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,10"/>
-            <ListView Name="RequestsList" BorderThickness="1" BorderBrush="#BDC3C7" Height="400">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Клиент" Width="200" DisplayMemberBinding="{Binding Client}"/>
-                        <GridViewColumn Header="Телефон" Width="150" DisplayMemberBinding="{Binding Phone}"/>
-                        <GridViewColumn Header="Имейл" Width="200" DisplayMemberBinding="{Binding Email}"/>
-                        <GridViewColumn Header="Код по НЕИСПУО" Width="150" DisplayMemberBinding="{Binding Code}"/>
-                        <GridViewColumn Header="Обект" Width="250" DisplayMemberBinding="{Binding Institute}"/>
-                        <GridViewColumn Header="Населено място" Width="150" DisplayMemberBinding="{Binding City}"/>
-                        <GridViewColumn Header="Предходен домейн" Width="200" DisplayMemberBinding="{Binding PrevDomain}"/>
-                        <GridViewColumn Header="Нов домейн" Width="200" DisplayMemberBinding="{Binding NewDomain}"/>
-                        <GridViewColumn Header="Статус" Width="120" DisplayMemberBinding="{Binding Status}"/>
-
-                    </GridView>
-                </ListView.View>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="ContextMenu">
-                            <Setter.Value>
-                                <ContextMenu>
-                                    <MenuItem Header="Получена заявка" Click="ChangeStatus_Click"/>
-                                    <MenuItem Header="В процес" Click="ChangeStatus_Click"/>
-                                    <MenuItem Header="За дизайнер" Click="ChangeStatus_Click"/>
-                                    <MenuItem Header="За технически екип" Click="ChangeStatus_Click"/>
-                                    <MenuItem Header="За начално тестване" Click="ChangeStatus_Click"/>
-                                    <MenuItem Header="За финално тестване" Click="ChangeStatus_Click"/>
-                                    <MenuItem Header="Проблем" Click="ChangeStatus_Click"/>
-                                    <MenuItem Header="Онлайн" Click="ChangeStatus_Click"/>
-                                </ContextMenu>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-        </StackPanel>
+        <ListView x:Name="RequestsList" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Клиент" DisplayMemberBinding="{Binding Client}" Width="150"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="120"/>
+                    <GridViewColumn Header="Имейл" DisplayMemberBinding="{Binding Email}" Width="150"/>
+                    <GridViewColumn Header="Код по НЕИСПУО" DisplayMemberBinding="{Binding Code}" Width="120"/>
+                    <GridViewColumn Header="Обект" DisplayMemberBinding="{Binding Institute}" Width="180"/>
+                    <GridViewColumn Header="Населено място" DisplayMemberBinding="{Binding City}" Width="100"/>
+                    <GridViewColumn Header="Стар домейн" DisplayMemberBinding="{Binding PrevDomain}" Width="120"/>
+                    <GridViewColumn Header="Нов домейн" DisplayMemberBinding="{Binding NewDomain}" Width="120"/>
+                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

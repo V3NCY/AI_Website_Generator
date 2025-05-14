@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
 using System.Windows;
 
 namespace AI_Website_Generator
@@ -11,33 +9,16 @@ namespace AI_Website_Generator
         {
             InitializeComponent();
 
-            // Get the full path to the HTML file
-            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates", "ChatBotLink.html");
+            // Navigate to the chatbot on local server
+            string chatbotUrl = "http://localhost:8000/templates/ChatBotLink.html";
 
-            if (File.Exists(templatePath))
+            try
             {
-                try
-                {
-                    var uri = new Uri(templatePath).AbsoluteUri; // Converts to file:///C:/... format
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = new Uri(templatePath).AbsoluteUri,
-                        UseShellExecute = true
-                    });
-
-                    // Optional: don't show window at all if you only need to trigger the link
-                    this.Visibility = Visibility.Collapsed;
-
-                 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Грешка при отваряне на браузър: " + ex.Message);
-                }
+                ChatbotWeb.Navigate(chatbotUrl);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Не може да бъде намерен файлът: " + templatePath, "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Грешка при зареждане на чатбота: " + ex.Message);
             }
         }
     }

@@ -65,23 +65,22 @@ namespace AI_Website_Generator
         }
         private void OpenChatbotWindow_Click(object sender, RoutedEventArgs e)
         {
-            string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates", "ChatBotLink.html");
+            // FIX: Open chatbot via localhost HTTP server instead of file://
+            string uri = "http://localhost:8000/AI_Website_Generator/templates/ChatBotLink.html";
 
-            if (File.Exists(filePath))
+            try
             {
-                var uri = new Uri(filePath).AbsoluteUri;
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                 {
                     FileName = uri,
                     UseShellExecute = true
                 });
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Файлът не е намерен: " + filePath);
+                MessageBox.Show("Грешка при отваряне на браузъра: " + ex.Message);
             }
         }
-
 
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
