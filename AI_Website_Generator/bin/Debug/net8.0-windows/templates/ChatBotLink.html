@@ -127,7 +127,7 @@
             <input type="email" placeholder="Имейл" id="email" />
             <input type="text" placeholder="Телефон за връзка" id="phone" />
             <input type="text" placeholder="МОЛ" id="mol" />
-            <input type="text" placeholder="Желан домейн" id="domain" />
+            <input type="text" placeholder="Желан домейн" id="domain"/>
             <input type="text" placeholder="Допълнителни желания" id="notes" />
             <button class="button" onclick="validateAndContinue()">Продължи</button>
         </div>
@@ -214,20 +214,30 @@
 
         function submitForm() {
             const data = {
-                neispuo: document.getElementById("neispuoCode").value,
-                name: document.getElementById("objectName").value,
-                location: document.getElementById("location").value,
-                email: document.getElementById("email").value,
+                client: document.getElementById("mol").value,
                 phone: document.getElementById("phone").value,
-                mol: document.getElementById("mol").value,
-                domain: document.getElementById("domain").value,
-                notes: document.getElementById("notes").value,
+                email: document.getElementById("email").value,
+                code: document.getElementById("neispuoCode").value,
+                institute: document.getElementById("objectName").value,
+                city: document.getElementById("location").value,
+                prevDomain: "", 
+                newDomain: document.getElementById("domain").value,
+                status: "Получена заявка",
                 template: selectedTemplate
             };
 
-            console.log("Заявка:", data);
-            showStep("step-done");
+            fetch("http://localhost:8888/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            }).then(res => {
+                showStep("step-done");
+            }).catch(err => {
+                alert("Неуспешно изпращане на заявката");
+                console.error(err);
+            });
         }
+
     </script>
 </body>
 </html>

@@ -16,6 +16,7 @@
                     <GridViewColumn Header="Стар домейн" DisplayMemberBinding="{Binding PrevDomain}" Width="120"/>
                     <GridViewColumn Header="Нов домейн" DisplayMemberBinding="{Binding NewDomain}" Width="120"/>
                     <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}" Width="100"/>
+                    <GridViewColumn Header="Темплейт" DisplayMemberBinding="{Binding Template}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>
