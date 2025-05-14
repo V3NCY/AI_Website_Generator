@@ -1,0 +1,19 @@
+﻿<Window x:Class="AI_Website_Generator.AddIssueWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добави проблем" Height="300" Width="400" Background="#ECF0F1">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Добави нов проблем" FontSize="18" FontWeight="Bold" Foreground="#2C3E50"/>
+            <TextBox Name="IssueText" Text="Описание на проблема" Foreground="Gray" Margin="0,10"
+         GotFocus="RemoveText" LostFocus="AddText"/>
+
+            <TextBox Name="AssignedToText" Text="Отговорник" Foreground="Gray" Margin="0,10"
+         GotFocus="RemoveText" LostFocus="AddText"/>
+
+            <TextBox Name="CreatedByText" Text="Вашето име" Foreground="Gray" Margin="0,10"
+         GotFocus="RemoveText" LostFocus="AddText"/>
+            <Button Content="Добави" Width="100" Background="#27AE60" Foreground="White" />
+        </StackPanel>
+    </Grid>
+</Window>

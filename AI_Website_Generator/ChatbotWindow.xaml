@@ -1,0 +1,8 @@
+﻿<Window x:Class="AI_Website_Generator.ChatbotWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Чатбот за заявки" Height="600" Width="900" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <WebBrowser Name="ChatbotWeb" />
+    </Grid>
+</Window>

@@ -1,0 +1,146 @@
+﻿<Window x:Class="AI_Website_Generator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Website Generator Pro" Height="650" Width="1000" Background="#ECF0F1" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- Sidebar Button Styling -->
+        <Style x:Key="SidebarButton" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Purple Sidebar Button (Fixed: No More BasedOn Issue) -->
+        <Style x:Key="SidebarButtonAlt" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#9B59B6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#8E44AD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Green Sidebar Button (Fixed: No More BasedOn Issue) -->
+        <Style x:Key="SidebarButtonGreen" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#27AE60"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#229954"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Dashboard Card Style -->
+        <Style x:Key="DashboardCard" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" BlurRadius="8" Opacity="0.2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!-- Sidebar Panel -->
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Border Background="#2C3E50" Padding="10">
+            <StackPanel>
+                <TextBlock Text="📌 Административен панел" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10,0,10,10"/>
+                <Separator Background="White" Height="1" Margin="10,5"/>
+
+                <!-- Navigation Buttons -->
+                <StackPanel>
+                    <Button Content="➕ Добави уебсайт" Click="AddNewDomain_Click" Style="{StaticResource SidebarButton}" />
+                    <Button Content="🌍 Списък уебсайтове" Name="btnDomainList" Click="OpenDomainList_Click" Style="{StaticResource SidebarButton}" />
+                    <Button Content="📜 Заявки" Name="btnViewRequests" Click="btnViewRequests_Click" Style="{StaticResource SidebarButton}"/>
+                    <Button Content="🎨 Темплейти" Name="btnManageDesigns" Click="btnManageDesigns_Click" Style="{StaticResource SidebarButton}" />
+                    <Button Content="🛠️ Поддръжка" Name="btnTechSupport" Click="btnTechSupport_Click" Style="{StaticResource SidebarButton}" />
+                    <Button Content="👥 Екип" Name="btnManageTeam" Click="btnManageTeam_Click" Style="{StaticResource SidebarButtonAlt}" />
+                    <Button Content="📊 AI Статистика" Name="btnWebsiteStats" Click="OpenWebsiteStatistics_Click" Style="{StaticResource SidebarButtonGreen}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Column="1">
+            <Border Background="White" Padding="20" CornerRadius="10" Margin="15" Effect="{DynamicResource DropShadowEffect}">
+                <StackPanel>
+                    <!-- Header -->
+                    <TextBlock Text="👋 Добре дошли в Website Generator Pro" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,10"/>
+                    <TextBlock Text="📌 Изберете опция от менюто вляво, за да започнете работа." FontSize="16" Foreground="#34495E"/>
+
+                    <!-- Dashboard Section -->
+                    <UniformGrid Columns="3" Margin="20,30,20,0">
+                        <Border Style="{StaticResource DashboardCard}">
+                            <StackPanel>
+                                <TextBlock Text="🖥️ Активни уебсайтове" FontSize="18" FontWeight="Bold" Foreground="#2C3E50"/>
+                                <TextBlock Text="12" FontSize="26" FontWeight="Bold" Foreground="#27AE60"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource DashboardCard}">
+                            <StackPanel>
+                                <TextBlock Text="📌 Отворени заявки" FontSize="18" FontWeight="Bold" Foreground="#2C3E50"/>
+                                <TextBlock Text="4" FontSize="26" FontWeight="Bold" Foreground="#E67E22"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource DashboardCard}">
+                            <StackPanel>
+                                <TextBlock Text="🛠️ Технически проблеми" FontSize="18" FontWeight="Bold" Foreground="#2C3E50"/>
+                                <TextBlock Text="1" FontSize="26" FontWeight="Bold" Foreground="#C0392B"/>
+                            </StackPanel>
+                        </Border>
+                        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,10">
+                            <TextBlock Text="🤖 Чатбот асистент" FontSize="20" FontWeight="Bold" Foreground="#2C3E50"/>
+                            <Button Content="Изпрати линк към чатбот" Click="OpenChatbotWindow_Click" Style="{StaticResource SidebarButton}" />
+
+                        </StackPanel>
+                    </UniformGrid>
+                    <Border Background="White" Padding="20" CornerRadius="10" Margin="15" Effect="{DynamicResource DropShadowEffect}">
+                        <DockPanel>
+                            <!-- Embedded Browser Section -->
+                            <WebBrowser Name="ChatbotBrowser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,10,0,0"/>
+                        </DockPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

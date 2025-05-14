@@ -1,0 +1,73 @@
+﻿<Window x:Class="AI_Website_Generator.WebsiteStatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Live Website Statistics" Height="500" Width="750" Background="#ECF0F1" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="🌐 Live Website Statistics" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,10"/>
+
+            <!-- DataGrid with Improved Highlighting and Visuals -->
+            <DataGrid Name="WebsitesGrid" AutoGenerateColumns="False" Height="300"
+                      ItemsSource="{Binding Websites}" GridLinesVisibility="All"
+                      BorderBrush="#BDC3C7" BorderThickness="1"
+                      RowBackground="White" AlternatingRowBackground="#F7F9F9"
+                      SelectionMode="Single" HorizontalGridLinesBrush="#BDC3C7"
+                      VerticalGridLinesBrush="#BDC3C7">
+
+                <!-- Row Style with Conditional Highlight for "Problem" Status -->
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <!-- Highlight rows where Status = "Проблем" with a soft color -->
+                            <DataTrigger Binding="{Binding Status}" Value="Проблем">
+                                <Setter Property="Background" Value="#FFEB3B"/>
+                                <!-- Light Yellow -->
+                                <Setter Property="Foreground" Value="Black"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="🌍 Website Name" Binding="{Binding Name}" Width="*" />
+                    <DataGridTextColumn Header="✅ Status" Binding="{Binding Status}" Width="120">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <!-- Highlight the status cell with a different background for Problem -->
+                                    <DataTrigger Binding="{Binding Status}" Value="Проблем">
+                                        <Setter Property="Background" Value="#FFEB3B"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="⚠️ Error Details" Binding="{Binding ErrorDetails}" Width="200">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="Padding" Value="5"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Style.Triggers>
+                                    <!-- Highlight the error details cell with a background color for Problem -->
+                                    <DataTrigger Binding="{Binding Status}" Value="Проблем">
+                                        <Setter Property="Background" Value="#FFEB3B"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Refresh Button -->
+            <Button Content="🔄 Refresh AI Insights" Click="RefreshAIInsights_Click"
+                    Background="#3498DB" Foreground="White" 
+                    Margin="10" Padding="5" Height="40" FontSize="14" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</Window>

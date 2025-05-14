@@ -1,0 +1,70 @@
+﻿<Window x:Class="AI_Website_Generator.AddDomainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добави нов уебсайт" Height="750" Width="900" Background="#ECF0F1" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- 🔹 Shadow Effect -->
+        <DropShadowEffect x:Key="ShadowEffect" BlurRadius="10" ShadowDepth="3" Opacity="0.3"/>
+    </Window.Resources>
+
+    <Grid>
+        <Border Background="White" CornerRadius="12" Padding="20" Margin="20" Effect="{StaticResource ShadowEffect}">
+            <StackPanel>
+                <!-- Header -->
+                <TextBlock Text="🌐 Добави информация за нов уебсайт" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20" TextAlignment="Center"/>
+
+                <!-- Form Grid for Better Layout -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left Column -->
+                    <StackPanel Grid.Column="0" Margin="10">
+                        <TextBlock Text="Име на домейн:" FontWeight="SemiBold" Foreground="#34495E" Margin="0,5"/>
+                        <TextBox Name="txtDomainName" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+
+                        <TextBlock Text="Admin username:" FontWeight="SemiBold" Foreground="#34495E" Margin="10,5,0,0"/>
+                        <TextBox Name="txtAdminUsername" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+
+                        <TextBlock Text="Admin password:" FontWeight="SemiBold" Foreground="#34495E" Margin="10,5,0,0"/>
+                        <TextBox Name="txtAdminPassword" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+
+                        <TextBlock Text="Код по НЕИСПУО:" FontWeight="SemiBold" Foreground="#34495E" Margin="10,5,0,0"/>
+                        <TextBox Name="txtCode" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+
+                        <TextBlock Text="Телефон за контакт:" FontWeight="SemiBold" Foreground="#34495E" Margin="10,5,0,0"/>
+                        <TextBox x:Name="txtPhone" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+                    </StackPanel>
+
+                    <!-- Right Column -->
+                    <StackPanel Grid.Column="1" Margin="10">
+                        <TextBlock Text="Обект:" FontWeight="SemiBold" Foreground="#34495E" Margin="0,5"/>
+                        <TextBox Name="txtOwner" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+
+                        <TextBlock Text="Обект имейл:" FontWeight="SemiBold" Foreground="#34495E" Margin="10,5,0,0"/>
+                        <TextBox x:Name="txtOwnerEmail" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+
+                        <TextBlock Text="Поел от екипа:" FontWeight="SemiBold" Foreground="#34495E" Margin="10,5,0,0"/>
+                        <TextBox x:Name="txtRequestTeam" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+
+                        <TextBlock Text="Дата на регистрация на тестов домейн:" FontWeight="SemiBold" Foreground="#34495E" Margin="10,5,0,0"/>
+                        <DatePicker Name="dateRegTestDomain" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+
+                        <TextBlock Text="Дата на регистрация на официален домейн:" FontWeight="SemiBold" Foreground="#34495E" Margin="10,5,0,0"/>
+                        <DatePicker Name="dateRegOfficialDomain" Width="350" Height="30" Padding="5" Background="#F7F9F9"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Submit Button -->
+                <Border Background="#27AE60" CornerRadius="8" Width="350" Height="50" Margin="0,20,0,0" HorizontalAlignment="Center">
+                    <Button Content="✅ Добави уебсайт" Click="AddDomain_Click" 
+                            Foreground="White" FontSize="16" FontWeight="Bold"
+                            Width="350" Height="50" BorderThickness="0" Background="Transparent"/>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

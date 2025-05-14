@@ -1,0 +1,28 @@
+﻿<Window x:Class="AI_Website_Generator.TechnicalSupportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Техническа поддръжка" Height="600" Width="800" Background="#ECF0F1">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="🛠️ Техническа Поддръжка" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,10"/>
+
+            <!-- Issues List -->
+            <ListView Name="IssuesList" Height="300" BorderThickness="1" BorderBrush="#BDC3C7">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Проблем" DisplayMemberBinding="{Binding Issue}" Width="300"/>
+                        <GridViewColumn Header="Отговорник" DisplayMemberBinding="{Binding AssignedTo}" Width="150"/>
+                        <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}" Width="150"/>
+                        <GridViewColumn Header="Последна промяна от" DisplayMemberBinding="{Binding LastUpdatedBy}" Width="150"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="✏️ Промени статус" Width="150" Background="#3498DB" Foreground="White" Click="ChangeStatus_Click"/>
+                <Button Content="➕ Добави проблем" Width="150" Background="#27AE60" Foreground="White" Click="AddIssue_Click" Margin="10,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

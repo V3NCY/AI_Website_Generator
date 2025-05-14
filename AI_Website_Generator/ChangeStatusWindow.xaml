@@ -1,0 +1,18 @@
+﻿<Window x:Class="AI_Website_Generator.ChangeStatusWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Промяна на статус" Height="250" Width="400" Background="#ECF0F1">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Промени статус" FontSize="18" FontWeight="Bold" Foreground="#2C3E50"/>
+            <ComboBox Name="StatusDropdown" Margin="0,10">
+                <ComboBoxItem Content="Очаква"/>
+                <ComboBoxItem Content="В процес"/>
+                <ComboBoxItem Content="Приключен"/>
+            </ComboBox>
+            <TextBox Name="UpdatedBy" Text="Вашето име" Foreground="Gray" Margin="0,10"
+         GotFocus="RemoveText" LostFocus="AddText"/>
+            <Button Content="Запази" Width="100" Background="#3498DB" Foreground="White" Click="Save_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
