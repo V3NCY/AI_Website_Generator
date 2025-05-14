@@ -65,8 +65,8 @@ namespace AI_Website_Generator
         }
         private void OpenChatbotWindow_Click(object sender, RoutedEventArgs e)
         {
-            // FIX: Open chatbot via localhost HTTP server instead of file://
-            string uri = "http://localhost:8000/AI_Website_Generator/templates/ChatBotLink.html";
+            // Open Chatbot on a server, instead of file://
+            string uri = "http://localhost:8000/templates/ChatBotLink.html";
 
             try
             {

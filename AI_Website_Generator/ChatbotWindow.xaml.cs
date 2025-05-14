@@ -9,7 +9,6 @@ namespace AI_Website_Generator
         {
             InitializeComponent();
 
-            // Navigate to the chatbot on local server
             string chatbotUrl = "http://localhost:8000/templates/ChatBotLink.html";
 
             try
