@@ -85,4 +85,5 @@ public class ViewRequestsWindow
     public string NewDomain { get; set; } = "N/A";
     public string PrevDomain { get; set; } = "N/A";
     public string Status { get; set; } = "Очаква";
+    public string Template { get; set; } = "Избран темплейт";
 }

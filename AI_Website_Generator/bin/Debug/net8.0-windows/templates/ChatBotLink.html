@@ -2,7 +2,6 @@
 <html lang="bg">
 <head>
     <meta charset="UTF-8">
-
     <title>Чатбот Заявка</title>
     <style>
         body {
@@ -30,7 +29,7 @@
             text-align: center;
         }
 
-        input, select {
+        input {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
@@ -57,73 +56,151 @@
             }
 
         .template-buttons button {
-            margin: 5px;
+            margin: 5px 0;
             padding: 10px;
             width: 100%;
+            cursor: pointer;
         }
 
         .hidden {
             display: none;
         }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.6);
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+            .modal.show {
+                display: flex;
+            }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            background-color: #3498DB;
+            border-radius: 4px;
+            padding: 2px 8px;
+        }
     </style>
 </head>
 <body>
     <div class="chatbot-container">
-        <!-- Welcome Step -->
+        <!-- Welcome -->
         <div id="step-welcome">
             <h1>Добре дошли!</h1>
             <p>Натиснете бутона по-долу, за да започнете заявката за уебсайт.</p>
             <button class="button" onclick="showStep('step-form')">Стартирай чатбот</button>
         </div>
 
-        <!-- Form Step -->
+        <!-- Form -->
         <div id="step-form" class="hidden">
             <h2>Въведете информация</h2>
-            <input type="text" placeholder="Код по НЕИСПУО" id="neispuoCode" />
-            <input type="text" placeholder="Име на обект" id="objectName" />
-            <input type="text" placeholder="Населено място" id="location" />
+            <input type="text" placeholder="Код по НЕИСПУО" id="neispuoCode" required />
+            <input type="text" placeholder="Име на обект" id="objectName" required />
+            <input type="text" placeholder="Населено място" id="location" required />
             <input type="email" placeholder="Имейл" id="email" />
             <input type="text" placeholder="Телефон за връзка" id="phone" />
             <input type="text" placeholder="МОЛ" id="mol" />
             <input type="text" placeholder="Желан домейн" id="domain" />
             <input type="text" placeholder="Допълнителни желания" id="notes" />
-            <button class="button" onclick="showStep('step-template')">Продължи</button>
+            <button class="button" onclick="validateAndContinue()">Продължи</button>
         </div>
 
-        <!-- Template Selection Step -->
+        <!-- Template step -->
         <div id="step-template" class="hidden">
             <h2>Изберете темплейт</h2>
             <div class="template-buttons">
-                <button onclick="chooseTemplate(1)">Темплейт 1</button>
-                <button onclick="chooseTemplate(2)">Темплейт 2</button>
-                <button onclick="chooseTemplate(3)">Темплейт 3</button>
+                <button onclick="loadTemplate('templateA.html', 1)">Темплейт 1</button>
+                <button onclick="loadTemplate('templateB.html', 2)">Темплейт 2</button>
+                <button onclick="loadTemplate('templateC.html', 3)">Темплейт 3</button>
+                <button class="button" onclick="showStep('step-form')">Обратно</button>
             </div>
         </div>
 
-        <!-- Confirm Step -->
+        <!-- Confirm -->
         <div id="step-confirm" class="hidden">
             <h2>Сигурни ли сте, че искате Темплейт <span id="selected-template"></span>?</h2>
             <button class="button" onclick="submitForm()">Да, потвърждавам</button>
             <button class="button" onclick="showStep('step-template')">Не, върни ме обратно</button>
         </div>
 
-        <!-- Final Step -->
+        <!-- Done -->
         <div id="step-done" class="hidden">
             <h2>Заявката е приета!</h2>
             <p>Благодарим ви. Ще се свържем с вас скоро.</p>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div id="templateModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">✕</span>
+            <iframe id="templateFrame" src="" width="100%" height="500px" frameborder="0"></iframe>
+            <button class="button" onclick="confirmTemplate()">Избери този темплейт</button>
+        </div>
+    </div>
+
     <script>
+        let selectedTemplate = 1;
+
         function showStep(id) {
             document.querySelectorAll(".chatbot-container > div").forEach(div => div.classList.add("hidden"));
             document.getElementById(id).classList.remove("hidden");
         }
 
-        let selectedTemplate = 1;
-        function chooseTemplate(num) {
-            selectedTemplate = num;
-            document.getElementById("selected-template").textContent = num;
+        function validateAndContinue() {
+            const neispuo = document.getElementById("neispuoCode").value.trim();
+            const name = document.getElementById("objectName").value.trim();
+            const location = document.getElementById("location").value.trim();
+
+            if (!neispuo || !name || !location) {
+                alert("Моля, попълнете задължителните полета.");
+                return;
+            }
+
+            showStep("step-template");
+        }
+
+        function loadTemplate(filename, number) {
+            selectedTemplate = number;
+            const modal = document.getElementById("templateModal");
+            const frame = document.getElementById("templateFrame");
+            frame.src = "templates/" + filename;
+            modal.classList.add("show");
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("templateModal");
+            modal.classList.remove("show");
+            document.getElementById("templateFrame").src = "";
+        }
+
+        function confirmTemplate() {
+            document.getElementById("templateModal").classList.remove("show");
+            document.getElementById("selected-template").textContent = selectedTemplate;
             showStep("step-confirm");
         }
 
@@ -141,8 +218,6 @@
             };
 
             console.log("Заявка:", data);
-
-         
             showStep("step-done");
         }
     </script>
