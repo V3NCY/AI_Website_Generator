@@ -73,22 +73,40 @@ namespace AI_Website_Generator
             DomainListWindow domainWindow = new DomainListWindow();
             domainWindow.Show();
         }
+        //private void OpenChatbotWindow_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // Open Chatbot on a server, instead of file://
+        //    string uri = "http://localhost:8000/ChatBotLink.html";
+
+        //    try
+        //    {
+        //        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        //        {
+        //            FileName = uri,
+        //            UseShellExecute = true
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Грешка при отваряне на браузъра: " + ex.Message);
+        //    }
+        //}
+
         private void OpenChatbotWindow_Click(object sender, RoutedEventArgs e)
         {
-            // Open Chatbot on a server, instead of file://
-            string uri = "http://localhost:8000/ChatBotLink.html";
+            string url = "http://localhost:8000/ChatBotLink.html";
 
             try
             {
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                 {
-                    FileName = uri,
+                    FileName = url,
                     UseShellExecute = true
                 });
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Грешка при отваряне на браузъра: " + ex.Message);
+                MessageBox.Show("Грешка при отваряне на чатбота:\n" + ex.Message);
             }
         }
 

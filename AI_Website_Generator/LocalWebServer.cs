@@ -30,7 +30,7 @@ public class LocalWebServer
                     ProcessRequest(context);
                 }
             }
-            catch (HttpListenerException) { /* Graceful shutdown */ }
+            catch (HttpListenerException) { }
         });
     }
 
@@ -101,7 +101,7 @@ public class LocalWebServer
             }
             catch
             {
-                existingRequests = new List<object>(); // fallback if file is invalid
+                existingRequests = new List<object>(); 
             }
         }
         else

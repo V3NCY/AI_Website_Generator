@@ -13,6 +13,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background: url("../images/digteach.png");
         }
 
         .chatbot-container {
@@ -73,7 +74,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.6);
-            display: none; 
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 9990;
@@ -105,7 +106,7 @@
             color: white;
             padding: 0 10px;
             border-radius: 3px;
-            z-index: 9992; 
+            z-index: 9992;
         }
     </style>
 </head>
@@ -130,9 +131,9 @@
             <input type="text" placeholder="Актуален домейн" id="prevdomain" />
             <input type="text" placeholder="Желание за нов домейн" id="newdomain" />
             <input type="text" placeholder="Допълнителни желания" id="notes" />
-            <bu\tton class="button" onclick="validateAndContinue()">Продължи</bu\tton>
+            <button class="button" onclick="validateAndContinue()">Продължи</button>
         </div>
-
+        
         <!-- Template step -->
         <div id="step-template" class="hidden">
             <h2>Изберете темплейт</h2>
@@ -222,7 +223,7 @@
                 code: document.getElementById("neispuoCode").value,
                 institute: document.getElementById("objectName").value,
                 city: document.getElementById("location").value,
-                prevDomain: document.getElementById("prevdomain").value, 
+                prevDomain: document.getElementById("prevdomain").value,
                 newDomain: document.getElementById("newdomain").value,
                 status: "Получена заявка",
                 template: selectedTemplate

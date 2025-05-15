@@ -16,23 +16,28 @@ namespace AI_Website_Generator
             List<TeamMember> teamMembers = new List<TeamMember>
             {
                 // Designers (2)
-                new TeamMember { Name = "Ivan Petrov", Role = "Designer" },
-                new TeamMember { Name = "Maria Georgieva", Role = "Designer" },
+                new TeamMember { Name = "Venceslava Georgieva", Role = "Designer" },
 
                 // Request Pickers (4)
-                new TeamMember { Name = "Petar Dimitrov", Role = "Request Picker" },
-                new TeamMember { Name = "Elena Nikolova", Role = "Request Picker" },
-                new TeamMember { Name = "Stefan Ivanov", Role = "Request Picker" },
-                new TeamMember { Name = "Nikolay Todorov", Role = "Request Picker" },
+                new TeamMember { Name = "Elvira Shugova", Role = "Request Picker" },
+                new TeamMember { Name = "Denka Arabadzhiyska", Role = "Request Picker" },
+                new TeamMember { Name = "Borislava Dimova", Role = "Request Picker" },
+                new TeamMember { Name = "Victoria Dobreva", Role = "Request Picker" },
 
                 // Tech Team (2)
-                new TeamMember { Name = "Dimitar Stoyanov", Role = "Tech Team" },
-                new TeamMember { Name = "Borislav Hristov", Role = "Tech Team" },
+                new TeamMember { Name = "Stoyan Petkov", Role = "Tech Team" },
+                new TeamMember { Name = "Georgi Benev", Role = "Tech Team" },
 
                 // Testers (3)
-                new TeamMember { Name = "Katerina Yordanova", Role = "Tester" },
-                new TeamMember { Name = "Veselin Petkov", Role = "Tester" },
-                new TeamMember { Name = "Lyubomir Kirov", Role = "Tester" }
+                new TeamMember { Name = "Katya Kalcheva", Role = "Tester" },
+                new TeamMember { Name = "Kremena Kairyakova", Role = "Tester" },
+
+                //Sellers (5)
+                new TeamMember { Name = "Yordan Totev", Role = "Seller"},
+                new TeamMember { Name = "Hristina Boeva", Role = "Seller"},
+                new TeamMember { Name = "Hristina Ilcheva", Role = "Seller"},
+                new TeamMember { Name = "Tsvetan Karabov", Role = "Seller"},
+                new TeamMember { Name = "Nia Yordanova", Role = "Seller"},
             };
 
             TeamList.ItemsSource = teamMembers;

@@ -70,5 +70,17 @@
     "newDomain": "paisii.info",
     "status": "Получена заявка",
     "template": 3
+  },
+  {
+    "client": "Colori Testing",
+    "phone": "08999999999",
+    "email": "testing@abv.bg",
+    "code": "073764",
+    "institute": "Colori",
+    "city": "Plovdiv",
+    "prevDomain": "-",
+    "newDomain": "Да",
+    "status": "Получена заявка",
+    "template": 1
   }
 ]
