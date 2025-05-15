@@ -124,12 +124,13 @@
             <input type="text" placeholder="Код по НЕИСПУО" id="neispuoCode" required />
             <input type="text" placeholder="Име на обект" id="objectName" required />
             <input type="text" placeholder="Населено място" id="location" required />
-            <input type="email" placeholder="Имейл" id="email" required/>
+            <input type="email" placeholder="Имейл" id="email" required />
             <input type="text" placeholder="Телефон за връзка" id="phone" />
-            <input type="text" placeholder="МОЛ" id="mol" required/>
-            <input type="text" placeholder="Желан домейн" id="domain"/>
+            <input type="text" placeholder="МОЛ" id="mol" required />
+            <input type="text" placeholder="Актуален домейн" id="prevdomain" />
+            <input type="text" placeholder="Нов домейн" id="newdomain" />
             <input type="text" placeholder="Допълнителни желания" id="notes" />
-            <button class="button" onclick="validateAndContinue()">Продължи</button>
+            <bu\tton class="button" onclick="validateAndContinue()">Продължи</bu\tton>
         </div>
 
         <!-- Template step -->
@@ -221,8 +222,8 @@
                 code: document.getElementById("neispuoCode").value,
                 institute: document.getElementById("objectName").value,
                 city: document.getElementById("location").value,
-                prevDomain: "", 
-                newDomain: document.getElementById("domain").value,
+                prevDomain: document.getElementById("prevdomain").value, 
+                newDomain: document.getElementById("newdomain").value,
                 status: "Получена заявка",
                 template: selectedTemplate
             };
