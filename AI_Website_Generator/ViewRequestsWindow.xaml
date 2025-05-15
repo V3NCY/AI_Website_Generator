@@ -24,14 +24,31 @@
                     <GridViewColumn Header="Статус">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Border CornerRadius="8" Padding="6,2" Margin="2"
+                                <Border CornerRadius="10" Padding="6,2" Margin="2"
                     Background="{Binding Status, Converter={StaticResource StatusToColorConverter}}">
                                     <TextBlock Text="{Binding Status}"
-                           Foreground="White"
-                           FontWeight="SemiBold"
-                           HorizontalAlignment="Center"
-                           TextWrapping="Wrap"/>
+                                       Foreground="White"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"
+                                       TextWrapping="Wrap"/>
                                 </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Действие" Width="100" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate >
+                                <Button Content="🚀 Deploy"  
+                                        Click="DeployTemplate_Click"
+                                        Tag="{Binding}"
+                                        Background="#27AE60"
+                                        Foreground="White"
+                                        FontWeight="Bold"
+                                        Padding="4"
+                                        Margin="4"
+                                        Cursor="Hand"
+                                        BorderThickness="0"
+                                        ToolTip="Извърши автоматично инсталиране на темплейт" />                
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
