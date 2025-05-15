@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:AI_Website_Generator"
         Title="View Requests" Height="600" Width="1000"
-        MouseRightButtonUp="RequestsList_MouseRightButtonUp">
+        MouseRightButtonUp="RequestsList_MouseRightButtonUp" WindowState="Maximized">
 
     <Window.Resources>
         <local:StatusToColorConverter x:Key="StatusToColorConverter"/>

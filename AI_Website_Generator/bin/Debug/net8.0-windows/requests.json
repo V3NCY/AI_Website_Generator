@@ -68,7 +68,7 @@
     "City": "Пловдив",
     "NewDomain": "paisii.info",
     "PrevDomain": "paisii.info",
-    "Status": "Проблем",
+    "Status": "Онлайн",
     "Template": "3"
   },
   {
@@ -84,15 +84,15 @@
     "Template": "1"
   },
   {
-    "client": "Georgi Paunov",
-    "phone": "32974932432",
-    "email": "testc@abv.bg",
-    "code": "1111112",
-    "institute": "Test Status After Client Req",
-    "city": "TestC",
-    "prevDomain": "www.actuality.bg",
-    "newDomain": "www.nexion.eu",
-    "status": "Получена заявка",
-    "template": 3
+    "Client": "Georgi Paunov",
+    "Email": "testc@abv.bg",
+    "Phone": "32974932432",
+    "Code": "1111112",
+    "Institute": "Test Status After Client Req",
+    "City": "TestC",
+    "NewDomain": "www.nexion.eu",
+    "PrevDomain": "www.actuality.bg",
+    "Status": "Получена заявка",
+    "Template": "3"
   }
 ]
