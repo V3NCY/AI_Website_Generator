@@ -17,7 +17,9 @@ namespace AI_Website_Generator
             LoadRequests();
             DataContext = this;
         }
-        public ObservableCollection<Request> Requests { get; set; }
+
+        public ObservableCollection<Request> Requests { get; set; } = new ObservableCollection<Request>();
+
         private void LoadRequests()
         {
             try
@@ -28,7 +30,7 @@ namespace AI_Website_Generator
                 {
                     MessageBox.Show("Файлът requests.json не е намерен в директорията:\n" + jsonPath,
                                     "Грешка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    Requests = new ObservableCollection<Request>();
+                    Requests.Clear(); // Clear current collection
                     return;
                 }
 
@@ -38,18 +40,20 @@ namespace AI_Website_Generator
                 {
                     MessageBox.Show("Файлът requests.json не съдържа валиден масив от заявки.",
                                     "Грешка при формата", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Requests = new ObservableCollection<Request>();
+                    Requests.Clear();
                     return;
                 }
 
                 var requestsList = JsonConvert.DeserializeObject<List<Request>>(json);
-                Requests = new ObservableCollection<Request>(requestsList ?? new List<Request>());
+                Requests.Clear();
+                foreach (var req in requestsList ?? new List<Request>())
+                    Requests.Add(req);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Грешка при зареждане на заявките:\n" + ex.Message,
                                 "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
-                Requests = new ObservableCollection<Request>();
+                Requests.Clear();
             }
         }
 
@@ -74,7 +78,6 @@ namespace AI_Website_Generator
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             LoadRequests();
-            RequestsList.Items.Refresh();
         }
 
         private void ChangeStatus_Click(object sender, RoutedEventArgs e)

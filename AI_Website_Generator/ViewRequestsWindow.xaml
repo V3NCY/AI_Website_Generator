@@ -20,6 +20,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Обнови" HorizontalAlignment="Left" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="80" Click="Refresh_Click"/>
+        <Button Content="Обнови заявки" Margin="20,0,0,10" Height="30" Width="130"
+        HorizontalAlignment="Left" VerticalAlignment="Bottom"
+        Click="Refresh_Click"/>
+
     </Grid>
 </Window>
