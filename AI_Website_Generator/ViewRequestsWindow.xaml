@@ -4,7 +4,7 @@
         Title="View Requests" Height="600" Width="1000"
         MouseRightButtonUp="RequestsList_MouseRightButtonUp">
     <Grid>
-        <ListView x:Name="RequestsList" Margin="20">
+        <ListView x:Name="RequestsList" Margin="20" ItemsSource="{Binding Requests}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Клиент" DisplayMemberBinding="{Binding Client}" Width="150"/>
@@ -20,5 +20,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="Обнови" HorizontalAlignment="Left" Margin="20,0,0,20" VerticalAlignment="Bottom" Width="80" Click="Refresh_Click"/>
     </Grid>
 </Window>

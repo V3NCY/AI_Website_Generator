@@ -10,5 +10,29 @@
     "newDomain": "www.no-domain.com",
     "status": "Получена заявка",
     "template": 2
+  },
+  {
+    "client": "Petar Georgiev",
+    "phone": "098889347329",
+    "email": "test1@abv.bg",
+    "code": "0112233445566",
+    "institute": "Test Name 1",
+    "city": "Test City 1",
+    "prevDomain": "",
+    "newDomain": "www.forgetaboutit.com",
+    "status": "Получена заявка",
+    "template": 1
+  },
+  {
+    "client": "sojfdoidsjfoisd",
+    "phone": "39841937492",
+    "email": "twsr@abv.bg",
+    "code": "423432432",
+    "institute": "sohodaia",
+    "city": "soadsad",
+    "prevDomain": "",
+    "newDomain": "www.none.com",
+    "status": "Получена заявка",
+    "template": 2
   }
 ]

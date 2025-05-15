@@ -71,6 +71,11 @@ namespace AI_Website_Generator
                 menu.IsOpen = true;
             }
         }
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            LoadRequests();
+            RequestsList.Items.Refresh();
+        }
 
         private void ChangeStatus_Click(object sender, RoutedEventArgs e)
         {
