@@ -15,7 +15,7 @@ namespace AI_Website_Generator
         {
             List<TeamMember> teamMembers = new List<TeamMember>
             {
-                // Designers (2)
+                // Designers(2)
                 new TeamMember { Name = "Venceslava Georgieva", Role = "Designer" },
 
                 // Request Pickers (4)

@@ -86,7 +86,11 @@ namespace AI_Website_Generator
             {
                 selectedRequest.Status = menuItem.Header.ToString();
                 RequestsList.Items.Refresh();
+
+                string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "requests.json");
+                File.WriteAllText(jsonPath, JsonConvert.SerializeObject(Requests, Formatting.Indented));
             }
         }
+
     }
 }
