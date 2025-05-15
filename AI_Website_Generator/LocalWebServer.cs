@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -28,38 +30,25 @@ public class LocalWebServer
                     ProcessRequest(context);
                 }
             }
-            catch (HttpListenerException) { } // Handle graceful shutdown
+            catch (HttpListenerException) { /* Graceful shutdown */ }
         });
     }
 
-    public void Start()
-    {
-        _serverThread.Start();
-    }
+    public void Start() => _serverThread.Start();
 
-    public void Stop()
-    {
-        _listener.Stop();
-    }
+    public void Stop() => _listener.Stop();
 
     private void ProcessRequest(HttpListenerContext context)
     {
+        // ✅ Handle POST: /submit
         if (context.Request.HttpMethod == "POST" && context.Request.Url.AbsolutePath == "/submit")
         {
-            using var reader = new StreamReader(context.Request.InputStream);
-            var body = reader.ReadToEnd();
-
-            File.AppendAllText("requests.json", body + Environment.NewLine);
-
-            context.Response.StatusCode = 200;
-            using var writer = new StreamWriter(context.Response.OutputStream);
-            writer.Write("{\"status\":\"ok\"}");
-            context.Response.OutputStream.Close();
-            return; 
+            HandleFormSubmission(context);
+            return;
         }
 
+        // ✅ Handle GET: static file serving
         string requestedFile = context.Request.Url.LocalPath.TrimStart('/');
-
         if (string.IsNullOrWhiteSpace(requestedFile))
             requestedFile = "ChatBotLink.html";
 
@@ -81,6 +70,53 @@ public class LocalWebServer
         context.Response.OutputStream.Close();
     }
 
+    private void HandleFormSubmission(HttpListenerContext context)
+    {
+        using var reader = new StreamReader(context.Request.InputStream);
+        var body = reader.ReadToEnd();
+
+        object newRequest;
+        try
+        {
+            newRequest = JsonConvert.DeserializeObject<object>(body);
+        }
+        catch (JsonReaderException)
+        {
+            context.Response.StatusCode = 400;
+            using var writer = new StreamWriter(context.Response.OutputStream);
+            writer.Write("{\"error\":\"Invalid JSON\"}");
+            context.Response.OutputStream.Close();
+            return;
+        }
+
+        string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "requests.json");
+        List<object> existingRequests;
+
+        if (File.Exists(jsonPath))
+        {
+            string existingJson = File.ReadAllText(jsonPath);
+            try
+            {
+                existingRequests = JsonConvert.DeserializeObject<List<object>>(existingJson) ?? new List<object>();
+            }
+            catch
+            {
+                existingRequests = new List<object>(); // fallback if file is invalid
+            }
+        }
+        else
+        {
+            existingRequests = new List<object>();
+        }
+
+        existingRequests.Add(newRequest);
+        File.WriteAllText(jsonPath, JsonConvert.SerializeObject(existingRequests, Formatting.Indented));
+
+        context.Response.StatusCode = 200;
+        using var writerOut = new StreamWriter(context.Response.OutputStream);
+        writerOut.Write("{\"status\":\"ok\"}");
+        context.Response.OutputStream.Close();
+    }
 
     private string GetMimeType(string extension)
     {
@@ -90,6 +126,9 @@ public class LocalWebServer
             ".css" => "text/css",
             ".js" => "application/javascript",
             ".json" => "application/json",
+            ".png" => "image/png",
+            ".jpg" or ".jpeg" => "image/jpeg",
+            ".gif" => "image/gif",
             _ => "application/octet-stream",
         };
     }

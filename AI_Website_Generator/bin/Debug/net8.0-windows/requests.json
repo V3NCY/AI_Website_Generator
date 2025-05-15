@@ -1,2 +1,14 @@
-[]
-{"client":"Ivan Manolov","phone":"0899999999","email":"test@abv.bg","code":"123456","institute":"Test Name","city":"Test City","prevDomain":"","newDomain":"www.no-domain.com","status":"Получена заявка","template":2}
+[
+  {
+    "client": "Ivan Manolov",
+    "phone": "0899999999",
+    "email": "test@abv.bg",
+    "code": "123456",
+    "institute": "Test Name",
+    "city": "Test City",
+    "prevDomain": "",
+    "newDomain": "www.no-domain.com",
+    "status": "Получена заявка",
+    "template": 2
+  }
+]

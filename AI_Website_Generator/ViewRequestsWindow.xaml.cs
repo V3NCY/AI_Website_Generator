@@ -34,7 +34,6 @@ namespace AI_Website_Generator
 
                 string json = File.ReadAllText(jsonPath);
 
-                // Проверка дали съдържанието е масив (започва с [ )
                 if (!json.TrimStart().StartsWith("["))
                 {
                     MessageBox.Show("Файлът requests.json не съдържа валиден масив от заявки.",
