@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\Orak-Academy-Logo-Remake-2024-white.png" />
+    <None Remove="images\Orak-Academy-Logo-Remake-2024.png" />
     <None Remove="requests.json" />
     <None Remove="templates\ChatBotLink.html" />
     <None Remove="templates\templateA.html" />
@@ -42,5 +44,14 @@
 	<ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="images\Orak-Academy-Logo-Remake-2024-white.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="images\Orak-Academy-Logo-Remake-2024.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
 
 </Project>

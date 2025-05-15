@@ -138,14 +138,18 @@
 
                         </StackPanel>
                     </UniformGrid>
-                    <Border Background="White" Padding="20" CornerRadius="10" Margin="15" Width="745">
-                        <DockPanel>
-                            <Image Source="/images/Orak-Academy-Logo-Remake-2024.png" Width="230" Margin="390,160,0,0"/>
-
-                        </DockPanel>
-                    </Border>
                 </StackPanel>
             </Border>
+            <!-- Logo on bottom-right -->
+            <Image Source="images/Orak-Academy-Logo-Remake-2024.png"
+                    Width="250"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="20"
+                    Opacity="0.9"
+                    IsHitTestVisible="False"/>
+
         </Grid>
+        
     </Grid>
 </Window>

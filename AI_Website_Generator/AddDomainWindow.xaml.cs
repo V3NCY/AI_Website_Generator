@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace AI_Website_Generator
 {
@@ -15,25 +14,40 @@ namespace AI_Website_Generator
 
         private void AddDomain_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDomainName.Text) ||
+            if (string.IsNullOrWhiteSpace(txtNewDomainName.Text) ||
+                string.IsNullOrWhiteSpace(txtOldDomainName.Text) ||
                 string.IsNullOrWhiteSpace(txtOwner.Text) ||
                 string.IsNullOrWhiteSpace(txtOwnerEmail.Text) ||
                 string.IsNullOrWhiteSpace(txtRequestTeam.Text))
             {
-                MessageBox.Show("Please fill all fields.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Моля, попълнете всички полета.", "Липсваща информация", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             NewDomain = new Domain
             {
-                DomainName = txtDomainName.Text,
-                Owner = txtOwner.Text,
-                OwnerEmail = txtOwnerEmail.Text,
-                RequestTeamMember = txtRequestTeam.Text,
-                RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd")
+                NewDomainName = txtNewDomainName.Text.Trim(),
+                OldDomainName = txtOldDomainName.Text.Trim(),
+                Owner = txtOwner.Text.Trim(),
+                OwnerEmail = txtOwnerEmail.Text.Trim(),
+                City = txtCity.Text.Trim(),
+                Code = txtCode.Text.Trim(),
+                Mol = txtMol.Text.Trim(),
+                Phone = txtPhone.Text.Trim(),
+                Package = txtPackage.Text.Trim(),
+                AdminUsername = txtAdminUsername.Text.Trim(),
+                AdminPassword = txtAdminPassword.Text.Trim(),
+                Hosting = txtHosting.Text.Trim(),
+                RequestTeamMember = txtRequestTeam.Text.Trim(),
+                RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd"),
+                TestDomainDate = dateRegTestDomain.SelectedDate?.ToString("yyyy-MM-dd") ?? "",
+                OfficialDomainDate = dateRegOfficialDomain.SelectedDate?.ToString("yyyy-MM-dd") ?? ""
             };
 
-            DialogResult = true;
+            Domain.AddDomain(NewDomain);
+
+
+            this.DialogResult = true;
             Close();
         }
     }

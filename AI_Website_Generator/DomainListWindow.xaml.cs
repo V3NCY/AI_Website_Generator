@@ -15,12 +15,13 @@ namespace AI_Website_Generator
 
         private void LoadDomains()
         {
-            DomainsList.Items.Clear();  
-            foreach (var domain in domains)
-            {
-                DomainsList.Items.Add($"🌍 {domain.DomainName} - 👤 {domain.Owner} - 🔒 {domain.Status} - 📅 {domain.RegistrationDate}");
-            }
+            var domains = Domain.GetDomains();
+            DomainsList.ItemsSource = null;
+            DomainsList.ItemsSource = domains;
         }
+
+
+
 
         private void RefreshDomains_Click(object sender, RoutedEventArgs e)
         {

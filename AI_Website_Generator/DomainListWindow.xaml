@@ -1,12 +1,38 @@
 ﻿<Window x:Class="AI_Website_Generator.DomainListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Registered Domains" Height="500" Width="700" Background="#ECF0F1">
+        Title="Регистрирани домейни" Height="600" Width="900" Background="#ECF0F1"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <StackPanel Margin="20">
-            <TextBlock Text="🌐 Уебсайт домейни" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,10"/>
-            <ListBox Name="DomainsList" Height="300" BorderThickness="1" BorderBrush="#BDC3C7"/>
-            <Button Content="Refresh Domains" Click="RefreshDomains_Click" Background="#3498DB" Foreground="White" Margin="10"/>
+            <TextBlock Text="🌐 Регистрирани уебсайтове" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,15"/>
+
+            <ListView Name="DomainsList" Height="420" BorderThickness="1" BorderBrush="#BDC3C7" FontSize="14"
+                      Foreground="#2C3E50" Background="White" Padding="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Обект" Width="150" DisplayMemberBinding="{Binding Owner}"/>
+                        <GridViewColumn Header="Населено място" Width="100" DisplayMemberBinding="{Binding City}"/>
+                        <GridViewColumn Header="Код НЕИСПУО" Width="100" DisplayMemberBinding="{Binding Code}"/>
+                        <GridViewColumn Header="МОЛ" Width="150" DisplayMemberBinding="{Binding Mol}"/>
+                        <GridViewColumn Header="Телефон" Width="100" DisplayMemberBinding="{Binding Phone}"/>
+                        <GridViewColumn Header="Имейл" Width="150" DisplayMemberBinding="{Binding OwnerEmail}"/>
+                        <GridViewColumn Header="Пакет" Width="100" DisplayMemberBinding="{Binding Package}"/>
+                        <GridViewColumn Header="Нов домейн" Width="150" DisplayMemberBinding="{Binding NewDomainName}"/>
+                        <GridViewColumn Header="Стар домейн" Width="150" DisplayMemberBinding="{Binding OldDomainName}"/>
+                        <GridViewColumn Header="Admin потребител" Width="150" DisplayMemberBinding="{Binding AdminUsername}"/>
+                        <GridViewColumn Header="Admin парола" Width="150" DisplayMemberBinding="{Binding AdminPassword}"/>
+                        <GridViewColumn Header="Тестов домейн дата" Width="120" DisplayMemberBinding="{Binding RegTestDomainDate}"/>
+                        <GridViewColumn Header="Официален домейн дата" Width="120" DisplayMemberBinding="{Binding RegOfficialDomainDate}"/>
+                        <GridViewColumn Header="Хостинг (договор)" Width="120" DisplayMemberBinding="{Binding Hosting}"/>
+                        <GridViewColumn Header="Поел от екипа" Width="120" DisplayMemberBinding="{Binding RequestTeamMember}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Button Content="🔄 Обнови списъка" Click="RefreshDomains_Click" 
+                    Background="#3498DB" Foreground="White" FontSize="14" FontWeight="Bold"
+                    Padding="10" Width="200" HorizontalAlignment="Left" Margin="0,15,0,0"/>
         </StackPanel>
     </Grid>
 </Window>

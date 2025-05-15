@@ -42,18 +42,22 @@ namespace AI_Website_Generator
         {
             if (IssuesList.SelectedItem is TechIssue selectedIssue)
             {
-                if (selectedIssue.Status == "Complete")
+                if (selectedIssue.Status == "Приключен")
                 {
-                    MessageBox.Show("This request is complete. The Requests Team can now register the domain.", "Status Update", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Тази заявка е приключена. Екипът може да регистрира домейна.",
+                                    "Статус приключен", MessageBoxButton.OK, MessageBoxImage.Information);
+
                     AddDomainWindow addDomainWindow = new AddDomainWindow();
                     if (addDomainWindow.ShowDialog() == true)
                     {
                         Domain.AddDomain(addDomainWindow.NewDomain);
+
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Only completed requests can add domains!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Само приключени заявки могат да добавят домейн!",
+                                    "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }

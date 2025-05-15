@@ -7,7 +7,7 @@ namespace AI_Website_Generator
 
     public partial class MainWindow : Window
     {
-    private LocalWebServer _webServer;
+        private LocalWebServer _webServer;
 
         public MainWindow()
         {
@@ -28,9 +28,19 @@ namespace AI_Website_Generator
 
         private void AddNewDomain_Click(object sender, RoutedEventArgs e)
         {
-            AddDomainWindow addDomainWindow = new AddDomainWindow();
-            addDomainWindow.Show();
+            var addWindow = new AddDomainWindow();
+            bool? result = addWindow.ShowDialog();
+
+            if (result == true)
+            {
+                Domain newDomain = addWindow.NewDomain;
+                Domain.AddDomain(newDomain);
+
+                MessageBox.Show($"Успешно добавен домейн:\n{newDomain.NewDomainName}",
+                                "Нов уебсайт", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
+
 
         private void btnViewRequests_Click(object sender, RoutedEventArgs e)
         {
@@ -116,4 +126,5 @@ namespace AI_Website_Generator
             MessageBox.Show("Данните са обновени успешно!", "Обновяване", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
+
 }
