@@ -44,6 +44,20 @@ public class LocalWebServer
 
     private void ProcessRequest(HttpListenerContext context)
     {
+        if (context.Request.HttpMethod == "POST" && context.Request.Url.AbsolutePath == "/submit")
+        {
+            using var reader = new StreamReader(context.Request.InputStream);
+            var body = reader.ReadToEnd();
+
+            File.AppendAllText("requests.json", body + Environment.NewLine);
+
+            context.Response.StatusCode = 200;
+            using var writer = new StreamWriter(context.Response.OutputStream);
+            writer.Write("{\"status\":\"ok\"}");
+            context.Response.OutputStream.Close();
+            return; 
+        }
+
         string requestedFile = context.Request.Url.LocalPath.TrimStart('/');
 
         if (string.IsNullOrWhiteSpace(requestedFile))
@@ -66,6 +80,7 @@ public class LocalWebServer
 
         context.Response.OutputStream.Close();
     }
+
 
     private string GetMimeType(string extension)
     {
