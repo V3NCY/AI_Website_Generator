@@ -9,7 +9,7 @@ namespace AI_Website_Generator
         {
             InitializeComponent();
 
-            string chatbotUrl = "http://localhost:8000/templates/ChatBotLink.html";
+            string chatbotUrl = "http://localhost:8000/ChatBotLink.html";
 
             try
             {

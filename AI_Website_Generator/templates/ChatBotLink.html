@@ -193,10 +193,11 @@
             const frame = document.getElementById("templateFrame");
             const modal = document.getElementById("templateModal");
 
-            frame.src = "http://localhost:8000/templates/" + filename;
+            frame.src = "http://localhost:8000/" + filename;
 
             modal.classList.add("show");
         }
+
 
         function closeModal() {
             const modal = document.getElementById("templateModal");
@@ -226,7 +227,7 @@
                 template: selectedTemplate
             };
 
-            fetch("http://localhost:8888/submit", {
+            fetch("http://localhost:8000/submit", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
