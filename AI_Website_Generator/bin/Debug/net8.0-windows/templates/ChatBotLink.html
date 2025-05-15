@@ -124,9 +124,9 @@
             <input type="text" placeholder="Код по НЕИСПУО" id="neispuoCode" required />
             <input type="text" placeholder="Име на обект" id="objectName" required />
             <input type="text" placeholder="Населено място" id="location" required />
-            <input type="email" placeholder="Имейл" id="email" />
+            <input type="email" placeholder="Имейл" id="email" required/>
             <input type="text" placeholder="Телефон за връзка" id="phone" />
-            <input type="text" placeholder="МОЛ" id="mol" />
+            <input type="text" placeholder="МОЛ" id="mol" required/>
             <input type="text" placeholder="Желан домейн" id="domain"/>
             <input type="text" placeholder="Допълнителни желания" id="notes" />
             <button class="button" onclick="validateAndContinue()">Продължи</button>
@@ -228,14 +228,23 @@
 
             fetch("http://localhost:8888/submit", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            }).then(res => {
-                showStep("step-done");
-            }).catch(err => {
-                alert("Неуспешно изпращане на заявката");
-                console.error(err);
-            });
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        showStep("step-done");
+                    } else {
+                        alert("Неуспешно изпращане на заявката");
+                    }
+                })
+                .catch(error => {
+                    console.error("Грешка при изпращане:", error);
+                    alert("Възникна грешка при изпращането на заявката");
+                });
+
         }
 
     </script>

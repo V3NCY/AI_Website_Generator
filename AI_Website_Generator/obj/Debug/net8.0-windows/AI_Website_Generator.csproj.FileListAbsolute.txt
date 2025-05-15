@@ -46,3 +46,4 @@ C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\n
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\AI_Website_Generator.pdb
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\AI_Website_Generator.genruntimeconfig.cache
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\ref\AI_Website_Generator.dll
+C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\requests.json

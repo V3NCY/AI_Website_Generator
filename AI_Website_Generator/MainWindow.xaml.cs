@@ -3,12 +3,22 @@ using System.IO;
 
 namespace AI_Website_Generator
 {
+
+
     public partial class MainWindow : Window
     {
+    private LocalWebServer _webServer;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates");
+            _webServer = new LocalWebServer(templatePath, 8000);
+            _webServer.Start();
+
         }
+
 
         private void OpenAddDomainWindow_Click(object sender, RoutedEventArgs e)
         {

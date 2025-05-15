@@ -4,6 +4,8 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace AI_Website_Generator
 {
@@ -13,23 +15,43 @@ namespace AI_Website_Generator
         {
             InitializeComponent();
             LoadRequests();
+            DataContext = this;
         }
-
+        public ObservableCollection<Request> Requests { get; set; }
         private void LoadRequests()
         {
-            var requests = new List<Request>();
-
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "requests.json");
-            if (File.Exists(filePath))
+            try
             {
-                foreach (var line in File.ReadLines(filePath))
-                {
-                    var r = JsonSerializer.Deserialize<Request>(line);
-                    if (r != null) requests.Add(r);
-                }
-            }
+                string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "requests.json");
 
-            RequestsList.ItemsSource = requests;
+                if (!File.Exists(jsonPath))
+                {
+                    MessageBox.Show("Файлът requests.json не е намерен в директорията:\n" + jsonPath,
+                                    "Грешка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    Requests = new ObservableCollection<Request>();
+                    return;
+                }
+
+                string json = File.ReadAllText(jsonPath);
+
+                // Проверка дали съдържанието е масив (започва с [ )
+                if (!json.TrimStart().StartsWith("["))
+                {
+                    MessageBox.Show("Файлът requests.json не съдържа валиден масив от заявки.",
+                                    "Грешка при формата", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Requests = new ObservableCollection<Request>();
+                    return;
+                }
+
+                var requestsList = JsonConvert.DeserializeObject<List<Request>>(json);
+                Requests = new ObservableCollection<Request>(requestsList ?? new List<Request>());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Грешка при зареждане на заявките:\n" + ex.Message,
+                                "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
+                Requests = new ObservableCollection<Request>();
+            }
         }
 
 

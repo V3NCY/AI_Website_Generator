@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AI_Website_Generator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0d8bcd4a0c47e540b9a5f06ca69dab73f38e149")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91049a2304b4689df394dcd3b88d4582b8130d83")]
 [assembly: System.Reflection.AssemblyProductAttribute("AI_Website_Generator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AI_Website_Generator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
