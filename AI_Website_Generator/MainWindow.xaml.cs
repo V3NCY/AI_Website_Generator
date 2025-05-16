@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Controls;
 using AI_Website_Generator.user;
+using System.Windows.Input;
 
 namespace AI_Website_Generator
 {
@@ -163,8 +164,7 @@ namespace AI_Website_Generator
 
             }
         }
-
-        private void SendChatMessage_Click(object sender, RoutedEventArgs e)
+        private void SendMessage()
         {
             string user = "👤 " + CurrentUsername;
             string time = DateTime.Now.ToString("HH:mm");
@@ -176,6 +176,20 @@ namespace AI_Website_Generator
                 File.AppendAllLines(chatFile, new[] { fullMessage });
                 ChatInput.Clear();
                 RefreshChat_Click(null, null);
+            }
+        }
+
+        private void SendChatMessage_Click(object sender, RoutedEventArgs e)
+        {
+            SendMessage();
+        }
+
+        private void ChatInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SendMessage();
+                e.Handled = true; 
             }
         }
 

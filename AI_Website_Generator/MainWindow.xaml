@@ -160,21 +160,20 @@
                     </UniformGrid>
 
                     <!-- Chatbot -->
-                    <StackPanel Margin="0,10,0,10">
+                    <StackPanel Margin="0,20,0,15">
                         <TextBlock Text="🤖 Чатбот асистент" FontSize="20" FontWeight="Bold" Foreground="#2C3E50"/>
                         <Button Content="Линк към чатбот" Click="OpenChatbotWindow_Click" Style="{StaticResource SidebarButton}" />
                     </StackPanel>
 
                     <!-- Chat Section -->
-                    <Border Margin="10" Padding="10" Background="#fff" BorderBrush="#BEE6FD" BorderThickness="1" CornerRadius="8" Height="300">
+                    <Border Margin="10" Padding="10" Background="#eee" BorderBrush="#BEE6FD" BorderThickness="1" CornerRadius="8" Height="300">
                         <StackPanel>
                             <TextBlock Text="💬 Екипен чат" FontWeight="Bold" FontSize="18" Margin="0,0,0,10" Foreground="#2C3E50"/>
                             <ScrollViewer Height="200" VerticalScrollBarVisibility="Auto">
                                 <ItemsControl x:Name="ChatMessages" ItemTemplate="{StaticResource ChatMessageTemplate}"/>
                             </ScrollViewer>
                             <DockPanel Margin="0,10,0,0">
-                                <TextBox x:Name="ChatInput" Width="700" Height="30" Margin="0,0,5,0" Padding="5"
-                                         BorderBrush="#BDC3C7" FontSize="14" />
+                                <TextBox x:Name="ChatInput" Width="700" Height="30" Margin="0,0,5,0" Padding="5" BorderBrush="#BDC3C7" FontSize="14" KeyDown="ChatInput_KeyDown" />
                                 <Button Content="Изпрати" Width="80" Click="SendChatMessage_Click" Background="#0b5394" BorderBrush="#BEE6FD" Foreground="#fff"/>
                                 <Button Content="Refresh" Width="80" Click="RefreshChat_Click" Margin="320,0,0,0" Background="#0b5394" BorderBrush="#BEE6FD" Foreground="#fff"/>
                             </DockPanel>
@@ -186,7 +185,7 @@
 
             <!-- Logo -->
             <Image Source="images/Orak-Academy-Logo-Remake-2024.png"
-                   Width="250"
+                   Width="200"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Bottom"
                    Margin="20"
