@@ -145,11 +145,24 @@ namespace AI_Website_Generator
         private void RefreshChat_Click(object sender, RoutedEventArgs e)
         {
             ChatMessages.Items.Clear();
+
             if (File.Exists(chatFile))
             {
                 foreach (var line in File.ReadAllLines(chatFile))
                 {
-                    ChatMessages.Items.Add(new TextBlock { Text = line });
+                    var parts = line.Split(new[] { ':' }, 3); 
+                    if (parts.Length < 3) continue;
+
+                    var time = parts[0].Trim();
+                    var userPart = parts[1].Trim();
+                    var message = parts[2].Trim();
+
+                    ChatMessages.Items.Add(new ChatMessage
+                    {
+                        Message = $"{userPart}: {message}",
+                        Time = time,
+                        IsMe = userPart.Contains(CurrentUsername)
+                    });
                 }
             }
         }
