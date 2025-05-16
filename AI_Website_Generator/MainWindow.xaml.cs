@@ -13,6 +13,7 @@ namespace AI_Website_Generator
         private readonly string chatFile = "chatlog.txt";
         private LocalWebServer _webServer;
 
+
         public MainWindow()
         {
             var login = new LoginWindow();
@@ -145,25 +146,21 @@ namespace AI_Website_Generator
         private void RefreshChat_Click(object sender, RoutedEventArgs e)
         {
             ChatMessages.Items.Clear();
-
             if (File.Exists(chatFile))
             {
-                foreach (var line in File.ReadAllLines(chatFile))
+                var lines = File.ReadAllLines(chatFile);
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    var parts = line.Split(new[] { ':' }, 3); 
-                    if (parts.Length < 3) continue;
-
-                    var time = parts[0].Trim();
-                    var userPart = parts[1].Trim();
-                    var message = parts[2].Trim();
-
-                    ChatMessages.Items.Add(new ChatMessage
+                    var message = new ChatMessage
                     {
-                        Message = $"{userPart}: {message}",
-                        Time = time,
-                        IsMe = userPart.Contains(CurrentUsername)
-                    });
+                        Message = lines[i],
+                        Time = "", 
+                        IsMe = lines[i].Contains(CurrentUsername),
+                        IsLatest = (i == lines.Length - 1)
+                    };
+                    ChatMessages.Items.Add(message);
                 }
+
             }
         }
 
