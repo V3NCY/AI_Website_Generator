@@ -49,3 +49,5 @@ C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\n
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\requests.json
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\AI_Website_Generator_MarkupCompile.lref
+C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\user\LoginWindow.baml
+C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\user\LoginWindow.g.cs

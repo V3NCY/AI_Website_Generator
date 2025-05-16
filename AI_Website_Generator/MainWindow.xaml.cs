@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.IO;
+using System.Windows.Controls;
+using AI_Website_Generator.user;
 
 namespace AI_Website_Generator
 {
@@ -7,16 +9,29 @@ namespace AI_Website_Generator
 
     public partial class MainWindow : Window
     {
+        public string CurrentUsername { get; set; } = "Гост";
+        private readonly string chatFile = "chatlog.txt";
         private LocalWebServer _webServer;
 
         public MainWindow()
         {
+            var login = new LoginWindow();
+            bool? result = login.ShowDialog();
+
+            if (result != true)
+            {
+                Application.Current.Shutdown();
+                return;
+            }
+
+            CurrentUsername = login.LoggedInUser;
             InitializeComponent();
+            DataContext = this;
 
-            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates");
-            _webServer = new LocalWebServer(templatePath, 8000);
+            _webServer = new LocalWebServer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates"), 8000);
             _webServer.Start();
-
+            this.DataContext = this;
+            RefreshChat_Click(null, null);
         }
 
 
@@ -125,6 +140,35 @@ namespace AI_Website_Generator
         {
             MessageBox.Show("Данните са обновени успешно!", "Обновяване", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+
+        private void RefreshChat_Click(object sender, RoutedEventArgs e)
+        {
+            ChatMessages.Items.Clear();
+            if (File.Exists(chatFile))
+            {
+                foreach (var line in File.ReadAllLines(chatFile))
+                {
+                    ChatMessages.Items.Add(new TextBlock { Text = line });
+                }
+            }
+        }
+
+        private void SendChatMessage_Click(object sender, RoutedEventArgs e)
+        {
+            string user = "👤 " + CurrentUsername;
+            string time = DateTime.Now.ToString("HH:mm");
+            string message = ChatInput.Text.Trim();
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                string fullMessage = $"{time} {user}: {message}";
+                File.AppendAllLines(chatFile, new[] { fullMessage });
+                ChatInput.Clear();
+                RefreshChat_Click(null, null);
+            }
+        }
+
     }
 
 }

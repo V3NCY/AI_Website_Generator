@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\App.xaml
-11-1859664597
+12911046806
 92048724809
-212081786555
+222093064279
 1991460984647
-AddDomainWindow.xaml;AddIssueWindow.xaml;ChangeStatusWindow.xaml;ChatbotWindow.xaml;DomainListWindow.xaml;MainWindow.xaml;ManageDesignsWindow.xaml;TeamManagementWindow.xaml;TechnicalSupportWindow.xaml;ViewRequestsWindow.xaml;WebsiteStatisticsWindow.xaml;
+AddDomainWindow.xaml;AddIssueWindow.xaml;ChangeStatusWindow.xaml;ChatbotWindow.xaml;DomainListWindow.xaml;MainWindow.xaml;ManageDesignsWindow.xaml;TeamManagementWindow.xaml;TechnicalSupportWindow.xaml;user\LoginWindow.xaml;ViewRequestsWindow.xaml;WebsiteStatisticsWindow.xaml;
 
 False
 
