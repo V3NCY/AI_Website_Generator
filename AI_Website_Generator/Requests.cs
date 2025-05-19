@@ -12,5 +12,7 @@
         public string PrevDomain { get; set; } = "N/A";
         public string Status { get; set; } = "Очаква";
         public string Template { get; set; } = "Избран темплейт";
+        public string Comment { get; set; } = "";
+
     }
 }

@@ -6,6 +6,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Newtonsoft.Json;
+using Microsoft.VisualBasic;
+
 
 namespace AI_Website_Generator
 {
@@ -174,25 +176,25 @@ namespace AI_Website_Generator
                 string bodyHtml = File.ReadAllText(htmlPath);
 
                 string indexPhp = $@"<?php
-/* Template: {themeName} */
-?><!DOCTYPE html>
-<html>
-<head>
-    <meta charset='UTF-8'>
-    <title>{themeName}</title>
-</head>
-<body>
-{bodyHtml}
-</body>
-</html>";
+                                    /* Template: {themeName} */
+                                    ?><!DOCTYPE html>
+                                    <html>
+                                    <head>
+                                        <meta charset='UTF-8'>
+                                        <title>{themeName}</title>
+                                    </head>
+                                    <body>
+                                    {bodyHtml}
+                                    </body>
+                                    </html>";
 
                 File.WriteAllText(Path.Combine(tempDir, "index.php"), indexPhp);
 
                 string styleCss = $@"/*
-Theme Name: {themeName}
-Author: Orak Academy
-Version: 1.0
-*/";
+                Theme Name: {themeName}
+                Author: Orak Academy
+                Version: 1.0
+                */";
                 File.WriteAllText(Path.Combine(tempDir, "style.css"), styleCss);
 
                 if (File.Exists(outputZipPath)) File.Delete(outputZipPath);
@@ -208,5 +210,38 @@ Version: 1.0
                 try { Directory.Delete(tempDir, true); } catch { }
             }
         }
+        private void RequestsList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (RequestsList.SelectedItem is Request selectedRequest)
+            {
+                string[] editableStatuses = {
+            "Проблем", "За дизайнер", "За технически екип", "В процес", "Получена заявка"
+        };
+
+                if (Array.Exists(editableStatuses, s => s == selectedRequest.Status))
+                {
+                    string input = Microsoft.VisualBasic.Interaction.InputBox(
+                        $"Добави/редактирай коментар за статус: {selectedRequest.Status}",
+                        "Коментар за заявката",
+                        selectedRequest.Comment ?? "");
+
+                    if (!string.IsNullOrWhiteSpace(input))
+                    {
+                        selectedRequest.Comment = input.Trim();
+                        RequestsList.Items.Refresh();
+
+                        string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "requests.json");
+                        File.WriteAllText(jsonPath, JsonConvert.SerializeObject(Requests, Formatting.Indented));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Коментари могат да се добавят само при определени статуси.", "Неразрешена операция", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
+
+
     }
 }

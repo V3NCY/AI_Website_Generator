@@ -68,7 +68,7 @@ namespace AI_Website_Generator.user {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AI_Website_Generator;component/user/loginwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AI_Website_Generator;V1.0.0.0;component/user/loginwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\user\LoginWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

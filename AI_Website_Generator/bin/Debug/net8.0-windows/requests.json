@@ -9,7 +9,8 @@
     "NewDomain": "www.no-domain.com",
     "PrevDomain": "",
     "Status": "В процес",
-    "Template": "2"
+    "Template": "2",
+    "Comment": ""
   },
   {
     "Client": "Petar Georgiev",
@@ -21,7 +22,8 @@
     "NewDomain": "www.forgetaboutit.com",
     "PrevDomain": "",
     "Status": "За технически екип",
-    "Template": "1"
+    "Template": "1",
+    "Comment": ""
   },
   {
     "Client": "sojfdoidsjfoisd",
@@ -33,7 +35,8 @@
     "NewDomain": "www.none.com",
     "PrevDomain": "",
     "Status": "Онлайн",
-    "Template": "2"
+    "Template": "2",
+    "Comment": ""
   },
   {
     "Client": "Molina Mollova",
@@ -45,7 +48,8 @@
     "NewDomain": "-",
     "PrevDomain": "",
     "Status": "За начално тестване",
-    "Template": "3"
+    "Template": "3",
+    "Comment": ""
   },
   {
     "Client": "Stoyan Mirelov",
@@ -57,7 +61,8 @@
     "NewDomain": "",
     "PrevDomain": "",
     "Status": "За дизайнер",
-    "Template": "3"
+    "Template": "3",
+    "Comment": ""
   },
   {
     "Client": "Soli Hristov",
@@ -69,7 +74,8 @@
     "NewDomain": "paisii.info",
     "PrevDomain": "paisii.info",
     "Status": "Онлайн",
-    "Template": "3"
+    "Template": "3",
+    "Comment": ""
   },
   {
     "Client": "Colori Testing",
@@ -81,7 +87,8 @@
     "NewDomain": "Да",
     "PrevDomain": "-",
     "Status": "Проблем",
-    "Template": "1"
+    "Template": "1",
+    "Comment": "Тестване"
   },
   {
     "Client": "Georgi Paunov",
@@ -93,6 +100,7 @@
     "NewDomain": "www.nexion.eu",
     "PrevDomain": "www.actuality.bg",
     "Status": "Получена заявка",
-    "Template": "3"
+    "Template": "3",
+    "Comment": ""
   }
 ]

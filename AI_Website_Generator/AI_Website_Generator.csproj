@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\pencil.png" />
+    <None Remove="Icons\plus.png" />
     <None Remove="images\Orak-Academy-Logo-Remake-2024-white.png" />
     <None Remove="images\Orak-Academy-Logo-Remake-2024.png" />
     <None Remove="requests.json" />
@@ -46,6 +48,12 @@
   </ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Icons\pencil.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Icons\plus.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="images\Orak-Academy-Logo-Remake-2024-white.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>

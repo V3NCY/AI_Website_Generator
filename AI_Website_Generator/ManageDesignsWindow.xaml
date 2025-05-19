@@ -6,9 +6,9 @@
         <StackPanel Margin="20">
             <TextBlock Text="🎨 Управление на Темплейти" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,10"/>
             <ListBox Name="TemplateList" SelectionChanged="TemplateList_SelectionChanged">
-                <ListBoxItem Tag="templates/templateA.html">Template A - Modern Business</ListBoxItem>
-                <ListBoxItem Tag="templates/templateB.html">Template B - Creative Agency</ListBoxItem>
-                <ListBoxItem Tag="templates/templateC.html">Template C - Online Store</ListBoxItem>
+                <ListBoxItem Tag="templates/templateA.html">Template A - University</ListBoxItem>
+                <ListBoxItem Tag="templates/templateB.html">Template B - Kindergarden</ListBoxItem>
+                <ListBoxItem Tag="templates/templateC.html">Template C - School</ListBoxItem>
             </ListBox>
         </StackPanel>
     </Grid>
