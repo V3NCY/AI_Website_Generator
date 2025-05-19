@@ -1,14 +1,14 @@
 ﻿<Window x:Class="AI_Website_Generator.TechnicalSupportWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Техническа поддръжка" Height="600" Width="800" Background="#ECF0F1">
+        Title="Техническа поддръжка" Height="600" Width="1000" Background="#ECF0F1">
     <Grid Margin="20">
         <TextBlock Text="🛠️ Техническа Поддръжка"
                    FontSize="22" FontWeight="Bold" Foreground="#2C3E50"
                    Margin="0,0,0,10"/>
 
         <!-- IssuesList -->
-        <ListView x:Name="IssuesList" Margin="0,40,0,120"
+        <ListView x:Name="IssuesList" Margin="0,40,0,170"
                   BorderThickness="1" BorderBrush="#BDC3C7"
                   MouseRightButtonUp="IssuesList_RightClick">
             <ListView.ItemContainerStyle>
@@ -32,6 +32,12 @@
                     <GridViewColumn Header="Отговорник" DisplayMemberBinding="{Binding AssignedTo}" Width="150"/>
                     <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status}" Width="100"/>
                     <GridViewColumn Header="Последна промяна" DisplayMemberBinding="{Binding LastUpdatedBy}" Width="150"/>
+                    <GridViewColumn Header="Приоритет" DisplayMemberBinding="{Binding Priority}" Width="100"/>
+                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category}" Width="150"/>
+                    <GridViewColumn Header="Дата на създаване" DisplayMemberBinding="{Binding CreatedDate}" Width="130"/>
+                    <GridViewColumn Header="AI Статус" DisplayMemberBinding="{Binding AiSuggestedStatus}" Width="150"/>
+                    <GridViewColumn Header="AI Действие" DisplayMemberBinding="{Binding AiRecommendedAction}" Width="200"/>
+
                 </GridView>
             </ListView.View>
         </ListView>

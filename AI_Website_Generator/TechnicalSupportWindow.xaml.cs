@@ -56,11 +56,18 @@ namespace AI_Website_Generator
             {
                 issues.Add(new TechIssue
                 {
-                    Issue = input.Trim(),
-                    AssignedTo = "Неопределен",
+                    Issue = "Проблем: Счупено меню в мобилна версия",
+                    AssignedTo = "UX екип",
                     Status = "Очаква",
-                    LastUpdatedBy = "System"
+                    LastUpdatedBy = "Системата",
+                    Priority = "Висок",
+                    Category = "UI",
+                    ClientName = "ОУ Хан Аспарух",
+                    WebsiteDomain = "asprauhschool.bg",
+                    BrowserInfo = "Chrome 124, Android",
+                    OS = "Android 12"
                 });
+
 
                 IssuesList.Items.Refresh();
             }
@@ -141,7 +148,23 @@ namespace AI_Website_Generator
         public string AssignedTo { get; set; }
         public string Status { get; set; }
         public string LastUpdatedBy { get; set; }
+
+        // Нови атрибути
+        public string Priority { get; set; } = "Среден"; // Нисък, Среден, Висок
+        public string Category { get; set; } = "Общ";     // UI, Backend, Сигурност, Инсталация и т.н.
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime? ResolvedDate { get; set; } = null;
+        public string ClientName { get; set; }
+        public string WebsiteDomain { get; set; }
+        public string BrowserInfo { get; set; }
+        public string OS { get; set; }
+
+        // AI
         public string AiSuggestedStatus { get; set; }
         public string AiRecommendedAction { get; set; }
+
+        // За вътрешна употреба
+        public bool IsUrgent => Priority == "Висок" && Status != "Приключен";
     }
+
 }
