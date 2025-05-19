@@ -101,24 +101,16 @@ namespace AI_Website_Generator
             {
                 try
                 {
-                    string templateKey = request.Template?.Trim();
+                    string templateKey = request.Template?.Trim()?.ToUpper();
 
-                    // Map numeric to letter if needed
                     switch (templateKey)
                     {
-                        case "1":
-                            templateKey = "A";
-                            break;
-                        case "2":
-                            templateKey = "B";
-                            break;
-                        case "3":
-                            templateKey = "C";
-                            break;
+                        case "1": templateKey = "A"; break;
+                        case "2": templateKey = "B"; break;
+                        case "3": templateKey = "C"; break;
                         case "A":
                         case "B":
-                        case "C":
-                            break;
+                        case "C": break;
                         default:
                             MessageBox.Show("Невалиден темплейт: " + request.Template,
                                 "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -127,6 +119,8 @@ namespace AI_Website_Generator
 
                     string htmlFile = $"template{templateKey}.html";
                     string htmlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates", htmlFile);
+                    string outputZipPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates", $"template{templateKey}.zip");
+                    string targetFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DeployedTemplates", $"template{templateKey}");
 
                     if (!File.Exists(htmlPath))
                     {
@@ -135,16 +129,36 @@ namespace AI_Website_Generator
                         return;
                     }
 
-                    // Open HTML template directly
+                    CreateWordPressThemeZip(htmlPath, outputZipPath, $"Template {templateKey}");
+
+                    if (Directory.Exists(targetFolder))
+                    {
+                        try { Directory.Delete(targetFolder, true); }
+                        catch (Exception delEx)
+                        {
+                            MessageBox.Show("Грешка при изтриване на предишната версия:\n" + delEx.Message,
+                                "Файлова грешка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+                    }
+
+                    System.IO.Compression.ZipFile.ExtractToDirectory(outputZipPath, targetFolder);
+
+                    string finalIndexPath = Path.Combine(targetFolder, "index.php");
+
+                    // Open directly with file://
                     Process.Start(new ProcessStartInfo
                     {
-                        FileName = htmlPath,
+                        FileName = finalIndexPath,
                         UseShellExecute = true
                     });
+
+                    MessageBox.Show($"Template {templateKey} е успешно деплойнат.\n\nПът: {targetFolder}\nФайл: {finalIndexPath}",
+                        "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Грешка при отваряне на темплейта:\n" + ex.Message,
+                    MessageBox.Show("Грешка при деплой:\n" + ex.Message,
                         "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
@@ -155,20 +169,44 @@ namespace AI_Website_Generator
             string tempDir = Path.Combine(Path.GetTempPath(), $"wp_theme_{Guid.NewGuid()}");
             Directory.CreateDirectory(tempDir);
 
-            string html = File.ReadAllText(htmlPath);
-            string indexPhp = html.Replace("<!DOCTYPE html>", "<?php /* Generated Template */ ?>\n<!DOCTYPE html>");
-            File.WriteAllText(Path.Combine(tempDir, "index.php"), indexPhp);
+            try
+            {
+                string bodyHtml = File.ReadAllText(htmlPath);
 
-            string styleCss = $@"/*
+                string indexPhp = $@"<?php
+/* Template: {themeName} */
+?><!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>{themeName}</title>
+</head>
+<body>
+{bodyHtml}
+</body>
+</html>";
+
+                File.WriteAllText(Path.Combine(tempDir, "index.php"), indexPhp);
+
+                string styleCss = $@"/*
 Theme Name: {themeName}
 Author: Orak Academy
 Version: 1.0
 */";
-            File.WriteAllText(Path.Combine(tempDir, "style.css"), styleCss);
+                File.WriteAllText(Path.Combine(tempDir, "style.css"), styleCss);
 
-            if (File.Exists(outputZipPath)) File.Delete(outputZipPath);
-            System.IO.Compression.ZipFile.CreateFromDirectory(tempDir, outputZipPath);
-            Directory.Delete(tempDir, true);
+                if (File.Exists(outputZipPath)) File.Delete(outputZipPath);
+                System.IO.Compression.ZipFile.CreateFromDirectory(tempDir, outputZipPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Грешка при създаване на темплейта:\n" + ex.Message,
+                    "ZIP грешка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                try { Directory.Delete(tempDir, true); } catch { }
+            }
         }
     }
 }
