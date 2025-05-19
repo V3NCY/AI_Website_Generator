@@ -1,111 +1,129 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Threading.Tasks;
 
 namespace AI_Website_Generator
 {
     public partial class TechnicalSupportWindow : Window
     {
-        private List<TechIssue> issues; 
+        private List<TechIssue> issues = new List<TechIssue>();
 
         public TechnicalSupportWindow()
         {
             InitializeComponent();
-            LoadIssues();
-        }
-        public async void MonitorIssuesWithAI()
-        {
-            foreach (var issue in issues)
-            {
-                if (issue.Status != "Приключен") 
-                {
-                    (issue.AiSuggestedStatus, issue.AiRecommendedAction) = await AIHelper.GetAIStatusAndAction(issue.Issue);
-                }
-            }
-            IssuesList.Items.Refresh();
+            LoadStaticIssues();
         }
 
-        private void LoadIssues()
+        private void LoadStaticIssues()
         {
-            issues = new List<TechIssue>
+            issues.AddRange(new[]
             {
-                new TechIssue { Issue = "Проблем: Проблем във мобилната версия на уебсайта", AssignedTo = "Дизайнер", Status = "В процес", LastUpdatedBy = "Иван Петров" },
-                new TechIssue { Issue = "Проблем: Липсва SSL Certificate", AssignedTo = "Технически екип", Status = "Очаква", LastUpdatedBy = "Мария Георгиева" },
-                new TechIssue { Issue = "Проблем: Проблем със зареждане на сайта", AssignedTo = "Технически екип", Status = "Приключен", LastUpdatedBy = "Борислав Христов" }
-            };
+                new TechIssue { Issue="Проблем: Мобилната версия не работи", AssignedTo="Дизайнер", Status="В процес", LastUpdatedBy="Иван" },
+                new TechIssue { Issue="Проблем: Липсва SSL", AssignedTo="Технически екип", Status="Очаква", LastUpdatedBy="Мария" },
+                new TechIssue { Issue="Проблем: Зареждане на сайта", AssignedTo="Технически екип", Status="Приключен", LastUpdatedBy="Борислав" }
+            });
 
             IssuesList.ItemsSource = issues;
         }
 
         private void ChangeStatus_Click(object sender, RoutedEventArgs e)
         {
-            if (IssuesList.SelectedItem is TechIssue selectedIssue)
+            if (IssuesList.SelectedItem is TechIssue t)
             {
-                if (selectedIssue.Status == "Приключен")
-                {
-                    MessageBox.Show("Тази заявка е приключена. Екипът може да регистрира домейна.",
-                                    "Статус приключен", MessageBoxButton.OK, MessageBoxImage.Information);
+                var input = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Въведете нов статус за проблема:",
+                    "Промяна на статус",
+                    t.Status);
 
-                    AddDomainWindow addDomainWindow = new AddDomainWindow();
-                    if (addDomainWindow.ShowDialog() == true)
-                    {
-                        Domain.AddDomain(addDomainWindow.NewDomain);
-
-                    }
-                }
-                else
+                if (!string.IsNullOrWhiteSpace(input))
                 {
-                    MessageBox.Show("Само приключени заявки могат да добавят домейн!",
-                                    "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    t.Status = input.Trim();
+                    IssuesList.Items.Refresh();
                 }
             }
         }
 
-
-        private async void AddIssue_Click(object sender, RoutedEventArgs e)
+        private void AddIssue_Click(object sender, RoutedEventArgs e)
         {
-            string newIssueDescription = "A new website is not loading properly.";
-            TechIssue newIssue = new TechIssue
+            var input = Microsoft.VisualBasic.Interaction.InputBox(
+                "Въведете описание на новия проблем:",
+                "Нов проблем",
+                "Проблем: ...");
+
+            if (!string.IsNullOrWhiteSpace(input))
             {
-                Issue = newIssueDescription,
-                AssignedTo = "Technical Team",
-                Status = "Очаква",
-                LastUpdatedBy = "System"
-            };
+                issues.Add(new TechIssue
+                {
+                    Issue = input.Trim(),
+                    AssignedTo = "Неопределен",
+                    Status = "Очаква",
+                    LastUpdatedBy = "System"
+                });
 
-            (newIssue.AiSuggestedStatus, newIssue.AiRecommendedAction) = await AIHelper.GetAIStatusAndAction(newIssueDescription);
-
-            issues.Add(newIssue);
-            IssuesList.Items.Refresh();
+                IssuesList.Items.Refresh();
+            }
         }
-        
+
+        private async void AnalyzeIssue_Click(object sender, RoutedEventArgs e)
+        {
+            if (IssuesList.SelectedItem is TechIssue t)
+            {
+                try
+                {
+                    (t.AiSuggestedStatus, t.AiRecommendedAction) = await AIHelper.GetAIStatusAndAction(t.Issue);
+                    MessageBox.Show($"AI анализ:\n\nСтатус: {t.AiSuggestedStatus}\nДействие: {t.AiRecommendedAction}", "AI Анализ", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show("Възникна грешка при AI анализа:\n" + ex.Message, "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                IssuesList.Items.Refresh();
+            }
+        }
+
         private async void AutoUpdateIssues_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var issue in issues)
+            try
             {
-                if (issue.Status != "Приключен") 
+                foreach (var t in issues)
                 {
-                    (issue.AiSuggestedStatus, issue.AiRecommendedAction) = await AIHelper.GetAIStatusAndAction(issue.Issue);
+                    if (t.Status != "Приключен")
+                    {
+                        (t.AiSuggestedStatus, t.AiRecommendedAction) = await AIHelper.GetAIStatusAndAction(t.Issue);
+                    }
                 }
+                IssuesList.Items.Refresh();
+                MessageBox.Show("AI анализът за всички активни проблеми е завършен.", "AI Обновяване", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            IssuesList.Items.Refresh();
-            MessageBox.Show("AI has updated issue statuses and recommended actions.", "AI Monitoring", MessageBoxButton.OK, MessageBoxImage.Information);
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Грешка при масов AI анализ:\n" + ex.Message, "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
+        public async void MonitorIssuesWithAI()
+        {
+            foreach (var t in issues)
+            {
+                if (t.Status != "Приключен")
+                {
+                    (t.AiSuggestedStatus, t.AiRecommendedAction) = await AIHelper.GetAIStatusAndAction(t.Issue);
+                }
+            }
+
+            IssuesList.Items.Refresh();
+        }
     }
-}
 
     public class TechIssue
     {
-        public string Issue { get; set; } = "Неизвестен проблем";
-        public string AssignedTo { get; set; } = "Неопределен";
-        public string Status { get; set; } = "Очаква";
-        public string LastUpdatedBy { get; set; } = "Системата";
-        public string AiSuggestedStatus { get; set; } = "Анализира се...";
-        public string AiRecommendedAction { get; set; } = "Очаква анализ...";
+        public string Issue { get; set; }
+        public string AssignedTo { get; set; }
+        public string Status { get; set; }
+        public string LastUpdatedBy { get; set; }
+        public string AiSuggestedStatus { get; set; }
+        public string AiRecommendedAction { get; set; }
     }
-
-
-
-
+}

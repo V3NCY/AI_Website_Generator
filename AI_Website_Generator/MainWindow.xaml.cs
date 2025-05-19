@@ -1,19 +1,19 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
-using AI_Website_Generator.user;
 using System.Windows.Input;
+using AI_Website_Generator.user;
 
 namespace AI_Website_Generator
 {
-
-
     public partial class MainWindow : Window
     {
         public string CurrentUsername { get; set; } = "Гост";
         private readonly string chatFile = "chatlog.txt";
         private LocalWebServer _webServer;
-
 
         public MainWindow()
         {
@@ -32,10 +32,8 @@ namespace AI_Website_Generator
 
             _webServer = new LocalWebServer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates"), 8000);
             _webServer.Start();
-            this.DataContext = this;
             RefreshChat_Click(null, null);
         }
-
 
         private void OpenAddDomainWindow_Click(object sender, RoutedEventArgs e)
         {
@@ -58,7 +56,6 @@ namespace AI_Website_Generator
             }
         }
 
-
         private void btnViewRequests_Click(object sender, RoutedEventArgs e)
         {
             ViewRequestsWindow requestsWindow = new ViewRequestsWindow();
@@ -76,11 +73,13 @@ namespace AI_Website_Generator
             TechnicalSupportWindow supportWindow = new TechnicalSupportWindow();
             supportWindow.Show();
         }
+
         private void btnManageTeam_Click(object sender, RoutedEventArgs e)
         {
             TeamManagementWindow teamWindow = new TeamManagementWindow();
             teamWindow.ShowDialog();
         }
+
         private async void AutoUpdateIssues_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("AI is now monitoring issues and updating statuses.", "AI Monitoring", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -90,34 +89,18 @@ namespace AI_Website_Generator
 
             MessageBox.Show("AI has updated issue statuses and recommended actions.", "AI Monitoring Complete", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         private void OpenWebsiteStatistics_Click(object sender, RoutedEventArgs e)
         {
             WebsiteStatisticsWindow statsWindow = new WebsiteStatisticsWindow();
             statsWindow.Show();
         }
+
         private void OpenDomainList_Click(object sender, RoutedEventArgs e)
         {
             DomainListWindow domainWindow = new DomainListWindow();
             domainWindow.Show();
         }
-        //private void OpenChatbotWindow_Click(object sender, RoutedEventArgs e)
-        //{
-        //    // Open Chatbot on a server, instead of file://
-        //    string uri = "http://localhost:8000/ChatBotLink.html";
-
-        //    try
-        //    {
-        //        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-        //        {
-        //            FileName = uri,
-        //            UseShellExecute = true
-        //        });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Грешка при отваряне на браузъра: " + ex.Message);
-        //    }
-        //}
 
         private void OpenChatbotWindow_Click(object sender, RoutedEventArgs e)
         {
@@ -137,45 +120,50 @@ namespace AI_Website_Generator
             }
         }
 
-
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Данните са обновени успешно!", "Обновяване", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-
         private void RefreshChat_Click(object sender, RoutedEventArgs e)
         {
-            ChatMessages.Items.Clear();
-            if (File.Exists(chatFile))
+            if (this.FindName("ChatMessages") is ItemsControl chatList)
             {
-                var lines = File.ReadAllLines(chatFile);
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    var message = new ChatMessage
-                    {
-                        Message = lines[i],
-                        Time = "", 
-                        IsMe = lines[i].Contains(CurrentUsername),
-                        IsLatest = (i == lines.Length - 1)
-                    };
-                    ChatMessages.Items.Add(message);
-                }
+                chatList.Items.Clear();
 
+                if (File.Exists(chatFile))
+                {
+                    var lines = File.ReadAllLines(chatFile);
+                    for (int i = 0; i < lines.Length; i++)
+                    {
+                        var message = new ChatMessage
+                        {
+                            Message = lines[i],
+                            Time = "",
+                            IsMe = lines[i].Contains(CurrentUsername),
+                            IsLatest = (i == lines.Length - 1)
+                        };
+                        chatList.Items.Add(message);
+                    }
+                }
             }
         }
+
         private void SendMessage()
         {
-            string user = "👤 " + CurrentUsername;
-            string time = DateTime.Now.ToString("HH:mm");
-            string message = ChatInput.Text.Trim();
-
-            if (!string.IsNullOrEmpty(message))
+            if (this.FindName("ChatInput") is TextBox input && this.FindName("ChatMessages") is ItemsControl chatList)
             {
-                string fullMessage = $"{time} {user}: {message}";
-                File.AppendAllLines(chatFile, new[] { fullMessage });
-                ChatInput.Clear();
-                RefreshChat_Click(null, null);
+                string user = "👤 " + CurrentUsername;
+                string time = DateTime.Now.ToString("HH:mm");
+                string message = input.Text.Trim();
+
+                if (!string.IsNullOrEmpty(message))
+                {
+                    string fullMessage = $"{time} {user}: {message}";
+                    File.AppendAllLines(chatFile, new[] { fullMessage });
+                    input.Clear();
+                    RefreshChat_Click(null, null);
+                }
             }
         }
 
@@ -189,10 +177,8 @@ namespace AI_Website_Generator
             if (e.Key == Key.Enter)
             {
                 SendMessage();
-                e.Handled = true; 
+                e.Handled = true;
             }
         }
-
     }
-
 }

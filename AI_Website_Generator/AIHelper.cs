@@ -39,15 +39,16 @@ namespace AI_Website_Generator
 
                 var requestData = new
                 {
-                    model = "gpt-4",
+                    model = "gpt-3.5-turbo",  // <- changed from gpt-4
                     messages = new[]
-                    {
-                        new { role = "system", content = "You are an AI assistant that tracks website issues and suggests fixes." },
-                        new { role = "user", content = $"Analyze this issue and suggest a status and an action: {issueDescription}" }
-                    },
+    {
+        new { role = "system", content = "You are an AI assistant that analyzes website issues and suggests fixes." },
+        new { role = "user", content = $"Analyze this issue and suggest a status and an action: {issueDescription}" }
+    },
                     max_tokens = 150,
                     temperature = 0.6
                 };
+
 
                 string jsonContent = JsonConvert.SerializeObject(requestData);
                 HttpContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
