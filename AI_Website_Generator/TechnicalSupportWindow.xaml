@@ -9,7 +9,8 @@
 
         <!-- IssuesList -->
         <ListView x:Name="IssuesList" Margin="0,40,0,120"
-                  BorderThickness="1" BorderBrush="#BDC3C7">
+                  BorderThickness="1" BorderBrush="#BDC3C7"
+                  MouseRightButtonUp="IssuesList_RightClick">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Style.Triggers>

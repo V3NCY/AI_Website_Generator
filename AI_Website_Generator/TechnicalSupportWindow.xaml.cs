@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AI_Website_Generator
 {
@@ -115,6 +116,23 @@ namespace AI_Website_Generator
 
             IssuesList.Items.Refresh();
         }
+
+        private void IssuesList_RightClick(object sender, MouseButtonEventArgs e)
+        {
+            if (IssuesList.SelectedItem is TechIssue selectedIssue)
+            {
+                var result = MessageBox.Show($"Наистина ли искате да отбележите проблема като 'Приключен'?\n\n{selectedIssue.Issue}",
+                                             "Потвърждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    selectedIssue.Status = "Приключен";
+                    selectedIssue.LastUpdatedBy = "Системата";
+                    IssuesList.Items.Refresh();
+                }
+            }
+        }
+
     }
 
     public class TechIssue
