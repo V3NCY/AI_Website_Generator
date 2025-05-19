@@ -103,7 +103,7 @@ namespace AI_Website_Generator
                 {
                     string templateKey = request.Template?.Trim();
 
-                    // Map numbers to letters
+                    // Map numeric to letter if needed
                     switch (templateKey)
                     {
                         case "1":
@@ -127,45 +127,28 @@ namespace AI_Website_Generator
 
                     string htmlFile = $"template{templateKey}.html";
                     string htmlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates", htmlFile);
-                    string zipPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates", $"template{templateKey}.zip");
 
                     if (!File.Exists(htmlPath))
                     {
                         MessageBox.Show($"Липсва HTML файл: {htmlFile}",
-                            "Липсващ файл", MessageBoxButton.OK, MessageBoxImage.Error);
+                            "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
-                    if (!File.Exists(zipPath))
-                    {
-                        CreateWordPressThemeZip(htmlPath, zipPath, $"Template {templateKey}");
-                    }
-
-                    string siteFolder = request.NewDomain.Replace(".", "").Replace("www", "");
-                    string targetDir = Path.Combine(@"C:\xampp\htdocs", siteFolder);
-
-                    if (Directory.Exists(targetDir))
-                        Directory.Delete(targetDir, true);
-
-                    System.IO.Compression.ZipFile.ExtractToDirectory(zipPath, targetDir);
-
-                    MessageBox.Show($"Темплейтът е деплойнат успешно в:\n{targetDir}",
-                        "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                    // Open HTML template directly
                     Process.Start(new ProcessStartInfo
                     {
-                        FileName = $"http://localhost/{siteFolder}",
+                        FileName = htmlPath,
                         UseShellExecute = true
                     });
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Грешка при деплой:\n" + ex.Message,
+                    MessageBox.Show("Грешка при отваряне на темплейта:\n" + ex.Message,
                         "Грешка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
-
 
         private void CreateWordPressThemeZip(string htmlPath, string outputZipPath, string themeName)
         {
