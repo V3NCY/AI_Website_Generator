@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace AI_Website_Generator
 {
+
     public partial class AddDomainWindow : Window
     {
         public Domain NewDomain { get; private set; }
@@ -36,10 +38,10 @@ namespace AI_Website_Generator
                 Code = txtCode.Text.Trim(),
                 Mol = txtMol.Text.Trim(),
                 Phone = txtPhone.Text.Trim(),
-                Package = txtPackage.Text.Trim(),
+                Package = (cmbPackage.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "",
                 AdminUsername = txtAdminUsername.Text.Trim(),
                 AdminPassword = txtAdminPassword.Text.Trim(),
-                Hosting = txtHosting.Text.Trim(),
+                Hosting = (cmbHosting.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "",
                 RequestTeamMember = (cmbRequestTeam.SelectedItem as TeamMember)?.Name ?? "",
                 RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd"),
                 TestDomainDate = dateRegTestDomain.SelectedDate?.ToString("yyyy-MM-dd") ?? "",
@@ -51,6 +53,7 @@ namespace AI_Website_Generator
             this.DialogResult = true;
             Close();
         }
+
 
     }
 }

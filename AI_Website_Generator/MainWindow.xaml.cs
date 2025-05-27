@@ -37,69 +37,42 @@ namespace AI_Website_Generator
 
         private void OpenAddDomainWindow_Click(object sender, RoutedEventArgs e)
         {
-            AddDomainWindow addDomainWindow = new AddDomainWindow();
-            addDomainWindow.ShowDialog();
+            OpenWindow<AddDomainWindow>();
         }
 
         private void AddNewDomain_Click(object sender, RoutedEventArgs e)
         {
-            var addWindow = new AddDomainWindow();
-            bool? result = addWindow.ShowDialog();
-
-            if (result == true)
-            {
-                Domain newDomain = addWindow.NewDomain;
-                Domain.AddDomain(newDomain);
-
-                MessageBox.Show($"Успешно добавен домейн:\n{newDomain.NewDomainName}",
-                                "Нов уебсайт", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            OpenWindow<AddDomainWindow>();
         }
 
         private void btnViewRequests_Click(object sender, RoutedEventArgs e)
         {
-            ViewRequestsWindow requestsWindow = new ViewRequestsWindow();
-            requestsWindow.Show();
+            OpenWindow<ViewRequestsWindow>();
         }
 
         private void btnManageDesigns_Click(object sender, RoutedEventArgs e)
         {
-            ManageDesignsWindow designsWindow = new ManageDesignsWindow();
-            designsWindow.Show();
+            OpenWindow<ManageDesignsWindow>();
         }
 
         private void btnTechSupport_Click(object sender, RoutedEventArgs e)
         {
-            TechnicalSupportWindow supportWindow = new TechnicalSupportWindow();
-            supportWindow.Show();
+            OpenWindow<TechnicalSupportWindow>();
         }
 
         private void btnManageTeam_Click(object sender, RoutedEventArgs e)
         {
-            TeamManagementWindow teamWindow = new TeamManagementWindow();
-            teamWindow.ShowDialog();
-        }
-
-        private async void AutoUpdateIssues_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("AI is now monitoring issues and updating statuses.", "AI Monitoring", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            TechnicalSupportWindow supportWindow = new TechnicalSupportWindow();
-            await Task.Run(() => supportWindow.MonitorIssuesWithAI());
-
-            MessageBox.Show("AI has updated issue statuses and recommended actions.", "AI Monitoring Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+            OpenWindow<TeamManagementWindow>();
         }
 
         private void OpenWebsiteStatistics_Click(object sender, RoutedEventArgs e)
         {
-            WebsiteStatisticsWindow statsWindow = new WebsiteStatisticsWindow();
-            statsWindow.Show();
+            OpenWindow<WebsiteStatisticsWindow>();
         }
 
         private void OpenDomainList_Click(object sender, RoutedEventArgs e)
         {
-            DomainListWindow domainWindow = new DomainListWindow();
-            domainWindow.Show();
+            OpenWindow<DomainListWindow>();
         }
 
         private void OpenChatbotWindow_Click(object sender, RoutedEventArgs e)
@@ -178,6 +151,20 @@ namespace AI_Website_Generator
             {
                 SendMessage();
                 e.Handled = true;
+            }
+        }
+
+        private void OpenWindow<T>() where T : Window, new()
+        {
+            var existing = Application.Current.Windows.OfType<T>().FirstOrDefault();
+            if (existing == null)
+            {
+                var window = new T();
+                window.Show();
+            }
+            else
+            {
+                existing.Focus();
             }
         }
     }

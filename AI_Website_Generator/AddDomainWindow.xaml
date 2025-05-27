@@ -43,7 +43,12 @@
                         <TextBox x:Name="txtOwnerEmail" Width="auto" Height="30" Padding="5" Background="#F7F9F9"/>
 
                         <TextBlock Text="Пакет:" FontWeight="SemiBold" Foreground="#34495E" Margin="10"/>
-                        <TextBox Name="txtPackage" Width="auto" Height="30" Padding="5" Background="#F7F9F9"/>
+                        <ComboBox x:Name="cmbPackage" Width="auto" Height="30" Padding="5" Background="#F7F9F9">
+                            <ComboBoxItem Content="Старт" />
+                            <ComboBoxItem Content="Стандарт" />
+                            <ComboBoxItem Content="Стандарт +" />
+                        </ComboBox>
+
 
                     </StackPanel>
 
@@ -71,7 +76,12 @@
                         <DatePicker Name="dateRegOfficialDomain" Width="auto" Height="30" Padding="5" Background="#F7F9F9"/>
 
                         <TextBlock Text="Хостинг пространство по договор:" FontWeight="SemiBold" Foreground="#34495E" Margin="10"/>
-                        <TextBox Name="txtHosting" Width="auto" Height="30" Padding="5" Background="#F7F9F9"/>
+                        <ComboBox x:Name="cmbHosting" Width="auto" Height="30" Padding="5" Background="#F7F9F9">
+                            <ComboBoxItem Content="10GB" />
+                            <ComboBoxItem Content="25GB" />
+                            <ComboBoxItem Content="50GB" />
+                        </ComboBox>
+
 
                         <TextBlock Text="Поел от екипа:" FontWeight="SemiBold" Foreground="#34495E" Margin="10"/>
                         <ComboBox x:Name="cmbRequestTeam"
