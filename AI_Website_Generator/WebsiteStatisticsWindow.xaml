@@ -2,15 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:AI_Website_Generator.Converters"
-        xmlns:models="clr-namespace:AI_Website_Generator.Models"
-        Title="Live Website AI Statistics" Height="600" Width="900" Background="#F0F4F8" WindowStartupLocation="CenterScreen">
+        Title="Live Website AI Statistics" Height="600" Width="1000" Background="#F0F4F8" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <local:StatusToColorConverter x:Key="StatusToColorConverter"/>
     </Window.Resources>
 
-    <Grid>
-        <StackPanel Margin="20" VerticalAlignment="Top">
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Top">
+            <!-- Title and Refresh Button -->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
                 <TextBlock Text="🌐 Live Website AI Statistics" FontSize="24" FontWeight="Bold" Foreground="#2C3E50"/>
                 <Button Content="🔃 Refresh" Click="RefreshAIInsights_Click"
@@ -18,51 +18,74 @@
                         Padding="5" Width="120" Height="35" FontWeight="Bold" Cursor="Hand"/>
             </StackPanel>
 
-            <DataGrid Name="WebsitesGrid" AutoGenerateColumns="False" Height="450"
-                      ItemsSource="{Binding FilteredWebsites}" 
-                      GridLinesVisibility="None" BorderBrush="Transparent" 
-                      RowBackground="White" AlternatingRowBackground="#EAF2F8"
-                      CanUserAddRows="False" HeadersVisibility="Column" ColumnHeaderHeight="40"
-                      RowHeight="40" FontSize="14" FontFamily="Segoe UI" Margin="0,10,0,0">
+            <!-- Horizontal Scroll Viewer Wrapper -->
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <DataGrid x:Name="WebsitesGrid" AutoGenerateColumns="False" Height="450"
+                          ItemsSource="{Binding FilteredWebsites}"
+                          GridLinesVisibility="None" BorderBrush="Transparent"
+                          RowBackground="White" AlternatingRowBackground="#EAF2F8"
+                          CanUserAddRows="False" HeadersVisibility="Column"
+                          ColumnHeaderHeight="40" RowHeight="40" FontSize="14" FontFamily="Segoe UI"
+                          HorizontalAlignment="Left" HorizontalScrollBarVisibility="Hidden" MinWidth="1200">
 
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Status}" Value="Проблем">
-                                <Setter Property="Background" Value="#FFF9C4"/>
-                                <Setter Property="FontWeight" Value="SemiBold"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
+                    <!-- Column Header Style -->
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Background" Value="#34495E"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Padding" Value="8,4,8,4"/>
+                            <Setter Property="BorderBrush" Value="#2C3E50"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="🌍 Website" Binding="{Binding Name}" Width="*"/>
-                    <DataGridTemplateColumn Header="✅ Status" Width="120">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Ellipse Width="12" Height="12"
-                                             Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}"
-                                             Margin="0,0,5,0"/>
-                                    <TextBlock Text="{Binding Status}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="⚠️ Error Details" Binding="{Binding ErrorDetails}" Width="250">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="ToolTip" Value="{Binding ErrorDetails}" />
-                                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="⚡ AI Insights" Binding="{Binding AIInsights}" Width="200"/>
-                    <DataGridTextColumn Header="🔍 Recommended Action" Binding="{Binding RecommendedAction}" Width="250"/>
-                    <DataGridTextColumn Header="🧠 AI Confidence (%)" Binding="{Binding AIConfidence}" Width="120"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <!-- Row Style for Status -->
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="Проблем">
+                                    <Setter Property="Background" Value="#FFF9C4"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                    <!-- Columns -->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="🌍 Website" Binding="{Binding Name}" Width="200"/>
+                        <DataGridTemplateColumn Header="✅ Status" Width="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Ellipse Width="12" Height="12"
+                                                 Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}"
+                                                 Margin="0,0,5,0"/>
+                                        <TextBlock Text="{Binding Status}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="⚠️ Error Details" Binding="{Binding ErrorDetails}" Width="250">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="ToolTip" Value="{Binding ErrorDetails}" />
+                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="⚡ AI Insights" Binding="{Binding AIInsights}" Width="250"/>
+                        <DataGridTextColumn Header="🔍 Recommended Action" Binding="{Binding RecommendedAction}" Width="250"/>
+                        <DataGridTextColumn Header="🧠 AI Confidence (%)" Binding="{Binding AIConfidence}" Width="120"/>
+                        <DataGridTextColumn Header="📊 Traffic" Binding="{Binding Traffic}" Width="150"/>
+                        <DataGridTextColumn Header="🌐 Domain" Binding="{Binding Domain}" Width="150"/>
+                        <DataGridTextColumn Header="🕒 Last Checked" Binding="{Binding LastChecked}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Window>

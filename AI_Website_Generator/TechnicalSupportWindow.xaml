@@ -1,7 +1,7 @@
 ﻿<Window x:Class="AI_Website_Generator.TechnicalSupportWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Tech Team Workspace" Height="600" Width="1000" Background="#ECF0F1" WindowStartupLocation="CenterScreen">
+        Title="Tech Team Workspace" Height="600" Width="1100" Background="#ECF0F1" WindowStartupLocation="CenterScreen">
 
     <Grid Margin="20">
         <StackPanel>
@@ -10,91 +10,81 @@
             <TextBlock Text="🛠️ Технически Проблеми и Задачи"
                        FontSize="22" FontWeight="Bold" Foreground="#073764" Margin="0,0,0,10"/>
 
-            <!-- Task List -->
-            <DataGrid x:Name="IssuesList" AutoGenerateColumns="False" Height="400"
-                      AlternatingRowBackground="#F8F9F9" RowBackground="White"
-                      BorderBrush="Transparent" BorderThickness="0" 
-                      HeadersVisibility="Column" GridLinesVisibility="None"
-                      FontFamily="Segoe UI" FontSize="14" RowHeight="40"
-                      CanUserAddRows="False">
+            <!-- Horizontal Scrollable DataGrid -->
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <DataGrid x:Name="IssuesList" AutoGenerateColumns="False" Height="400"
+                          AlternatingRowBackground="#F8F9F9" RowBackground="White"
+                          BorderBrush="Transparent" BorderThickness="0"
+                          HeadersVisibility="Column" GridLinesVisibility="None"
+                          FontFamily="Segoe UI" FontSize="14" RowHeight="40"
+                          CanUserAddRows="False" MinWidth="1000">
 
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#073764"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-                        <Setter Property="FontSize" Value="14"/>
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
+                    <!-- Header Style -->
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Background" Value="#34495E"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Padding" Value="10,5"/>
+                            <Setter Property="BorderBrush" Value="#2C3E50"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="FontSize" Value="14"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
 
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow" >
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Category}" Value="UI">
-                                <Setter Property="Background" Value="#D6EAF8"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Category}" Value="Сигурност">
-                                <Setter Property="Background" Value="#FADBD8"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Category}" Value="Performance">
-                                <Setter Property="Background" Value="#FCF3CF"/>
-                            </DataTrigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#EBF5FB"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
+                    <!-- Row Style (Category Colors) -->
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Category}" Value="UI">
+                                    <Setter Property="Background" Value="#D6EAF8"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Category}" Value="Сигурност">
+                                    <Setter Property="Background" Value="#FADBD8"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Category}" Value="Performance">
+                                    <Setter Property="Background" Value="#FCF3CF"/>
+                                </DataTrigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#EBF5FB"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
 
-                <DataGrid.Resources>
-                    <!-- Priority Color Converter -->
-                    <Style TargetType="TextBlock" x:Key="PriorityTextStyle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Priority}" Value="Висок">
-                                <Setter Property="Foreground" Value="#C0392B"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Priority}" Value="Среден">
-                                <Setter Property="Foreground" Value="#D35400"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Priority}" Value="Нисък">
-                                <Setter Property="Foreground" Value="#27AE60"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.Resources>
-
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Проблем / Задача" Binding="{Binding Issue}" Width="2*"/>
-                    <DataGridTextColumn Header="Отговорник" Binding="{Binding AssignedTo}" Width="120"/>
-                    <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="120"/>
-                    <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="120">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Priority}" Value="Висок">
-                                        <Setter Property="Foreground" Value="#C0392B"/>
-                                        <Setter Property="FontWeight" Value="Bold"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Priority}" Value="Среден">
-                                        <Setter Property="Foreground" Value="#D35400"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Priority}" Value="Нисък">
-                                        <Setter Property="Foreground" Value="#27AE60"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="120"/>
-                    <DataGridTextColumn Header="Клиент" Binding="{Binding ClientName}" Width="150"/>
-                    <DataGridTextColumn Header="Домейн" Binding="{Binding WebsiteDomain}" Width="150"/>
-                    <DataGridTextColumn Header="Създадено на" Binding="{Binding CreatedDate}" Width="120"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <!-- Columns -->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Проблем / Задача" Binding="{Binding Issue}" Width="200"/>
+                        <DataGridTextColumn Header="Отговорник" Binding="{Binding AssignedTo}" Width="150"/>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="120"/>
+                        <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="120">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Priority}" Value="Висок">
+                                            <Setter Property="Foreground" Value="#C0392B"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Priority}" Value="Среден">
+                                            <Setter Property="Foreground" Value="#D35400"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Priority}" Value="Нисък">
+                                            <Setter Property="Foreground" Value="#27AE60"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="150"/>
+                        <DataGridTextColumn Header="Клиент" Binding="{Binding ClientName}" Width="150"/>
+                        <DataGridTextColumn Header="Домейн" Binding="{Binding WebsiteDomain}" Width="200"/>
+                        <DataGridTextColumn Header="Браузър" Binding="{Binding BrowserInfo}" Width="150"/>
+                        <DataGridTextColumn Header="ОС" Binding="{Binding OS}" Width="120"/>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding CreatedDate}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
 
             <!-- Action Buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
