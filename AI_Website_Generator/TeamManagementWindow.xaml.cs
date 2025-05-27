@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,9 +9,11 @@ namespace AI_Website_Generator
 {
     public partial class TeamManagementWindow : Window
     {
-        private List<TeamMember> allTeamMembers = new(); // original full list
-        private List<TeamMember> filteredMembers = new(); // for search/display
+        public static ObservableCollection<TeamMember> TeamMembers { get; set; } = new ObservableCollection<TeamMember>();
 
+
+        //private List<TeamMember> allTeamMembers = new(); 
+        private List<TeamMember> filteredMembers = new(); 
         public TeamManagementWindow()
         {
             InitializeComponent();
@@ -19,26 +22,32 @@ namespace AI_Website_Generator
 
         private void LoadTeamMembers()
         {
-            allTeamMembers = new List<TeamMember>
+            if (TeamMembers.Count == 0)
             {
-                new TeamMember { Name = "Venceslava Georgieva", Role = "Designer" },
-                new TeamMember { Name = "Elvira Shugova", Role = "Request Picker" },
-                new TeamMember { Name = "Denka Arabadzhiyska", Role = "Request Picker" },
-                new TeamMember { Name = "Borislava Dimova", Role = "Request Picker" },
-                new TeamMember { Name = "Victoria Dobreva", Role = "Request Picker" },
-                new TeamMember { Name = "Stoyan Petkov", Role = "Tech Team" },
-                new TeamMember { Name = "Georgi Benev", Role = "Tech Team" },
-                new TeamMember { Name = "Katya Kalcheva", Role = "Tester" },
-                new TeamMember { Name = "Kremena Kairyakova", Role = "Tester" },
-                new TeamMember { Name = "Yordan Totev", Role = "Seller"},
-                new TeamMember { Name = "Hristina Boeva", Role = "Seller"},
-                new TeamMember { Name = "Hristina Ilcheva", Role = "Seller"},
-                new TeamMember { Name = "Tsvetan Karabov", Role = "Seller"},
-                new TeamMember { Name = "Nia Yordanova", Role = "Seller"},
-            };
+                TeamMembers.Add(new TeamMember { Name = "Venceslava Georgieva", Role = "Designer" });
+                TeamMembers.Add(new TeamMember { Name = "Elvira Shugova", Role = "Request Picker" });
+                TeamMembers.Add(new TeamMember { Name = "Denka Arabadzhiyska", Role = "Request Picker" });
+                TeamMembers.Add(new TeamMember { Name = "Borislava Dimova", Role = "Request Picker" });
+                TeamMembers.Add(new TeamMember { Name = "Victoria Dobreva", Role = "Request Picker" });
+                TeamMembers.Add(new TeamMember { Name = "Stoyan Petkov", Role = "Tech Team" });
+                TeamMembers.Add(new TeamMember { Name = "Georgi Benev", Role = "Tech Team" });
+                TeamMembers.Add(new TeamMember { Name = "Katya Kalcheva", Role = "Tester" });
+                TeamMembers.Add(new TeamMember { Name = "Kremena Kairyakova", Role = "Tester" });
+                TeamMembers.Add(new TeamMember { Name = "Yordan Totev", Role = "Seller" });
+                TeamMembers.Add(new TeamMember { Name = "Hristina Boeva", Role = "Seller" });
+                TeamMembers.Add(new TeamMember { Name = "Hristina Ilcheva", Role = "Seller" });
+                TeamMembers.Add(new TeamMember { Name = "Tsvetan Karabov", Role = "Seller" });
+                TeamMembers.Add(new TeamMember { Name = "Nia Yordanova", Role = "Seller" });
+            }
 
-            filteredMembers = new List<TeamMember>(allTeamMembers);
-            TeamList.ItemsSource = filteredMembers;
+            TeamList.ItemsSource = TeamMembers;
+        }
+
+
+
+        public static ObservableCollection<TeamMember> GetTeamList()
+        {
+            return TeamMembers;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -46,11 +55,11 @@ namespace AI_Website_Generator
             string query = SearchBox.Text.Trim().ToLower();
             if (string.IsNullOrWhiteSpace(query))
             {
-                filteredMembers = new List<TeamMember>(allTeamMembers);
+                filteredMembers = new List<TeamMember>(TeamMembers);
             }
             else
             {
-                filteredMembers = allTeamMembers
+                filteredMembers = TeamMembers
                     .Where(tm => tm.Name.ToLower().Contains(query) || tm.Role.ToLower().Contains(query))
                     .ToList();
             }
@@ -67,8 +76,9 @@ namespace AI_Website_Generator
             if (string.IsNullOrWhiteSpace(role)) return;
 
             var newMember = new TeamMember { Name = name.Trim(), Role = role.Trim() };
-            allTeamMembers.Add(newMember);
-            Search_Click(null, null);
+            TeamMembers.Add(newMember);
+            filteredMembers.Add(newMember);
+            TeamList.Items.Refresh();
         }
 
         private void EditTeamMember_Click(object sender, RoutedEventArgs e)
@@ -95,17 +105,15 @@ namespace AI_Website_Generator
             }
         }
 
-
         private void RemoveTeamMember_Click(object sender, RoutedEventArgs e)
         {
             if (TeamList.SelectedItem is not TeamMember selected) return;
 
-            var result = MessageBox.Show($"Сигурни ли сте, че искате да премахнете {selected.Name}?",
-                "Потвърждение", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = MessageBox.Show($"Сигурни ли сте, че искате да премахнете {selected.Name}?", "Потвърждение", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (result == MessageBoxResult.Yes)
             {
-                allTeamMembers.Remove(selected);
+                TeamMembers.Remove(selected);
                 filteredMembers.Remove(selected);
                 TeamList.ItemsSource = null;
                 TeamList.ItemsSource = filteredMembers;

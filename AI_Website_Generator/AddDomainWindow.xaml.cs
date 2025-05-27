@@ -10,6 +10,8 @@ namespace AI_Website_Generator
         public AddDomainWindow()
         {
             InitializeComponent();
+            cmbRequestTeam.ItemsSource = TeamManagementWindow.TeamMembers;
+
         }
 
         private void AddDomain_Click(object sender, RoutedEventArgs e)
@@ -18,7 +20,7 @@ namespace AI_Website_Generator
                 string.IsNullOrWhiteSpace(txtOldDomainName.Text) ||
                 string.IsNullOrWhiteSpace(txtOwner.Text) ||
                 string.IsNullOrWhiteSpace(txtOwnerEmail.Text) ||
-                string.IsNullOrWhiteSpace(txtRequestTeam.Text))
+                cmbRequestTeam.SelectedItem == null)
             {
                 MessageBox.Show("Моля, попълнете всички полета.", "Липсваща информация", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -38,7 +40,7 @@ namespace AI_Website_Generator
                 AdminUsername = txtAdminUsername.Text.Trim(),
                 AdminPassword = txtAdminPassword.Text.Trim(),
                 Hosting = txtHosting.Text.Trim(),
-                RequestTeamMember = txtRequestTeam.Text.Trim(),
+                RequestTeamMember = (cmbRequestTeam.SelectedItem as TeamMember)?.Name ?? "",
                 RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd"),
                 TestDomainDate = dateRegTestDomain.SelectedDate?.ToString("yyyy-MM-dd") ?? "",
                 OfficialDomainDate = dateRegOfficialDomain.SelectedDate?.ToString("yyyy-MM-dd") ?? ""
@@ -46,9 +48,9 @@ namespace AI_Website_Generator
 
             Domain.AddDomain(NewDomain);
 
-
             this.DialogResult = true;
             Close();
         }
+
     }
 }

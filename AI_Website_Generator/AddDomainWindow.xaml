@@ -50,11 +50,12 @@
                     <!-- Right Column -->
                     <StackPanel Grid.Column="1" Margin="15">
 
-                        <TextBlock Text="Нов домейн:" FontWeight="SemiBold" Foreground="#34495E" Margin="10"/>
-                        <TextBox Name="txtNewDomainName" Width="auto" Height="30" Padding="0" Background="#F7F9F9"/>
 
                         <TextBlock Text="Стар домейн:" FontWeight="SemiBold" Foreground="#34495E" Margin="10"/>
                         <TextBox Name="txtOldDomainName" Width="auto" Height="30" Padding="0" Background="#F7F9F9"/>
+                        
+                        <TextBlock Text="Нов домейн:" FontWeight="SemiBold" Foreground="#34495E" Margin="10"/>
+                        <TextBox Name="txtNewDomainName" Width="auto" Height="30" Padding="0" Background="#F7F9F9"/>
 
                         <TextBlock Text="Admin username:" FontWeight="SemiBold" Foreground="#34495E" Margin="10"/>
                         <TextBox Name="txtAdminUsername" Width="auto" Height="30" Padding="5" Background="#F7F9F9"/>
@@ -73,9 +74,15 @@
                         <TextBox Name="txtHosting" Width="auto" Height="30" Padding="5" Background="#F7F9F9"/>
 
                         <TextBlock Text="Поел от екипа:" FontWeight="SemiBold" Foreground="#34495E" Margin="10"/>
-                        <TextBox x:Name="txtRequestTeam" Width="auto" Height="30" Padding="5" Background="#F7F9F9"/>
+                        <ComboBox x:Name="cmbRequestTeam"
+                                  Width="auto"
+                                  Height="30"
+                                  Padding="5"
+                                  Background="#F7F9F9"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Name"/>
 
-                      
+
                     </StackPanel>
                 </Grid>
 
