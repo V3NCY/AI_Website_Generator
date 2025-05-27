@@ -11,42 +11,23 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Grid Background="Transparent">
-        <!-- Gradient Background (uncomment if needed) -->
-        <!--<Border CornerRadius="15" Margin="20">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#8E44AD" Offset="0.0"/>
-                    <GradientStop Color="#3498DB" Offset="1.0"/>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>-->
-
         <!-- Login Panel -->
         <Border Background="White" CornerRadius="12" Width="300" Height="240" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="20">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="5" BlurRadius="15" Opacity="0.3" />
             </Border.Effect>
-            <StackPanel VerticalAlignment="Center" Margin="0">
-                <TextBlock Text="🔐 Вход в системата" FontSize="18" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center" Margin="0,0,0,10"/>
 
-                <TextBlock Text="Потребител:" FontWeight="SemiBold"/>
-                <TextBox x:Name="txtUsername" KeyDown="Input_KeyDown" Margin="0,4,0,8"/>
-
-                <TextBlock Text="Парола:" FontWeight="SemiBold"/>
-                <PasswordBox x:Name="txtPassword" KeyDown="Input_KeyDown" Margin="0,4,0,12"/>
-
-                <Button Content="Вход" Click="Login_Click" Background="#3498DB" Foreground="White" 
-                        FontWeight="Bold" Padding="8" BorderThickness="0" Cursor="Hand" 
-                        HorizontalAlignment="Right" Width="80">
+            <Grid>
+                <!-- Close Button -->
+                <Button Content="❌" HorizontalAlignment="Right" VerticalAlignment="Top" Width="28" Height="28" 
+                        Margin="0,-10,-10,0" Background="Transparent" BorderBrush="Transparent" 
+                        Foreground="#073764" FontWeight="Bold" FontSize="16" Cursor="Hand" Click="Close_Click">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#3498DB"/>
-                            <Setter Property="Foreground" Value="White"/>
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" 
-                                                CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                        <Border Background="Transparent">
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -54,13 +35,49 @@
                             </Setter>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#2980B9"/>
+                                    <Setter Property="Foreground" Value="#C0392B"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
                 </Button>
-            </StackPanel>
+
+                <StackPanel VerticalAlignment="Center" Margin="0,20,0,0">
+                    <TextBlock Text="🔐 Вход в системата" FontSize="18" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center" Margin="0,0,0,10"/>
+
+                    <TextBlock Text="Потребител:" FontWeight="SemiBold"/>
+                    <TextBox x:Name="txtUsername" KeyDown="Input_KeyDown" Margin="0,4,0,8"/>
+
+                    <TextBlock Text="Парола:" FontWeight="SemiBold"/>
+                    <PasswordBox x:Name="txtPassword" KeyDown="Input_KeyDown" Margin="0,4,0,12"/>
+
+                    <Button Content="Вход" Click="Login_Click" Background="#3498DB" Foreground="White" 
+                            FontWeight="Bold" Padding="8" BorderThickness="0" Cursor="Hand" 
+                            HorizontalAlignment="Right" Width="80">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#3498DB"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" 
+                                                    CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#2980B9"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </Window>

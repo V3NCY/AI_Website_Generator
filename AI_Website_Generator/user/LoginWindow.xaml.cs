@@ -52,5 +52,11 @@ namespace AI_Website_Generator.user
                 this.DragMove();
             }
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
