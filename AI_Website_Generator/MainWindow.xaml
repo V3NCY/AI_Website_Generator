@@ -14,7 +14,6 @@
         <DataTemplate x:Key="ChatMessageTemplate">
             <Border CornerRadius="10" Padding="10" Margin="5" MaxWidth="500"
             HorizontalAlignment="{Binding IsMe, Converter={StaticResource ChatAlignmentConverter}}">
-                <!-- CORRECT use inside DataTemplate -->
                 <Border.Background>
                     <MultiBinding Converter="{StaticResource ChatBubbleColorMultiConverter}">
                         <Binding Path="IsMe"/>
@@ -166,7 +165,7 @@
                     </StackPanel>
 
                     <!-- Chat Section -->
-                    <Border Margin="10" Padding="10" Background="#eee" BorderBrush="#BEE6FD" BorderThickness="1" CornerRadius="8" Height="300">
+                    <Border Margin="10" Padding="10" Background="#fff" BorderBrush="#073764" BorderThickness="1" CornerRadius="8" Height="300">
                         <StackPanel>
                             <TextBlock Text="💬 Екипен чат" FontWeight="Bold" FontSize="18" Margin="0,0,0,10" Foreground="#2C3E50"/>
                             <ScrollViewer Height="200" VerticalScrollBarVisibility="Auto">
