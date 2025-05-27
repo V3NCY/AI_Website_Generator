@@ -60,7 +60,7 @@ namespace AI_Website_Generator {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AI_Website_Generator;component/domainlistwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AI_Website_Generator;V1.0.0.0;component/domainlistwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\DomainListWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -31,6 +31,9 @@
     <Compile Update="user\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="user\PasswordChangeDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ViewRequestsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -67,6 +70,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="user\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="user\PasswordChangeDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ViewRequestsWindow.xaml">

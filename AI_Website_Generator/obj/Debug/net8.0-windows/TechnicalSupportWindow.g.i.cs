@@ -60,7 +60,7 @@ namespace AI_Website_Generator {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AI_Website_Generator;component/technicalsupportwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AI_Website_Generator;V1.0.0.0;component/technicalsupportwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\TechnicalSupportWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
