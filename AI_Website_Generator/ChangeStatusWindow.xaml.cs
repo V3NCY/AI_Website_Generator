@@ -45,5 +45,18 @@ namespace AI_Website_Generator
                 MessageBox.Show("Моля, изберете статус и въведете вашето име.", "Грешка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        public class TechIssue
+        {
+            public string Issue { get; set; }
+            public string AssignedTo { get; set; }
+            public string Status { get; set; }
+            public string Priority { get; set; }
+            public string Category { get; set; }
+            public string ClientName { get; set; }
+            public string WebsiteDomain { get; set; }
+            public string CreatedDate { get; set; } = System.DateTime.Now.ToString("dd.MM.yyyy");
+            public string LastUpdatedBy { get; set; } = "Системата"; // <-- Add this line back
+        }
+
     }
 }
