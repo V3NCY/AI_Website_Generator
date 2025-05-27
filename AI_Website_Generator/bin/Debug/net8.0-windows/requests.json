@@ -1,14 +1,28 @@
 [
   {
-    "client": "Stefan Petrov",
-    "phone": "324324324",
-    "email": "test@123.com",
-    "code": "123456",
-    "institute": "Test Name",
-    "city": "Test City",
-    "prevDomain": "www.actualdomain.com",
-    "newDomain": "да - www.actualnewdomain.com",
-    "status": "Получена заявка",
-    "template": 3
+    "Client": "Stefan Petrov",
+    "Email": "test@123.com",
+    "Phone": "324324324",
+    "Code": "123456",
+    "Institute": "Test Name",
+    "City": "Test City",
+    "NewDomain": "да - www.actualnewdomain.com",
+    "PrevDomain": "www.actualdomain.com",
+    "Status": "Получена заявка",
+    "Template": "3",
+    "Comment": ""
+  },
+  {
+    "Client": "MOL MOL",
+    "Email": "test@chatbot.com",
+    "Phone": "0999999999",
+    "Code": "00000",
+    "Institute": "Test ChatBot",
+    "City": "Plovdiv",
+    "NewDomain": "да",
+    "PrevDomain": "-",
+    "Status": "В процес",
+    "Template": "1",
+    "Comment": ""
   }
 ]

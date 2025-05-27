@@ -1,25 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// File: Models/Website.cs
+using System.ComponentModel;
 
-namespace AI_Website_Generator
+namespace AI_Website_Generator.Models
 {
-    public class Website
+    public class Website : INotifyPropertyChanged
     {
-        public string Name { get; set; }
-        public string URL { get; set; }
-        public string Status { get; set; }
-        public string Traffic { get; set; }
-        public string AIInsights { get; set; }
-        public string ErrorDetails { get; internal set; }
+        private string name;
+        private string status;
+        private string errorDetails;
+        private string aiInsights;
+        private string recommendedAction;
+        private int aiConfidence;
 
-        public static List<Website> GetSampleWebsites()
+        public string Name
         {
-            return new List<Website>
-            {
-                new Website { Name = "E-Commerce Shop", URL = "https://shop.example.com", Status = "Online", Traffic = "High", AIInsights = "Stable growth, SEO improvements needed" },
-                new Website { Name = "Portfolio Site", URL = "https://portfolio.example.com", Status = "Online", Traffic = "Medium", AIInsights = "High bounce rate detected" },
-                new Website { Name = "Blog", URL = "https://blog.example.com", Status = "Offline", Traffic = "N/A", AIInsights = "Site is down, server maintenance needed" }
-            };
+            get => name;
+            set { name = value; OnPropertyChanged(nameof(Name)); }
         }
+
+        public string Status
+        {
+            get => status;
+            set { status = value; OnPropertyChanged(nameof(Status)); }
+        }
+
+        public string ErrorDetails
+        {
+            get => errorDetails;
+            set { errorDetails = value; OnPropertyChanged(nameof(ErrorDetails)); }
+        }
+
+        public string AIInsights
+        {
+            get => aiInsights;
+            set { aiInsights = value; OnPropertyChanged(nameof(AIInsights)); }
+        }
+
+        public string RecommendedAction
+        {
+            get => recommendedAction;
+            set { recommendedAction = value; OnPropertyChanged(nameof(RecommendedAction)); }
+        }
+
+        public int AIConfidence
+
+        {
+            get => aiConfidence;
+            set { aiConfidence = value; OnPropertyChanged(nameof(AIConfidence)); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

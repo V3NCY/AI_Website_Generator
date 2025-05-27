@@ -42,8 +42,20 @@ namespace AI_Website_Generator
 
         private void AddNewDomain_Click(object sender, RoutedEventArgs e)
         {
-            OpenWindow<AddDomainWindow>();
+            var addWindow = new AddDomainWindow();
+            bool? result = addWindow.ShowDialog();
+
+            if (result == true)
+            {
+                Domain newDomain = addWindow.NewDomain;
+                Domain.AddDomain(newDomain); 
+
+                MessageBox.Show($"Успешно добавен домейн:\n{newDomain.NewDomainName}",
+                                "Нов уебсайт", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
+
+
 
         private void btnViewRequests_Click(object sender, RoutedEventArgs e)
         {

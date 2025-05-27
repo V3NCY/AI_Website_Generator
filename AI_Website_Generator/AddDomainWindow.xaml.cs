@@ -48,10 +48,10 @@ namespace AI_Website_Generator
                 OfficialDomainDate = dateRegOfficialDomain.SelectedDate?.ToString("yyyy-MM-dd") ?? ""
             };
 
-            Domain.AddDomain(NewDomain);
 
             this.DialogResult = true;
-            Close();
+            this.Close();
+
         }
 
 
