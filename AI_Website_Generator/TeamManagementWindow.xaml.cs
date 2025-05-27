@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,62 +10,73 @@ namespace AI_Website_Generator
 {
     public partial class TeamManagementWindow : Window
     {
+        private static readonly string TeamFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "team.json");
         public static ObservableCollection<TeamMember> TeamMembers { get; set; } = new ObservableCollection<TeamMember>();
+        private bool isNameAscending = true;
+        private bool isRoleAscending = true;
 
-
-        //private List<TeamMember> allTeamMembers = new(); 
-        private List<TeamMember> filteredMembers = new(); 
         public TeamManagementWindow()
         {
             InitializeComponent();
             LoadTeamMembers();
+            TeamList.ItemsSource = TeamMembers;
         }
 
         private void LoadTeamMembers()
         {
-            if (TeamMembers.Count == 0)
+            if (File.Exists(TeamFilePath))
             {
-                TeamMembers.Add(new TeamMember { Name = "Venceslava Georgieva", Role = "Designer" });
-                TeamMembers.Add(new TeamMember { Name = "Elvira Shugova", Role = "Request Picker" });
-                TeamMembers.Add(new TeamMember { Name = "Denka Arabadzhiyska", Role = "Request Picker" });
-                TeamMembers.Add(new TeamMember { Name = "Borislava Dimova", Role = "Request Picker" });
-                TeamMembers.Add(new TeamMember { Name = "Victoria Dobreva", Role = "Request Picker" });
-                TeamMembers.Add(new TeamMember { Name = "Stoyan Petkov", Role = "Tech Team" });
-                TeamMembers.Add(new TeamMember { Name = "Georgi Benev", Role = "Tech Team" });
-                TeamMembers.Add(new TeamMember { Name = "Katya Kalcheva", Role = "Tester" });
-                TeamMembers.Add(new TeamMember { Name = "Kremena Kairyakova", Role = "Tester" });
-                TeamMembers.Add(new TeamMember { Name = "Yordan Totev", Role = "Seller" });
-                TeamMembers.Add(new TeamMember { Name = "Hristina Boeva", Role = "Seller" });
-                TeamMembers.Add(new TeamMember { Name = "Hristina Ilcheva", Role = "Seller" });
-                TeamMembers.Add(new TeamMember { Name = "Tsvetan Karabov", Role = "Seller" });
-                TeamMembers.Add(new TeamMember { Name = "Nia Yordanova", Role = "Seller" });
+                try
+                {
+                    var json = File.ReadAllText(TeamFilePath);
+                    var loaded = JsonSerializer.Deserialize<ObservableCollection<TeamMember>>(json);
+                    if (loaded != null && loaded.Count > 0)
+                        TeamMembers = loaded;
+                }
+                catch
+                {
+                    LoadDefaultTeam();
+                }
             }
-
-            TeamList.ItemsSource = TeamMembers;
+            else
+            {
+                LoadDefaultTeam();
+            }
         }
 
-
-
-        public static ObservableCollection<TeamMember> GetTeamList()
+        private void LoadDefaultTeam()
         {
-            return TeamMembers;
+            TeamMembers = new ObservableCollection<TeamMember>
+            {
+                new TeamMember { Name = "Venceslava Georgieva", Role = "Designer" },
+                new TeamMember { Name = "Elvira Shugova", Role = "Request Picker" },
+                new TeamMember { Name = "Stoyan Petkov", Role = "Tech Team" },
+                new TeamMember { Name = "Katya Kalcheva", Role = "Tester" },
+                new TeamMember { Name = "Yordan Totev", Role = "Seller" }
+            };
+            SaveTeamMembers();
+        }
+
+        private void SaveTeamMembers()
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(TeamMembers, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(TeamFilePath, json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Грешка при запазване на екипа:\n" + ex.Message);
+            }
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             string query = SearchBox.Text.Trim().ToLower();
             if (string.IsNullOrWhiteSpace(query))
-            {
-                filteredMembers = new List<TeamMember>(TeamMembers);
-            }
+                TeamList.ItemsSource = TeamMembers;
             else
-            {
-                filteredMembers = TeamMembers
-                    .Where(tm => tm.Name.ToLower().Contains(query) || tm.Role.ToLower().Contains(query))
-                    .ToList();
-            }
-
-            TeamList.ItemsSource = filteredMembers;
+                TeamList.ItemsSource = TeamMembers.Where(t => t.Name.ToLower().Contains(query) || t.Role.ToLower().Contains(query)).ToList();
         }
 
         private void AddTeamMember_Click(object sender, RoutedEventArgs e)
@@ -72,58 +84,63 @@ namespace AI_Website_Generator
             string name = Microsoft.VisualBasic.Interaction.InputBox("Въведете името:", "Добавяне на член");
             if (string.IsNullOrWhiteSpace(name)) return;
 
-            string role = Microsoft.VisualBasic.Interaction.InputBox("Въведете роля (напр. Designer, Seller):", "Добавяне на член");
+            string role = Microsoft.VisualBasic.Interaction.InputBox("Въведете роля:", "Добавяне на член");
             if (string.IsNullOrWhiteSpace(role)) return;
 
-            var newMember = new TeamMember { Name = name.Trim(), Role = role.Trim() };
-            TeamMembers.Add(newMember);
-            filteredMembers.Add(newMember);
-            TeamList.Items.Refresh();
+            TeamMembers.Add(new TeamMember { Name = name.Trim(), Role = role.Trim() });
+            TeamList.ItemsSource = TeamMembers;
+            SaveTeamMembers();
         }
 
         private void EditTeamMember_Click(object sender, RoutedEventArgs e)
         {
             if (TeamList.SelectedItem is TeamMember selected)
             {
-                string newName = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Редактирай името:", "Редакция", selected.Name);
+                string newName = Microsoft.VisualBasic.Interaction.InputBox("Редактирай името:", "Редакция", selected.Name);
+                string newRole = Microsoft.VisualBasic.Interaction.InputBox("Редактирай ролята:", "Редакция", selected.Role);
 
-                string newRole = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Редактирай ролята:", "Редакция", selected.Role);
-
-                if (!string.IsNullOrWhiteSpace(newName))
-                    selected.Name = newName.Trim();
-
-                if (!string.IsNullOrWhiteSpace(newRole))
-                    selected.Role = newRole.Trim();
+                if (!string.IsNullOrWhiteSpace(newName)) selected.Name = newName.Trim();
+                if (!string.IsNullOrWhiteSpace(newRole)) selected.Role = newRole.Trim();
 
                 TeamList.Items.Refresh();
-            }
-            else
-            {
-                MessageBox.Show("Моля, изберете член от екипа за редакция.", "Няма избран елемент", MessageBoxButton.OK, MessageBoxImage.Warning);
+                SaveTeamMembers();
             }
         }
 
         private void RemoveTeamMember_Click(object sender, RoutedEventArgs e)
         {
-            if (TeamList.SelectedItem is not TeamMember selected) return;
-
-            var result = MessageBox.Show($"Сигурни ли сте, че искате да премахнете {selected.Name}?", "Потвърждение", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            if (result == MessageBoxResult.Yes)
+            if (TeamList.SelectedItem is TeamMember selected)
             {
-                TeamMembers.Remove(selected);
-                filteredMembers.Remove(selected);
-                TeamList.ItemsSource = null;
-                TeamList.ItemsSource = filteredMembers;
+                var result = MessageBox.Show($"Сигурни ли сте, че искате да премахнете {selected.Name}?", "Потвърждение", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    TeamMembers.Remove(selected);
+                    TeamList.ItemsSource = TeamMembers;
+                    SaveTeamMembers();
+                }
             }
+        }
+
+        private void SortByName_Click(object sender, RoutedEventArgs e)
+        {
+            TeamList.ItemsSource = isNameAscending
+                ? TeamMembers.OrderBy(t => t.Name).ToList()
+                : TeamMembers.OrderByDescending(t => t.Name).ToList();
+            isNameAscending = !isNameAscending;
+        }
+
+        private void SortByRole_Click(object sender, RoutedEventArgs e)
+        {
+            TeamList.ItemsSource = isRoleAscending
+                ? TeamMembers.OrderBy(t => t.Role).ToList()
+                : TeamMembers.OrderByDescending(t => t.Role).ToList();
+            isRoleAscending = !isRoleAscending;
         }
     }
 
     public class TeamMember
     {
-        public string Name { get; set; } = "Неизвестно лице";
-        public string Role { get; set; } = "Без роля";
+        public string Name { get; set; }
+        public string Role { get; set; }
     }
 }
