@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace AI_Website_Generator.user
 {
@@ -21,6 +22,17 @@ namespace AI_Website_Generator.user
                 return;
             }
             DialogResult = true;
+            Close();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
             Close();
         }
     }
