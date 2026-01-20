@@ -8,7 +8,6 @@ using System.Windows.Controls;
 using Newtonsoft.Json;
 using Microsoft.VisualBasic;
 
-
 namespace AI_Website_Generator
 {
     public partial class ViewRequestsWindow : Window
@@ -61,6 +60,11 @@ namespace AI_Website_Generator
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             LoadRequests();
+        }
+
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         private void RequestsList_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -148,7 +152,6 @@ namespace AI_Website_Generator
 
                     string finalIndexPath = Path.Combine(targetFolder, "index.php");
 
-                    // Open directly with file://
                     Process.Start(new ProcessStartInfo
                     {
                         FileName = finalIndexPath,
@@ -210,17 +213,18 @@ namespace AI_Website_Generator
                 try { Directory.Delete(tempDir, true); } catch { }
             }
         }
+
         private void RequestsList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (RequestsList.SelectedItem is Request selectedRequest)
             {
                 string[] editableStatuses = {
-            "Проблем", "За дизайнер", "За технически екип", "В процес", "Получена заявка"
-        };
+                    "Проблем", "За дизайнер", "За технически екип", "В процес", "Получена заявка"
+                };
 
                 if (Array.Exists(editableStatuses, s => s == selectedRequest.Status))
                 {
-                    string input = Microsoft.VisualBasic.Interaction.InputBox(
+                    string input = Interaction.InputBox(
                         $"Добави/редактирай коментар за статус: {selectedRequest.Status}",
                         "Коментар за заявката",
                         selectedRequest.Comment ?? "");
@@ -236,12 +240,10 @@ namespace AI_Website_Generator
                 }
                 else
                 {
-                    MessageBox.Show("Коментари могат да се добавят само при определени статуси.", "Неразрешена операция", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Коментари могат да се добавят само при определени статуси.",
+                        "Неразрешена операция", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }
-
-
-
     }
 }
