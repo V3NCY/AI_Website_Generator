@@ -5,12 +5,10 @@ namespace AI_Website_Generator
 {
     public partial class DomainListWindow : Window
     {
-        private List<Domain> domains = Domain.GetDomains();
-
         public DomainListWindow()
         {
             InitializeComponent();
-            LoadDomains();  
+            LoadDomains();
         }
 
         private void LoadDomains()
@@ -20,12 +18,25 @@ namespace AI_Website_Generator
             DomainsList.ItemsSource = domains;
         }
 
-
-
-
         private void RefreshDomains_Click(object sender, RoutedEventArgs e)
         {
-            LoadDomains(); 
+            LoadDomains();
+        }
+
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void OpenAddDomain_Click(object sender, RoutedEventArgs e)
+        {
+            // Opens your AddDomainWindow (if it exists)
+            var w = new AddDomainWindow();
+            w.Owner = this;
+            w.ShowDialog();
+
+            // Refresh after adding
+            LoadDomains();
         }
     }
 }

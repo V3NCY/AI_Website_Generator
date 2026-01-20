@@ -10,36 +10,76 @@
 
     <Window.Resources>
 
+        <!-- Effects -->
+        <DropShadowEffect x:Key="ShadowEffect" BlurRadius="14" ShadowDepth="4" Opacity="0.14"/>
 
-        <DropShadowEffect x:Key="ShadowEffect" BlurRadius="12" ShadowDepth="3" Opacity="0.18"/>
+        <!-- Brushes -->
+        <LinearGradientBrush x:Key="HeaderGradient" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#073763" Offset="0"/>
+            <GradientStop Color="#0B5394" Offset="0.55"/>
+            <GradientStop Color="#3498DB" Offset="1"/>
+        </LinearGradientBrush>
 
-        <!-- cards -->
+        <!-- Cards -->
         <Style x:Key="Card" TargetType="Border">
             <Setter Property="Background" Value="White"/>
-            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="CornerRadius" Value="16"/>
             <Setter Property="Padding" Value="18"/>
             <Setter Property="BorderBrush" Value="#E6ECEF"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Effect" Value="{StaticResource ShadowEffect}"/>
         </Style>
 
-        <!-- text -->
+        <Style x:Key="SoftCard" TargetType="Border" BasedOn="{StaticResource Card}">
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="Padding" Value="14"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="12" ShadowDepth="2" Opacity="0.10"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Header text -->
         <Style x:Key="HeaderTitle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="26"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
         <Style x:Key="HeaderSubTitle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Foreground" Value="#5D6D7E"/>
+            <Setter Property="Foreground" Value="#EAF2F8"/>
+            <Setter Property="Opacity" Value="0.95"/>
             <Setter Property="Margin" Value="0,6,0,0"/>
         </Style>
 
-        <!-- inputs -->
+        <!-- KPI pill -->
+        <Style x:Key="KpiPill" TargetType="Border">
+            <Setter Property="CornerRadius" Value="999"/>
+            <Setter Property="Padding" Value="12,7"/>
+            <Setter Property="Background" Value="#1F4E79"/>
+            <Setter Property="BorderBrush" Value="#2E86C1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+
+        <Style x:Key="KpiLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#D6EAF8"/>
+        </Style>
+
+        <Style x:Key="KpiValue" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="8,0,0,0"/>
+        </Style>
+
+        <!-- Inputs -->
         <Style x:Key="SearchBox" TargetType="TextBox">
-            <Setter Property="Height" Value="38"/>
-            <Setter Property="Padding" Value="10,7"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Padding" Value="12,8"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Background" Value="#F7F9F9"/>
             <Setter Property="BorderBrush" Value="#D5DEE3"/>
@@ -47,7 +87,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
-        <!-- buttons -->
+        <!-- Buttons -->
         <Style x:Key="PrimaryButton" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontSize" Value="14"/>
@@ -62,12 +102,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="10"
-                                SnapsToDevicePixels="True">
-                            <ContentPresenter Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -83,7 +119,7 @@
         </Style>
 
         <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
-            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Background" Value="#073764"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#2E86C1"/>
@@ -104,19 +140,14 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Padding" Value="14,0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="10"
-                                SnapsToDevicePixels="True">
-                            <ContentPresenter Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -128,7 +159,7 @@
             </Style.Triggers>
         </Style>
 
-       
+        <!-- List styles -->
         <Style TargetType="{x:Type ListView}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#E6ECEF"/>
@@ -144,13 +175,13 @@
             <Setter Property="Background" Value="#F7FAFC"/>
             <Setter Property="Foreground" Value="#2C3E50"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Padding" Value="10,9"/>
             <Setter Property="BorderBrush" Value="#E6ECEF"/>
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
         </Style>
 
         <Style TargetType="{x:Type ListViewItem}">
-            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="Padding" Value="8,6"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -179,75 +210,113 @@
     </Window.Resources>
 
     <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Border Style="{StaticResource Card}">
+        <!-- HERO HEADER -->
+        <Border Grid.Row="0"
+                CornerRadius="18"
+                Padding="18"
+                Background="{StaticResource HeaderGradient}"
+                Margin="0,0,0,14"
+                Effect="{StaticResource ShadowEffect}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Регистър домейни" Style="{StaticResource HeaderTitle}"/>
+                    <TextBlock Text="Единна справка за обекти, домейни, пакети, достъп и отговорници."
+                               Style="{StaticResource HeaderSubTitle}"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                        <Border Style="{StaticResource KpiPill}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Общо:" Style="{StaticResource KpiLabel}"/>
+                                <TextBlock x:Name="txtKpiTotal" Text="0" Style="{StaticResource KpiValue}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource KpiPill}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Градове:" Style="{StaticResource KpiLabel}"/>
+                                <TextBlock x:Name="txtKpiCities" Text="0" Style="{StaticResource KpiValue}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Style="{StaticResource KpiPill}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Пакети:" Style="{StaticResource KpiLabel}"/>
+                                <TextBlock x:Name="txtKpiPackages" Text="0" Style="{StaticResource KpiValue}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                    <Button Content="➕ Нов домейн"
+                            Click="OpenAddDomain_Click"
+                            Style="{StaticResource SecondaryButton}"
+                            MinWidth="150"
+                            Margin="0,0,10,0"/>
+                    <!--<Button Content="X"
+                            Click="CloseWindow_Click"
+                            Style="{StaticResource GhostButton}"
+                            Width="46"
+                            Height="46"/>-->
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <Border Grid.Row="1" Style="{StaticResource Card}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-   
-                <Grid Grid.Row="0" Margin="0,0,0,12">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                <!-- Sticky toolbar -->
+                <Border Grid.Row="0"
+                        Style="{StaticResource SoftCard}"
+                        Padding="12"
+                        Margin="0,0,0,12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="🌐 Регистрирани уебсайтове" Style="{StaticResource HeaderTitle}"/>
-                        <TextBlock Text="Преглед, търсене и бързо обновяване на списъка с домейни."
-                                   Style="{StaticResource HeaderSubTitle}"/>
-                    </StackPanel>
+                        <TextBox x:Name="txtSearch"
+                                 Grid.Column="0"
+                                 Style="{StaticResource SearchBox}"
+                                 ToolTip="Търси по обект, домейн, град, имейл, МОЛ, телефон..."
+                                 TextChanged="txtSearch_TextChanged"/>
 
-                    <Button Grid.Column="1"
-                            Content="✖"
-                            Width="40"
-                            Height="40"
-                            FontSize="14"
-                            FontWeight="Bold"
-                            Background="#ECF0F1"
-                            BorderBrush="#D5DEE3"
-                            BorderThickness="1"
-                            Foreground="#2C3E50"
-                            Cursor="Hand"
-                            Margin="10,0,0,0"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top"/>
-                </Grid>
+                        <Button Grid.Column="2"
+                                Content="🔄 Обнови"
+                                Click="RefreshDomains_Click"
+                                Style="{StaticResource PrimaryButton}"
+                                MinWidth="140"/>
 
-           
-                <Grid Grid.Row="1" Margin="0,0,0,12">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="16"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                        <Button Grid.Column="4"
+                                Content="Изчисти"
+                                Click="ClearFilter_Click"
+                                Style="{StaticResource GhostButton}"
+                                MinWidth="120"/>
+                    </Grid>
+                </Border>
 
-                    <TextBox Grid.Column="0"
-                             Style="{StaticResource SearchBox}"
-                             Name="txtSearch"
-                             Text=""
-                             ToolTip="Търси по обект, домейн, град, имейл..."/>
-
-                    <Button Grid.Column="2"
-                            Content="🔄 Обнови"
-                            Click="RefreshDomains_Click"
-                            Style="{StaticResource SecondaryButton}"
-                            MinWidth="140"/>
-
-                    <Button Grid.Column="4"
-                            Content="➕ Добави нов"
-                            Style="{StaticResource PrimaryButton}"
-                            MinWidth="140"/>
-                </Grid>
-
-                <!-- list -->
-                <ListView Grid.Row="2" Name="DomainsList">
+                <!-- List -->
+                <ListView Grid.Row="1" x:Name="DomainsList">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Обект" Width="180" DisplayMemberBinding="{Binding Owner}"/>
@@ -269,28 +338,29 @@
                     </ListView.View>
                 </ListView>
 
-                
-                <Grid Grid.Row="3" Margin="0,12,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0"
-                               Text="ℹ️ Съвет: Скролирайте хоризонтално за всички колони. Може да разширявате колоните от хедъра."
-                               Foreground="#5D6D7E"
-                               FontSize="12"
-                               VerticalAlignment="Center"/>
-
-                    <Button Grid.Column="1"
-                            Content="Затвори"
-                            Style="{StaticResource GhostButton}"
-                            Width="140"
-                            Margin="10,0,0,0"/>
-                </Grid>
-
             </Grid>
         </Border>
+
+        <!-- FOOTER -->
+        <Grid Grid.Row="2" Margin="0,12,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="ℹ️ Съвет: Използвай търсачката за бързо филтриране. Скролирай хоризонтално за всички колони."
+                       Foreground="#5D6D7E"
+                       FontSize="12"
+                       VerticalAlignment="Center"/>
+
+            <Button Grid.Column="1"
+                    Content="Затвори"
+                    Style="{StaticResource GhostButton}"
+                    Click="CloseWindow_Click"
+                    Width="140"
+                    Margin="10,0,0,0"/>
+        </Grid>
 
     </Grid>
 </Window>
