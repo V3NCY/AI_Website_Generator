@@ -1,145 +1,865 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Business</title>
-    <link rel="stylesheet" href="/templates/styleA.css">
-</head>
-<body>
-    <header>
-        <h1>Modern Business</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Services</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
-    <section class="hero">
-        <h2>Professional Solutions for Your Business</h2>
-        <p>We help you grow with innovative strategies.</p>
-        <button>Get Started</button>
-    </section>
-    <section class="services">
-        <h2>Our Services</h2>
-        <div class="service-box">Web Development</div>
-        <div class="service-box">Marketing</div>
-        <div class="service-box">Consulting</div>
-    </section>
-</body>
-</html>
-<style>
-    body {
-        font-family: 'Poppins', Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f4f7f6;
-        color: #333;
-        text-align: center;
-    }
-
-    /* Header */
-    header {
-        background: #2c3e50;
-        padding: 20px;
-        color: white;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: bold;
-        transition: color 0.3s ease-in-out;
-    }
-
-        nav a:hover {
-            color: #f1c40f;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>University — Evergreen University</title>
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --surface: #ffffff;
+            --surface2: #f1f5f9;
+            --text: #0f172a;
+            --muted: #475569;
+            --muted2: #64748b;
+            --line: #e2e8f0;
+            --primary: #0f3d7a; /* deep academic blue */
+            --primary2: #0b2f5e;
+            --accent: #b45309; /* warm “gold” */
+            --ok: #0f766e;
+            --shadow: 0 12px 28px rgba(15, 23, 42, .10);
+            --shadow2: 0 10px 20px rgba(15, 23, 42, .08);
+            --r: 18px;
+            --max: 1160px;
         }
 
-    /* Hero Section */
-    .hero {
-        background: linear-gradient(135deg, #3498db, #6dd5fa);
-        color: white;
-        padding: 60px 20px;
-        border-radius: 0 0 20px 20px;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    }
-
-        .hero h2 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
+        * {
+            box-sizing: border-box
         }
 
-        .hero p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            color: var(--text);
+            background: linear-gradient(180deg, #ffffff, var(--bg));
         }
 
-        .hero button {
-            background: #f1c40f;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #2c3e50;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+        a {
+            color: inherit;
+            text-decoration: none
         }
 
-            .hero button:hover {
-                background: #f39c12;
-                transform: scale(1.05);
+        .container {
+            width: min(var(--max), 92vw);
+            margin: 0 auto
+        }
+
+        /* Top utility bar */
+        .utility {
+            background: var(--primary2);
+            color: rgba(255,255,255,.92);
+            font-size: 12.5px;
+        }
+
+            .utility .inner {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px 0;
+                gap: 12px;
+                flex-wrap: wrap;
             }
 
-    /* Services Section */
-    .services {
-        margin: 40px auto;
-        padding: 20px;
-        max-width: 800px;
-    }
+            .utility a {
+                color: rgba(255,255,255,.92);
+                opacity: .92
+            }
 
-        .services h2 {
-            font-size: 2em;
-            color: #2c3e50;
-            margin-bottom: 20px;
+                .utility a:hover {
+                    opacity: 1;
+                    text-decoration: underline
+                }
+
+        .util-links {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center
         }
 
-    .service-box {
-        display: inline-block;
-        background: #ffffff;
-        padding: 20px;
-        margin: 15px;
-        width: 220px;
-        border-radius: 15px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        font-weight: bold;
-        color: #2c3e50;
-        transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-
-        .service-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        /* Main header */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 30;
         }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 14px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 240px;
+        }
+
+        .seal {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.55), transparent 45%), linear-gradient(135deg, var(--primary), #1d4ed8);
+            box-shadow: 0 12px 20px rgba(15,61,122,.18);
+            position: relative;
+        }
+
+            .seal::after {
+                content: "E";
+                position: absolute;
+                inset: 0;
+                display: grid;
+                place-items: center;
+                color: white;
+                font-weight: 900;
+                letter-spacing: .5px;
+            }
+
+        .brand .title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1
+        }
+
+        .brand strong {
+            font-size: 15px
+        }
+
+        .brand span {
+            font-size: 12px;
+            color: var(--muted2)
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+            nav a {
+                font-size: 13.5px;
+                color: var(--muted);
+                padding: 10px 10px;
+                border-radius: 12px;
+                border: 1px solid transparent;
+                transition: .2s ease;
+            }
+
+                nav a:hover {
+                    color: var(--text);
+                    background: var(--surface2);
+                    border-color: var(--line);
+                }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+            min-width: 240px;
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface2);
+            border: 1px solid var(--line);
+            padding: 10px 12px;
+            border-radius: 999px;
+            min-width: 260px;
+        }
+
+            .search input {
+                border: none;
+                outline: none;
+                background: transparent;
+                width: 100%;
+                font-size: 13px;
+                color: var(--text);
+            }
+
+                .search input::placeholder {
+                    color: #94a3b8;
+                }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text);
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+            .btn:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow2);
+            }
+
+            .btn.primary {
+                background: linear-gradient(180deg, var(--primary), var(--primary2));
+                color: white;
+                border-color: rgba(255,255,255,.0);
+                box-shadow: 0 12px 18px rgba(15,61,122,.18);
+            }
+
+        /* Hero */
         .hero {
-            padding: 40px 15px;
+            padding: 26px 0 20px;
         }
 
-        .services {
-            padding: 10px;
+        .hero-wrap {
+            border-radius: 26px;
+            background: radial-gradient(900px 360px at 15% 15%, rgba(15,61,122,.14), transparent 60%), radial-gradient(700px 320px at 85% 20%, rgba(180,83,9,.10), transparent 60%), var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            overflow: hidden;
         }
 
-        .service-box {
-            width: 90%;
-            margin: 10px auto;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 18px;
+            padding: 22px;
+            align-items: start;
         }
-    }
 
-</style>
+        .kicker {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            background: rgba(15,61,122,.06);
+            color: var(--primary);
+            border: 1px solid rgba(15,61,122,.14);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 700;
+            width: fit-content;
+        }
+
+        .kdot {
+            width: 8px;
+            height: 8px;
+            border-radius: 99px;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(180,83,9,.12);
+        }
+
+        h1 {
+            margin: 12px 0 10px;
+            font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+            font-size: clamp(34px, 3.2vw, 48px);
+            letter-spacing: -0.6px;
+            line-height: 1.05;
+        }
+
+        .lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15.5px;
+            line-height: 1.7;
+            max-width: 65ch;
+        }
+
+        .cta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border-color: var(--line);
+        }
+
+        /* Right hero card */
+        .hero-card {
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, #ffffff, #f8fafc);
+            box-shadow: var(--shadow2);
+            overflow: hidden;
+        }
+
+            .hero-card .head {
+                padding: 14px 14px 10px;
+                border-bottom: 1px solid var(--line);
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+                align-items: center;
+            }
+
+                .hero-card .head strong {
+                    font-size: 13.5px;
+                }
+
+                .hero-card .head span {
+                    font-size: 12px;
+                    color: var(--muted2);
+                }
+
+            .hero-card .body {
+                padding: 14px;
+                display: grid;
+                gap: 10px;
+            }
+
+        .quick {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .tile {
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            transition: .2s ease;
+            min-height: 92px;
+        }
+
+            .tile:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow2);
+            }
+
+            .tile b {
+                display: block;
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .tile p {
+                margin: 0;
+                color: var(--muted2);
+                font-size: 12.5px;
+                line-height: 1.45;
+            }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 12px;
+        }
+
+            .stat .num {
+                font-weight: 900;
+                color: var(--primary);
+                font-size: 18px;
+            }
+
+            .stat .lbl {
+                color: var(--muted2);
+                font-size: 12px;
+                margin-top: 2px;
+            }
+
+        /* Sections */
+        section {
+            padding: 18px 0;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 14px;
+            margin: 6px 0 12px;
+        }
+
+            .section-head h2 {
+                margin: 0;
+                font-size: 18px;
+                letter-spacing: -.2px;
+            }
+
+            .section-head p {
+                margin: 0;
+                color: var(--muted2);
+                font-size: 12.8px;
+                max-width: 60ch;
+                line-height: 1.4;
+            }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--r);
+            box-shadow: var(--shadow2);
+            padding: 16px;
+            transition: .2s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow);
+            }
+
+        .icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: rgba(15,61,122,.08);
+            border: 1px solid rgba(15,61,122,.14);
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        .card h3 {
+            margin: 12px 0 6px;
+            font-size: 15px;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13.2px;
+            line-height: 1.55;
+        }
+
+        .more {
+            display: inline-flex;
+            margin-top: 10px;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+            .more:hover {
+                text-decoration: underline;
+            }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 12px;
+        }
+
+        .list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .item {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            transition: .2s ease;
+        }
+
+            .item:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow2);
+            }
+
+        .tag {
+            display: inline-flex;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface2);
+            font-size: 11px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .item strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .meta {
+            color: var(--muted2);
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .desc {
+            color: var(--muted);
+            font-size: 12.8px;
+            line-height: 1.45;
+            margin-top: 6px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 18px;
+            padding: 26px 0 40px;
+            border-top: 1px solid var(--line);
+            background: #ffffff;
+        }
+
+        .foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+            .foot small {
+                color: var(--muted2);
+            }
+
+        .footcols {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(140px, 1fr));
+            gap: 18px;
+        }
+
+            .footcols b {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .footcols a {
+                color: var(--muted);
+                display: block;
+                padding: 4px 0;
+            }
+
+                .footcols a:hover {
+                    color: var(--text);
+                    text-decoration: underline;
+                }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .hero-grid, .split {
+                grid-template-columns: 1fr;
+            }
+
+            .search {
+                min-width: 200px;
+            }
+
+            .header-actions {
+                min-width: unset;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .grid3 {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 520px) {
+            nav {
+                justify-content: flex-start;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .quick {
+                grid-template-columns: 1fr;
+            }
+
+            .search {
+                display: none;
+            }
+            /* optional */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="utility">
+        <div class="container inner">
+            <div class="util-links">
+                <a href="#">Students</a>
+                <a href="#">Faculty & Staff</a>
+                <a href="#">Alumni</a>
+                <a href="#">Library</a>
+            </div>
+            <div class="util-links">
+                <a href="#">EN</a>
+                <a href="#">Support</a>
+                <a href="#">Donate</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-inner">
+            <a class="brand" href="#">
+                <div class="seal" aria-hidden="true"></div>
+                <div class="title">
+                    <strong>Evergreen University</strong>
+                    <span>Knowledge • Character • Community</span>
+                </div>
+            </a>
+
+            <nav aria-label="Primary">
+                <a href="#programs">Academics</a>
+                <a href="#admissions">Admissions</a>
+                <a href="#research">Research</a>
+                <a href="#campus">Campus Life</a>
+                <a href="#events">News & Events</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search" role="search">
+                    <input type="search" placeholder="Search programs, people, departments..." />
+                </div>
+                <button class="btn primary" type="button" onclick="alert('Demo: connect to application form')">
+                    Apply
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-wrap">
+                <div class="hero-grid">
+                    <div>
+                        <div class="kicker"><span class="kdot"></span> Undergraduate & Graduate admissions open</div>
+                        <h1>Study, research, and grow in a community built for learning.</h1>
+                        <p class="lead">
+                            A calm, trustworthy university layout: clear navigation, quick actions for admissions,
+                            and visible news/events so the site feels active and reliable.
+                        </p>
+
+                        <div class="cta" id="admissions">
+                            <button class="btn primary" type="button" onclick="alert('Demo: application portal')">Start application</button>
+                            <button class="btn ghost" type="button" onclick="alert('Demo: campus tour booking')">Book a campus tour</button>
+                            <button class="btn" type="button" onclick="document.querySelector('#programs').scrollIntoView({behavior:'smooth'})">Browse programs</button>
+                        </div>
+                    </div>
+
+                    <aside class="hero-card" aria-label="Quick actions">
+                        <div class="head">
+                            <strong>Quick actions</strong>
+                            <span>Most used</span>
+                        </div>
+                        <div class="body">
+                            <div class="quick">
+                                <a class="tile" href="#">
+                                    <b>Find a program</b>
+                                    <p>Undergrad, master’s, PhD</p>
+                                </a>
+                                <a class="tile" href="#">
+                                    <b>Tuition & aid</b>
+                                    <p>Fees, scholarships, deadlines</p>
+                                </a>
+                                <a class="tile" href="#">
+                                    <b>Visit campus</b>
+                                    <p>Tours, maps, directions</p>
+                                </a>
+                                <a class="tile" href="#">
+                                    <b>Student portal</b>
+                                    <p>Schedule, grades, services</p>
+                                </a>
+                            </div>
+
+                            <div class="stats" aria-label="Key stats">
+                                <div class="stat"><div class="num">120+</div><div class="lbl">Programs</div></div>
+                                <div class="stat"><div class="num">55</div><div class="lbl">Research labs</div></div>
+                                <div class="stat"><div class="num">92%</div><div class="lbl">Placement</div></div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs">
+            <div class="section-head">
+                <div>
+                    <h2>Academics</h2>
+                    <p>Organize like a real university: schools, degrees, and clear next steps.</p>
+                </div>
+            </div>
+
+            <div class="grid3">
+                <article class="card">
+                    <div class="icon">🎓</div>
+                    <h3>Undergraduate</h3>
+                    <p>Explore majors, course plans, and career outcomes with faculty profiles.</p>
+                    <a class="more" href="#">Explore undergraduate →</a>
+                </article>
+
+                <article class="card">
+                    <div class="icon">📘</div>
+                    <h3>Graduate</h3>
+                    <p>Master’s and PhD programs with research tracks and supervisor matching.</p>
+                    <a class="more" href="#">Explore graduate →</a>
+                </article>
+
+                <article class="card" id="research">
+                    <div class="icon">🔬</div>
+                    <h3>Research</h3>
+                    <p>Labs, publications, projects, funding opportunities, and collaborations.</p>
+                    <a class="more" href="#">Explore research →</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="events">
+            <div class="section-head">
+                <div>
+                    <h2>News & events</h2>
+                    <p>Keep these visible: it signals credibility and activity.</p>
+                </div>
+            </div>
+
+            <div class="split">
+                <article class="card" style="min-height:unset;">
+                    <h3 style="margin:0;">Latest news</h3>
+                    <div class="list" style="margin-top:12px;">
+                        <div class="item">
+                            <span class="tag">Research</span>
+                            <div>
+                                <strong>New interdisciplinary lab opens</strong>
+                                <div class="meta">Jan 2026 • Press release</div>
+                                <div class="desc">Focused on sustainability, AI, and public policy collaboration.</div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <span class="tag">Admissions</span>
+                            <div>
+                                <strong>Scholarship deadlines published</strong>
+                                <div class="meta">Feb 2026 • Financial aid</div>
+                                <div class="desc">All scholarship requirements and document checklists in one page.</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card" style="min-height:unset;">
+                    <h3 style="margin:0;">Upcoming events</h3>
+                    <div class="list" style="margin-top:12px;">
+                        <div class="item">
+                            <span class="tag">Open day</span>
+                            <div>
+                                <strong>Campus tours + faculty Q&A</strong>
+                                <div class="meta">Feb 12, 2026 • Main campus</div>
+                                <div class="desc">Meet departments, see facilities, and ask about admissions.</div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <span class="tag">Career</span>
+                            <div>
+                                <strong>CV & interview workshop</strong>
+                                <div class="meta">Feb 7, 2026 • Career center</div>
+                                <div class="desc">Bring your laptop for real-time feedback and improvement.</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="campus">
+            <div class="section-head">
+                <div>
+                    <h2>Campus life</h2>
+                    <p>Services and community info, structured for quick scanning.</p>
+                </div>
+            </div>
+
+            <div class="grid3">
+                <article class="card">
+                    <div class="icon">🏠</div>
+                    <h3>Housing</h3>
+                    <p>Residences, meal plans, costs, and application timelines.</p>
+                    <a class="more" href="#">Housing info →</a>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🤝</div>
+                    <h3>Student services</h3>
+                    <p>Wellbeing, accessibility, mentoring, and academic support.</p>
+                    <a class="more" href="#">Support hub →</a>
+                </article>
+
+                <article class="card">
+                    <div class="icon">⚽</div>
+                    <h3>Clubs & спорт</h3>
+                    <p>Student clubs, sports, culture events, and volunteering opportunities.</p>
+                    <a class="more" href="#">Explore clubs →</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container foot">
+            <div>
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div class="seal" style="width:38px;height:38px;border-radius:14px"></div>
+                    <div>
+                        <div style="font-weight:900">Evergreen University</div>
+                        <small>© 2026 • A clean academic layout</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footcols">
+                <div>
+                    <b>Explore</b>
+                    <a href="#">Departments</a>
+                    <a href="#">Library</a>
+                    <a href="#">Campus map</a>
+                </div>
+                <div>
+                    <b>Admissions</b>
+                    <a href="#">Requirements</a>
+                    <a href="#">Tuition & aid</a>
+                    <a href="#">International students</a>
+                </div>
+                <div>
+                    <b>Connect</b>
+                    <a href="#">Contact</a>
+                    <a href="#">Newsroom</a>
+                    <a href="#">Alumni</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

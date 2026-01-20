@@ -38,5 +38,34 @@ namespace AI_Website_Generator
             // Refresh after adding
             LoadDomains();
         }
+        private void txtSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            string query = txtSearch.Text?.Trim().ToLowerInvariant();
+
+            if (DomainsList.ItemsSource == null)
+                return;
+
+            var allDomains = Domain.GetDomains();
+
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                DomainsList.ItemsSource = allDomains;
+                return;
+            }
+
+            DomainsList.ItemsSource = allDomains.FindAll(d =>
+                (d.Owner ?? "").ToLower().Contains(query) ||
+                (d.City ?? "").ToLower().Contains(query) ||
+                (d.NewDomainName ?? "").ToLower().Contains(query) ||
+                (d.OwnerEmail ?? "").ToLower().Contains(query)
+            );
+        }
+        private void ClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            txtSearch.Clear();
+            LoadDomains();
+        }
+
+
     }
 }

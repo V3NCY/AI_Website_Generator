@@ -258,18 +258,18 @@
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                <!--<StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
                     <Button Content="➕ Нов домейн"
                             Click="OpenAddDomain_Click"
                             Style="{StaticResource SecondaryButton}"
                             MinWidth="150"
                             Margin="0,0,10,0"/>
-                    <!--<Button Content="X"
+                    --><!--<Button Content="X"
                             Click="CloseWindow_Click"
                             Style="{StaticResource GhostButton}"
                             Width="46"
-                            Height="46"/>-->
-                </StackPanel>
+                            Height="46"/>--><!--
+                </StackPanel>-->
             </Grid>
         </Border>
 

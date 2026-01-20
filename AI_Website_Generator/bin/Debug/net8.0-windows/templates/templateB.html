@@ -1,102 +1,1029 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Agency</title>
-    <link rel="stylesheet" href="/templates/styleB.css">
-</head>
-<body>
-    <header>
-        <h1>Creative Agency</h1>
-        <p>We bring your ideas to life</p>
-    </header>
-    <section class="portfolio">
-        <h2>Our Work</h2>
-        <div class="project">Project 1</div>
-        <div class="project">Project 2</div>
-        <div class="project">Project 3</div>
-    </section>
-    <footer>
-        <p>� 2025 Creative Agency</p>
-    </footer>
-</body>
-</html>
+<!-- WordPress-friendly PREVIEW template (single HTML block, multi-"page" feel).
+     Scoped to .kgPreview so it won't break the theme. No <html>/<head>/<body>. -->
+
 <style>
-    /* General Styles */
-    body {
-        font-family: 'Poppins', Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f8f9fa;
-        color: #333;
-        text-align: center;
+    .kgPreview {
+        --bg: #fff7e8;
+        --paper: #ffffff;
+        --ink: #1f2937;
+        --muted: #6b7280;
+        --line: rgba(31,41,55,.10);
+        --shadow: 0 18px 45px rgba(31,41,55,.12);
+        --shadow2: 0 10px 20px rgba(31,41,55,.10);
+        --c1: #ff6b6b; /* coral */
+        --c2: #4dabf7; /* sky */
+        --c3: #51cf66; /* mint */
+        --c4: #ffd43b; /* sun */
+        --c5: #b197fc; /* lilac */
+
+        --r1: 20px;
+        --r2: 28px;
+        --max: 1180px;
+        font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji";
+        color: var(--ink);
     }
 
-    /* Header */
-    header {
-        background: linear-gradient(135deg, #e74c3c, #ff6b6b);
-        padding: 40px;
-        color: white;
-        font-size: 1.8em;
-        font-weight: bold;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 0 0 15px 15px;
-    }
-
-    /* Portfolio Section */
-    .portfolio {
-        margin: 40px auto;
-        padding: 20px;
-        max-width: 900px;
-    }
-
-        .portfolio h2 {
-            font-size: 2em;
-            color: #2c3e50;
-            margin-bottom: 20px;
+        .kgPreview * {
+            box-sizing: border-box;
         }
 
-    /* Project Cards */
-    .project {
-        display: inline-block;
-        background: #f39c12;
-        padding: 20px;
-        margin: 15px;
-        width: 250px;
-        border-radius: 12px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        font-weight: bold;
-        color: white;
-        transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-
-        .project:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-            background: #e67e22;
+        .kgPreview a {
+            color: inherit;
+            text-decoration: none;
         }
 
-    /* Footer */
-    footer {
-        background: #2c3e50;
-        color: white;
-        padding: 15px;
-        font-size: 1em;
-        border-radius: 15px 15px 0 0;
-        box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
-    }
+            .kgPreview a:hover {
+                text-decoration: underline;
+            }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .portfolio {
-            padding: 10px;
+        .kgPreview :focus-visible {
+            outline: 3px solid rgba(255,212,59,.9);
+            outline-offset: 3px;
         }
 
-        .project {
-            width: 90%;
-            margin: 10px auto;
+        .kgPreview .wrap {
+            min-height: 100%;
+            background: radial-gradient(900px 320px at 20% 10%, rgba(77,171,247,.22), transparent 60%), radial-gradient(900px 320px at 80% 12%, rgba(255,107,107,.18), transparent 60%), radial-gradient(900px 340px at 50% 95%, rgba(81,207,102,.16), transparent 65%), linear-gradient(180deg, #fff, var(--bg));
+            padding: 16px 0 28px;
+        }
+
+        .kgPreview .container {
+            width: min(var(--max),92vw);
+            margin: 0 auto;
+        }
+
+        /* Top bar */
+        .kgPreview .top {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(255,255,255,.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .kgPreview .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 0;
+            flex-wrap: wrap;
+        }
+
+        .kgPreview .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 240px;
+        }
+
+        .kgPreview .mark {
+            width: 52px;
+            height: 52px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 22px;
+            background: radial-gradient(circle at 28% 28%, rgba(255,255,255,.85), transparent 45%), linear-gradient(135deg, rgba(77,171,247,.95), rgba(255,212,59,.90));
+            border: 2px solid rgba(255,255,255,.9);
+            box-shadow: var(--shadow2);
+        }
+
+        .kgPreview .brand b {
+            display: block;
+            font-size: 15px;
+            letter-spacing: -.2px;
+        }
+
+        .kgPreview .brand span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        /* Tabs: multi-page feel without JS */
+        .kgPreview .tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .kgPreview .tabs a {
+                font-size: 13px;
+                font-weight: 900;
+                padding: 9px 12px;
+                border-radius: 999px;
+                border: 1px solid rgba(31,41,55,.12);
+                background: rgba(255,255,255,.7);
+                box-shadow: var(--shadow2);
+                transition: .15s ease;
+            }
+
+                .kgPreview .tabs a:hover {
+                    transform: translateY(-1px);
+                    box-shadow: var(--shadow);
+                    text-decoration: none;
+                }
+
+        .kgPreview .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .kgPreview .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(31,41,55,.12);
+            background: #fff;
+            font-weight: 950;
+            font-size: 13px;
+            box-shadow: var(--shadow2);
+            transition: .15s ease;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+            .kgPreview .btn:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow);
+                text-decoration: none;
+            }
+
+            .kgPreview .btn.primary {
+                border: none;
+                color: #111;
+                background: linear-gradient(180deg,var(--c4),#ffe88a);
+            }
+
+        /* "Pages" container */
+        .kgPreview .site {
+            margin-top: 14px;
+            border-radius: var(--r2);
+            border: 1px solid rgba(31,41,55,.08);
+            background: #fff;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        /* Cloud header inside the site */
+        .kgPreview .hero {
+            position: relative;
+            padding: 18px;
+            background: radial-gradient(900px 320px at 22% 18%, rgba(77,171,247,.18), transparent 60%), radial-gradient(900px 320px at 82% 10%, rgba(255,107,107,.16), transparent 60%), linear-gradient(180deg, #ffffff, #fff6df);
+            border-bottom: 1px solid rgba(31,41,55,.08);
+        }
+
+        .kgPreview .clouds {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: .95;
+            background: radial-gradient(circle at 12% 22%, rgba(255,255,255,.9) 0 52px, transparent 53px), radial-gradient(circle at 20% 25%, rgba(255,255,255,.9) 0 74px, transparent 75px), radial-gradient(circle at 30% 20%, rgba(255,255,255,.9) 0 60px, transparent 61px), radial-gradient(circle at 76% 24%, rgba(255,255,255,.86) 0 60px, transparent 61px), radial-gradient(circle at 86% 26%, rgba(255,255,255,.86) 0 78px, transparent 79px), radial-gradient(circle at 94% 22%, rgba(255,255,255,.86) 0 54px, transparent 55px);
+            filter: blur(1px);
+        }
+
+        .kgPreview .heroInner {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        .kgPreview .storyCard {
+            background: rgba(255,255,255,.92);
+            border: 1px solid rgba(31,41,55,.10);
+            border-radius: 26px;
+            box-shadow: var(--shadow2);
+            padding: 18px;
+        }
+
+        .kgPreview .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 10px;
+            border-radius: 999px;
+            font-weight: 950;
+            font-size: 12px;
+            background: rgba(255,212,59,.28);
+            border: 1px solid rgba(255,212,59,.40);
+        }
+
+        .kgPreview h1 {
+            margin: 12px 0 8px;
+            font-size: clamp(28px,3.2vw,44px);
+            line-height: 1.05;
+            letter-spacing: -.8px;
+        }
+
+        .kgPreview .storyCard p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 15px;
+            max-width: 66ch;
+        }
+
+        .kgPreview .ctaRow {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        /* Sticker blocks */
+        .kgPreview .stickers {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 10px;
+        }
+
+        .kgPreview .sticker {
+            border-radius: 26px;
+            border: 1px dashed rgba(31,41,55,.18);
+            background: rgba(255,255,255,.88);
+            box-shadow: var(--shadow2);
+            padding: 14px;
+            min-height: 132px;
+            transition: .15s ease;
+        }
+
+            .kgPreview .sticker:hover {
+                transform: translateY(-2px) rotate(-.15deg);
+                box-shadow: var(--shadow);
+            }
+
+            .kgPreview .sticker .icon {
+                width: 46px;
+                height: 46px;
+                border-radius: 18px;
+                display: grid;
+                place-items: center;
+                font-size: 20px;
+                border: 1px solid rgba(31,41,55,.10);
+                background: rgba(255,255,255,.78);
+            }
+
+            .kgPreview .sticker b {
+                display: block;
+                margin-top: 8px;
+                font-size: 14px;
+            }
+
+            .kgPreview .sticker small {
+                display: block;
+                margin-top: 4px;
+                color: var(--muted);
+                line-height: 1.45;
+            }
+
+        .kgPreview .s1 {
+            background: linear-gradient(135deg, rgba(255,107,107,.16), rgba(255,255,255,.92));
+        }
+
+        .kgPreview .s2 {
+            background: linear-gradient(135deg, rgba(77,171,247,.18), rgba(255,255,255,.92));
+        }
+
+        .kgPreview .s3 {
+            background: linear-gradient(135deg, rgba(81,207,102,.15), rgba(255,255,255,.92));
+        }
+
+        .kgPreview .s4 {
+            background: linear-gradient(135deg, rgba(255,212,59,.20), rgba(255,255,255,.92));
+        }
+
+        .kgPreview .s5 {
+            background: linear-gradient(135deg, rgba(177,151,252,.18), rgba(255,255,255,.92));
+        }
+
+        /* Content sections */
+        .kgPreview .content {
+            padding: 14px 18px 18px;
+        }
+
+        .kgPreview .section {
+            padding: 14px 0;
+            border-top: 1px solid rgba(31,41,55,.08);
+        }
+
+            .kgPreview .section:first-child {
+                border-top: none;
+                padding-top: 8px;
+            }
+
+        .kgPreview .head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 6px 0 12px;
+        }
+
+            .kgPreview .head h2 {
+                margin: 0;
+                font-size: 18px;
+                letter-spacing: -.2px;
+            }
+
+            .kgPreview .head p {
+                margin: 0;
+                color: var(--muted);
+                font-size: 13px;
+            }
+
+        .kgPreview .grid3 {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 12px;
+        }
+
+        .kgPreview .card {
+            background: #fff;
+            border: 1px solid rgba(31,41,55,.08);
+            border-radius: var(--r1);
+            box-shadow: var(--shadow2);
+            padding: 14px;
+        }
+
+            .kgPreview .card b {
+                display: block;
+            }
+
+            .kgPreview .card span {
+                display: block;
+                color: var(--muted);
+                margin-top: 6px;
+                line-height: 1.55;
+            }
+
+        .kgPreview .routine {
+            display: grid;
+            gap: 10px;
+        }
+
+        .kgPreview .step {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 10px;
+            align-items: start;
+            background: #fff;
+            border: 1px solid rgba(31,41,55,.08);
+            border-radius: var(--r1);
+            box-shadow: var(--shadow2);
+            padding: 12px;
+        }
+
+        .kgPreview .time {
+            width: fit-content;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 950;
+            font-size: 12px;
+            background: rgba(177,151,252,.18);
+            border: 1px solid rgba(177,151,252,.34);
+        }
+
+        .kgPreview .step i {
+            display: block;
+            font-style: normal;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* Gallery placeholders */
+        .kgPreview .gallery {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+        }
+
+        .kgPreview .photo {
+            border-radius: 18px;
+            border: 1px solid rgba(31,41,55,.10);
+            box-shadow: var(--shadow2);
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 30%, rgba(255,107,107,.18), transparent 55%), radial-gradient(circle at 80% 25%, rgba(77,171,247,.18), transparent 55%), radial-gradient(circle at 55% 85%, rgba(81,207,102,.16), transparent 60%), #fff;
+            aspect-ratio: 1 / 1;
+            position: relative;
+        }
+
+            .kgPreview .photo::after {
+                content: "📸";
+                position: absolute;
+                inset: 0;
+                display: grid;
+                place-items: center;
+                font-size: 22px;
+                opacity: .75;
+            }
+
+        /* Blog preview cards */
+        .kgPreview .posts {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 12px;
+        }
+
+        .kgPreview .post {
+            border-radius: var(--r1);
+            border: 1px solid rgba(31,41,55,.08);
+            box-shadow: var(--shadow2);
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .kgPreview .postTop {
+            height: 110px;
+            background: radial-gradient(circle at 25% 35%, rgba(255,212,59,.28), transparent 60%), radial-gradient(circle at 75% 20%, rgba(77,171,247,.22), transparent 60%), linear-gradient(180deg, #fff, #fff3d1);
+            border-bottom: 1px solid rgba(31,41,55,.08);
+        }
+
+        .kgPreview .postBody {
+            padding: 12px;
+        }
+
+        .kgPreview .meta {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* Contact */
+        .kgPreview .contactGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .kgPreview .note {
+            border-radius: var(--r2);
+            border: 1px solid rgba(31,41,55,.10);
+            box-shadow: var(--shadow2);
+            background: rgba(255,255,255,.92);
+            padding: 14px;
+        }
+
+        .kgPreview label {
+            display: block;
+            font-size: 13px;
+            font-weight: 800;
+            margin: 10px 0 6px;
+        }
+
+        .kgPreview input, .kgPreview textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(31,41,55,.16);
+            background: #fff;
+            font: inherit;
+        }
+
+        .kgPreview textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        .kgPreview .footer {
+            border-top: 1px solid rgba(31,41,55,.08);
+            background: rgba(255,255,255,.88);
+            padding: 16px 18px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .kgPreview .links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+            .kgPreview .links a {
+                color: var(--muted);
+                font-weight: 800;
+                font-size: 13px;
+            }
+
+                .kgPreview .links a:hover {
+                    color: var(--ink);
+                }
+
+        /* ===== PAGE SWITCHING (FIXED) =====
+     - Home is visible by default
+     - Clicking a hash shows that section
+     - When a non-home page is targeted, home hides
+     IMPORTANT: Home must be the LAST .page in markup for the "~ .page#home" rule. */
+        .kgPreview .page {
+            display: none;
+        }
+
+            .kgPreview .page#home {
+                display: block;
+            }
+            /* default */
+            .kgPreview .page:target {
+                display: block;
+            }
+                /* show target */
+                .kgPreview .page:target ~ .page#home {
+                    display: none;
+                }
+    /* hide home when other page targeted */
+
+    /* Responsive */
+    @media (max-width: 980px) {
+        .kgPreview .heroInner {
+            grid-template-columns: 1fr;
+        }
+
+        .kgPreview .grid3, .kgPreview .posts {
+            grid-template-columns: 1fr;
+        }
+
+        .kgPreview .gallery {
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 
+    @media (max-width: 720px) {
+        .kgPreview .stickers {
+            grid-template-columns: 1fr;
+        }
+
+        .kgPreview .step {
+            grid-template-columns: 1fr;
+        }
+
+        .kgPreview .contactGrid {
+            grid-template-columns: 1fr;
+        }
+
+        .kgPreview .gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 </style>
+
+<div class="kgPreview">
+    <div class="wrap">
+
+        <div class="top">
+            <div class="container topbar">
+                <div class="brand">
+                    <div class="mark" aria-hidden="true">🧸</div>
+                    <div>
+                        <b>Rainbow Kids Kindergarten</b>
+                        <span>Play • Learn • Grow</span>
+                    </div>
+                </div>
+
+                <nav class="tabs" aria-label="Site pages">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#program">Program</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+
+                <div class="actions">
+                    <a class="btn" href="#contact">Schedule a visit</a>
+                    <a class="btn primary" href="#contact">Enroll</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container site">
+
+            <!-- ABOUT -->
+            <div class="page" id="about">
+                <div class="hero">
+                    <div class="clouds" aria-hidden="true"></div>
+                    <div class="heroInner">
+                        <div class="storyCard">
+                            <div class="badge">📘 About us</div>
+                            <h1>We teach confidence, kindness, and curiosity.</h1>
+                            <p>
+                                Our approach is simple: a calm routine, a warm team, and playful learning that respects each child’s pace.
+                            </p>
+                            <div class="ctaRow">
+                                <a class="btn primary" href="#contact">Meet the teachers</a>
+                                <a class="btn" href="#program">See our program</a>
+                            </div>
+                        </div>
+                        <div class="stickers">
+                            <div class="sticker s2">
+                                <div class="icon" aria-hidden="true">🛡️</div>
+                                <b>Safety first</b>
+                                <small>Clear rules, safe spaces, thoughtful supervision.</small>
+                            </div>
+                            <div class="sticker s3">
+                                <div class="icon" aria-hidden="true">🤝</div>
+                                <b>Social skills</b>
+                                <small>Sharing, teamwork, empathy, and friendship habits.</small>
+                            </div>
+                            <div class="sticker s4">
+                                <div class="icon" aria-hidden="true">🎨</div>
+                                <b>Creativity</b>
+                                <small>Art, music, sensory play, and imagination time.</small>
+                            </div>
+                            <div class="sticker s1">
+                                <div class="icon" aria-hidden="true">🌈</div>
+                                <b>Inclusive</b>
+                                <small>Every child belongs and is supported.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <section class="section">
+                        <div class="head">
+                            <h2>Our values</h2>
+                            <p>Short and parent-friendly.</p>
+                        </div>
+                        <div class="grid3">
+                            <div class="card"><b>Gentle guidance</b><span>We coach behavior with calm boundaries and respect.</span></div>
+                            <div class="card"><b>Playful learning</b><span>Early literacy and math through games and stories.</span></div>
+                            <div class="card"><b>Strong routine</b><span>Predictable day that helps kids feel secure.</span></div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="footer">
+                    <div><b>Next:</b> Explore the <a href="#program">Program</a> or view the <a href="#gallery">Gallery</a>.</div>
+                    <div class="links"><a href="#home">Home</a><a href="#contact">Contact</a></div>
+                </div>
+            </div>
+
+            <!-- PROGRAM -->
+            <div class="page" id="program">
+                <div class="hero">
+                    <div class="clouds" aria-hidden="true"></div>
+                    <div class="heroInner">
+                        <div class="storyCard">
+                            <div class="badge">🧩 Program</div>
+                            <h1>Little steps that build big skills.</h1>
+                            <p>
+                                Balanced program: language, music, movement, crafts, nature, and social-emotional learning.
+                            </p>
+                            <div class="ctaRow">
+                                <a class="btn primary" href="#contact">Ask about groups</a>
+                                <a class="btn" href="#blog">See news</a>
+                            </div>
+                        </div>
+
+                        <div class="stickers">
+                            <div class="sticker s1"><div class="icon" aria-hidden="true">🐣</div><b>Toddlers (2–3)</b><small>Sensory play, routine building, songs.</small></div>
+                            <div class="sticker s5"><div class="icon" aria-hidden="true">🐥</div><b>Preschool (4–5)</b><small>Art, storytelling, early literacy.</small></div>
+                            <div class="sticker s3"><div class="icon" aria-hidden="true">🦉</div><b>Pre-K (5–6)</b><small>School readiness, teamwork, confidence.</small></div>
+                            <div class="sticker s4"><div class="icon" aria-hidden="true">🍎</div><b>Healthy routine</b><small>Meals, rest, outdoor play, calm transitions.</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <section class="section">
+                        <div class="head">
+                            <h2>What we do each week</h2>
+                            <p>Example activities (editable text).</p>
+                        </div>
+                        <div class="grid3">
+                            <div class="card"><b>Language & stories</b><span>Picture books, puppet theatre, songs, rhymes.</span></div>
+                            <div class="card"><b>Math through play</b><span>Sorting, patterns, counting games, puzzles.</span></div>
+                            <div class="card"><b>Movement</b><span>Dance, obstacle paths, fine motor practice.</span></div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <div class="head">
+                            <h2>Daily routine</h2>
+                            <p>Short and clear timeline.</p>
+                        </div>
+                        <div class="routine">
+                            <div class="step"><span class="time">07:30–09:00</span><div><b>Arrival & free play</b><i>Welcome + choice stations</i></div></div>
+                            <div class="step"><span class="time">09:00–10:30</span><div><b>Theme activities</b><i>Art, music, storytime</i></div></div>
+                            <div class="step"><span class="time">10:30–12:00</span><div><b>Outside</b><i>Playground + movement games</i></div></div>
+                            <div class="step"><span class="time">12:00–15:00</span><div><b>Lunch & rest</b><i>Quiet time, nap (age-based)</i></div></div>
+                            <div class="step"><span class="time">15:00–18:30</span><div><b>Projects & pick-up</b><i>Creative play + parent updates</i></div></div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="footer">
+                    <div><b>Next:</b> See our <a href="#gallery">Gallery</a> or <a href="#contact">Contact</a> us.</div>
+                    <div class="links"><a href="#home">Home</a><a href="#about">About</a></div>
+                </div>
+            </div>
+
+            <!-- GALLERY -->
+            <div class="page" id="gallery">
+                <div class="hero">
+                    <div class="clouds" aria-hidden="true"></div>
+                    <div class="heroInner">
+                        <div class="storyCard">
+                            <div class="badge">📸 Gallery</div>
+                            <h1>Moments from our days.</h1>
+                            <p>
+                                These are placeholders for preview. When deployed, your WP conversion can map this to a real gallery.
+                            </p>
+                            <div class="ctaRow">
+                                <a class="btn primary" href="#contact">Request a tour</a>
+                                <a class="btn" href="#program">Back to program</a>
+                            </div>
+                        </div>
+                        <div class="stickers">
+                            <div class="sticker s2"><div class="icon" aria-hidden="true">🎨</div><b>Arts & crafts</b><small>Paint, clay, paper projects.</small></div>
+                            <div class="sticker s4"><div class="icon" aria-hidden="true">🏃</div><b>Movement</b><small>Games, dance, outdoor fun.</small></div>
+                            <div class="sticker s3"><div class="icon" aria-hidden="true">🌿</div><b>Nature</b><small>Walks, garden time, seasons.</small></div>
+                            <div class="sticker s1"><div class="icon" aria-hidden="true">🎭</div><b>Stories</b><small>Puppets and imagination.</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <section class="section">
+                        <div class="head">
+                            <h2>Preview grid</h2>
+                            <p>Replace with real photos later.</p>
+                        </div>
+                        <div class="gallery" aria-label="Photo grid preview">
+                            <div class="photo" aria-hidden="true"></div><div class="photo" aria-hidden="true"></div><div class="photo" aria-hidden="true"></div>
+                            <div class="photo" aria-hidden="true"></div><div class="photo" aria-hidden="true"></div><div class="photo" aria-hidden="true"></div>
+                            <div class="photo" aria-hidden="true"></div><div class="photo" aria-hidden="true"></div><div class="photo" aria-hidden="true"></div>
+                            <div class="photo" aria-hidden="true"></div><div class="photo" aria-hidden="true"></div><div class="photo" aria-hidden="true"></div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="footer">
+                    <div><b>Next:</b> Read <a href="#blog">News</a> or go to <a href="#contact">Contact</a>.</div>
+                    <div class="links"><a href="#home">Home</a><a href="#program">Program</a></div>
+                </div>
+            </div>
+
+            <!-- BLOG -->
+            <div class="page" id="blog">
+                <div class="hero">
+                    <div class="clouds" aria-hidden="true"></div>
+                    <div class="heroInner">
+                        <div class="storyCard">
+                            <div class="badge">📰 Blog</div>
+                            <h1>News, updates & parent tips.</h1>
+                            <p>
+                                Preview-style blog cards. When deployed, this becomes WP posts automatically.
+                            </p>
+                            <div class="ctaRow">
+                                <a class="btn primary" href="#contact">Ask a question</a>
+                                <a class="btn" href="#home">Back home</a>
+                            </div>
+                        </div>
+                        <div class="stickers">
+                            <div class="sticker s4"><div class="icon" aria-hidden="true">🍂</div><b>Season themes</b><small>Ideas for autumn crafts and games.</small></div>
+                            <div class="sticker s2"><div class="icon" aria-hidden="true">🧸</div><b>New friends</b><small>How we help children adapt.</small></div>
+                            <div class="sticker s3"><div class="icon" aria-hidden="true">🥕</div><b>Meals</b><small>Healthy habits and routines.</small></div>
+                            <div class="sticker s1"><div class="icon" aria-hidden="true">📚</div><b>Story time</b><small>Our favorite books this month.</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <section class="section">
+                        <div class="head">
+                            <h2>Latest posts</h2>
+                            <p>Preview placeholders.</p>
+                        </div>
+                        <div class="posts">
+                            <article class="post">
+                                <div class="postTop" aria-hidden="true"></div>
+                                <div class="postBody">
+                                    <b>Welcome Week: gentle adaptation</b>
+                                    <div class="meta">Jan 2026 • 3 min read</div>
+                                    <p style="margin:8px 0 0;color:var(--muted);line-height:1.55;">
+                                        Simple tips for the first days: comfort objects, predictable routines, short goodbyes.
+                                    </p>
+                                </div>
+                            </article>
+                            <article class="post">
+                                <div class="postTop" aria-hidden="true"></div>
+                                <div class="postBody">
+                                    <b>Winter crafts: easy & fun</b>
+                                    <div class="meta">Jan 2026 • 2 min read</div>
+                                    <p style="margin:8px 0 0;color:var(--muted);line-height:1.55;">
+                                        Snowflakes, cotton clouds, and sticker stories — perfect for small hands.
+                                    </p>
+                                </div>
+                            </article>
+                            <article class="post">
+                                <div class="postTop" aria-hidden="true"></div>
+                                <div class="postBody">
+                                    <b>Outdoor play in cold weather</b>
+                                    <div class="meta">Dec 2025 • 4 min read</div>
+                                    <p style="margin:8px 0 0;color:var(--muted);line-height:1.55;">
+                                        How we dress, plan movement games, and keep kids comfortable and safe.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="footer">
+                    <div><b>Next:</b> Visit <a href="#contact">Contact</a> for enrollment questions.</div>
+                    <div class="links"><a href="#home">Home</a><a href="#gallery">Gallery</a></div>
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="page" id="contact">
+                <div class="hero">
+                    <div class="clouds" aria-hidden="true"></div>
+                    <div class="heroInner">
+                        <div class="storyCard">
+                            <div class="badge">📞 Contact</div>
+                            <h1>Let’s meet and talk about your child.</h1>
+                            <p>
+                                This is a preview form (non-functional). When deployed, your WP build can connect it to a plugin or WP form.
+                            </p>
+                            <div class="ctaRow">
+                                <a class="btn primary" href="#home">Back home</a>
+                                <a class="btn" href="#program">See program</a>
+                            </div>
+                        </div>
+
+                        <div class="stickers">
+                            <div class="sticker s2"><div class="icon" aria-hidden="true">📍</div><b>Address</b><small>123 Rainbow Street, City • Near the central park</small></div>
+                            <div class="sticker s4"><div class="icon" aria-hidden="true">📞</div><b>Phone</b><small>+359 000 000 000</small></div>
+                            <div class="sticker s3"><div class="icon" aria-hidden="true">✉️</div><b>Email</b><small>hello@rainbowkids.com</small></div>
+                            <div class="sticker s1"><div class="icon" aria-hidden="true">🕘</div><b>Hours</b><small>Mon–Fri • 07:30–18:30</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <section class="section">
+                        <div class="head">
+                            <h2>Send a message</h2>
+                            <p>Preview-only inputs.</p>
+                        </div>
+
+                        <div class="contactGrid">
+                            <div class="note">
+                                <b style="display:block;margin-bottom:8px;">Quick note</b>
+                                <span style="color:var(--muted);line-height:1.55;">
+                                    For the preview, this is just visual. Your WordPress deployment can wire this to Contact Form 7 / Fluent Forms / WPForms, etc.
+                                </span>
+                            </div>
+
+                            <form class="note" onsubmit="return false" aria-label="Preview contact form">
+                                <label for="kgName">Parent name</label>
+                                <input id="kgName" type="text" placeholder="Your name">
+
+                                <label for="kgPhone">Phone</label>
+                                <input id="kgPhone" type="tel" placeholder="+359 ...">
+
+                                <label for="kgMsg">Message</label>
+                                <textarea id="kgMsg" placeholder="Tell us your child’s age and preferred visit time…"></textarea>
+
+                                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+                                    <button class="btn primary" type="button">Send (preview)</button>
+                                    <a class="btn" href="#home">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="footer">
+                    <div style="display:flex;align-items:center;gap:10px">
+                        <div class="mark" aria-hidden="true">🧸</div>
+                        <div>
+                            <b>Rainbow Kids Kindergarten</b><br>
+                            <small>© 2026 • Replace details for client</small>
+                        </div>
+                    </div>
+                    <div class="links">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#program">Program</a>
+                        <a href="#gallery">Gallery</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOME (MUST BE LAST for the :target ~ #home rule) -->
+            <div class="page" id="home">
+                <div class="hero">
+                    <div class="clouds" aria-hidden="true"></div>
+                    <div class="heroInner">
+                        <div class="storyCard">
+                            <div class="badge">☀️ Enrollment open for 2026</div>
+                            <h1>A cozy storybook place for big feelings and tiny adventures.</h1>
+                            <p>
+                                This preview behaves like a real site (Home/About/Program/Gallery/Blog/Contact) while staying inside a single HTML block for WordPress.
+                            </p>
+                            <div class="ctaRow">
+                                <a class="btn primary" href="#contact">Book a visit</a>
+                                <a class="btn" href="#program">See program</a>
+                                <a class="btn" href="#gallery">View gallery</a>
+                            </div>
+                        </div>
+
+                        <div class="stickers" aria-label="Highlights">
+                            <a class="sticker s1" href="#about">
+                                <div class="icon" aria-hidden="true">❤️</div>
+                                <b>Warm & safe</b>
+                                <small>Gentle routines, caring teachers, clear rules.</small>
+                            </a>
+                            <a class="sticker s2" href="#program">
+                                <div class="icon" aria-hidden="true">🧠</div>
+                                <b>Learn by play</b>
+                                <small>Stories, music, crafts, movement — no pressure.</small>
+                            </a>
+                            <a class="sticker s3" href="#program">
+                                <div class="icon" aria-hidden="true">🌿</div>
+                                <b>Outdoor time</b>
+                                <small>Fresh air and playground fun every day.</small>
+                            </a>
+                            <a class="sticker s4" href="#contact">
+                                <div class="icon" aria-hidden="true">📞</div>
+                                <b>Easy contact</b>
+                                <small>Quick questions, tours, enrollment info.</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <section class="section">
+                        <div class="head">
+                            <h2>Welcome, parents!</h2>
+                            <p>A quick snapshot of what matters most.</p>
+                        </div>
+                        <div class="grid3">
+                            <div class="card">
+                                <b>Small groups</b>
+                                <span>More attention, better comfort, calmer transitions.</span>
+                            </div>
+                            <div class="card">
+                                <b>Daily updates</b>
+                                <span>Simple communication about meals, naps, and progress.</span>
+                            </div>
+                            <div class="card">
+                                <b>Healthy routine</b>
+                                <span>Balanced day with play, learning, rest, and movement.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+                        <div class="head">
+                            <h2>Today’s rhythm</h2>
+                            <p>Short, predictable, child-friendly.</p>
+                        </div>
+                        <div class="routine">
+                            <div class="step"><span class="time">07:30–09:00</span><div><b>Arrival & free play</b><i>Warm welcome + settling in</i></div></div>
+                            <div class="step"><span class="time">09:00–10:30</span><div><b>Learning through play</b><i>Stories, crafts, music</i></div></div>
+                            <div class="step"><span class="time">10:30–12:00</span><div><b>Outdoor time</b><i>Movement games, fresh air</i></div></div>
+                            <div class="step"><span class="time">12:00–15:00</span><div><b>Lunch & rest</b><i>Quiet time, age-appropriate nap</i></div></div>
+                            <div class="step"><span class="time">15:00–18:30</span><div><b>Play & pick-up</b><i>Creative play + parent updates</i></div></div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="footer">
+                    <div style="display:flex;align-items:center;gap:10px">
+                        <div class="mark" aria-hidden="true">🧸</div>
+                        <div>
+                            <b>Rainbow Kids Kindergarten</b><br>
+                            <small>© 2026 • Play • Learn • Grow</small>
+                        </div>
+                    </div>
+                    <div class="links">
+                        <a href="#about">About</a>
+                        <a href="#program">Program</a>
+                        <a href="#gallery">Gallery</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

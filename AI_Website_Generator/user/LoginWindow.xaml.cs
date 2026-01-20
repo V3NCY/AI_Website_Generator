@@ -36,7 +36,8 @@ namespace AI_Website_Generator.user
                     {
                         { "venceslava.georgieva", "ven112233g" },
                         { "elvira.shugova", "elv1r@sh" },
-                        { "denka.arabadzhiyska", "d3nkk@333" }
+                        { "denka.arabadzhiyska", "d3nkk@333" },
+                        { "admin.ven", "admin123@"}
                     };
                     File.WriteAllText(_loginFilePath, JsonSerializer.Serialize(_users, new JsonSerializerOptions { WriteIndented = true }));
                 }

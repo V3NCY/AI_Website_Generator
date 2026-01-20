@@ -167,7 +167,7 @@
                                    Margin="0,6,0,0"/>
                     </StackPanel>
 
-                    <Button Grid.Column="1"
+                   <!-- <Button Grid.Column="1"
                             Content="✖"
                             Width="40"
                             Height="40"
@@ -180,7 +180,7 @@
                             Cursor="Hand"
                             Margin="10,0,0,0"
                             HorizontalAlignment="Right"
-                            VerticalAlignment="Top"/>
+                            VerticalAlignment="Top"/>-->
                 </Grid>
 
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

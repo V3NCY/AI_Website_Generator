@@ -1,139 +1,1189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Store</title>
-    <link rel="stylesheet" href="stylesC.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northbridge School — Multipage Preview</title>
+
+  <!-- Fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       Northbridge School — Multi-page (no separate files needed)
+       Pages are real sections, navigated like multipage using hash
+       ========================================================= */
+
+    :root{
+      /* New palette: warm paper + deep ink + brick + sage */
+      --paper: #fbf7ef;
+      --paper2:#f4efe4;
+      --ink:   #12212b;
+      --muted: #4b5b66;
+      --line:  rgba(18,33,43,.14);
+
+      --brick: #c2410c; /* orange/brick */
+      --sage:  #2f6f5e; /* green */
+      --sky:   #1e40af; /* blue */
+      --gold:  #a16207; /* amber */
+      --rose:  #be123c; /* rose */
+
+      --shadow: 0 18px 55px rgba(18,33,43,.14);
+      --shadow2: 0 10px 28px rgba(18,33,43,.10);
+
+      --r-xl: 26px;
+      --r-lg: 18px;
+      --r-md: 14px;
+
+      --max: 1180px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 560px at 70% 10%, rgba(30,64,175,.10), transparent 60%),
+        radial-gradient(820px 520px at 12% 28%, rgba(194,65,12,.12), transparent 60%),
+        radial-gradient(760px 520px at 50% 100%, rgba(47,111,94,.10), transparent 60%),
+        linear-gradient(180deg, var(--paper) 0%, var(--paper2) 55%, var(--paper) 100%);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    button{ font-family:inherit; }
+
+    /* Layout container */
+    .app{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns: 290px 1fr;
+    }
+
+    /* Left sidebar */
+    .side{
+      position:sticky;
+      top:0;
+      height:100vh;
+      padding: 18px 16px;
+      border-right: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.20));
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      padding: 12px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,.55);
+      box-shadow: var(--shadow2);
+    }
+
+    .crest{
+      width:44px; height:44px;
+      border-radius: 14px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%),
+        linear-gradient(135deg, var(--sage), var(--sky));
+      position:relative;
+      box-shadow: 0 12px 26px rgba(30,64,175,.16);
+    }
+    .crest:after{
+      content:"";
+      position:absolute;
+      inset:9px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.55);
+    }
+
+    .brand h1{
+      margin:0;
+      font-family: Fraunces, serif;
+      font-size: 18px;
+      letter-spacing:.2px;
+      line-height:1.05;
+    }
+    .brand p{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .side .search{
+      margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+    }
+    .search svg{ width:18px; height:18px; opacity:.65; }
+    .search input{
+      width:100%;
+      border:none;
+      outline:none;
+      background: transparent;
+      font-size: 13px;
+      color: var(--ink);
+    }
+    .search input::placeholder{ color: rgba(18,33,43,.52); }
+
+    .nav{
+      margin-top: 14px;
+      display:grid;
+      gap: 8px;
+    }
+    .nav a{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      color: rgba(18,33,43,.86);
+      transition: .18s ease;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,.55);
+      border-color: var(--line);
+      transform: translateY(-1px);
+    }
+    .nav a.active{
+      background: rgba(194,65,12,.10);
+      border-color: rgba(194,65,12,.22);
+    }
+    .nav .dot{
+      width: 10px; height: 10px;
+      border-radius: 99px;
+      background: var(--brick);
+      box-shadow: 0 0 0 6px rgba(194,65,12,.10);
+      flex: 0 0 auto;
+    }
+    .nav .dot.sage{ background: var(--sage); box-shadow: 0 0 0 6px rgba(47,111,94,.10); }
+    .nav .dot.sky{ background: var(--sky); box-shadow: 0 0 0 6px rgba(30,64,175,.10); }
+    .nav .dot.gold{ background: var(--gold); box-shadow: 0 0 0 6px rgba(161,98,7,.10); }
+    .nav .dot.rose{ background: var(--rose); box-shadow: 0 0 0 6px rgba(190,18,60,.10); }
+
+    .side-card{
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.55);
+      box-shadow: var(--shadow2);
+    }
+    .side-card h3{
+      margin:0 0 8px;
+      font-size: 13px;
+      letter-spacing:.2px;
+      color: rgba(18,33,43,.92);
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+    }
+    .chip{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(18,33,43,.04);
+      color: rgba(18,33,43,.78);
+      user-select:none;
+    }
+
+    .side-footer{
+      position:absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 10px;
+      color: rgba(18,33,43,.58);
+      font-size: 12px;
+    }
+    .side-footer a{
+      border-bottom: 1px dashed rgba(18,33,43,.35);
+      padding-bottom: 2px;
+    }
+
+    /* Main area */
+    .main{
+      padding: 22px 20px 56px;
+    }
+    .container{
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    /* Top header in main */
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .breadcrumbs{
+      font-size: 13px;
+      color: rgba(18,33,43,.62);
+    }
+    .actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: .18s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      user-select:none;
+    }
+    .btn svg{ width:18px; height:18px; }
+    .btn-soft{
+      background: rgba(255,255,255,.60);
+      border: 1px solid var(--line);
+      color: rgba(18,33,43,.86);
+      box-shadow: var(--shadow2);
+    }
+    .btn-soft:hover{ transform: translateY(-1px); background: rgba(255,255,255,.75); }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--brick), #ea580c);
+      color: #fff;
+      border: 1px solid rgba(194,65,12,.20);
+      box-shadow: 0 18px 40px rgba(194,65,12,.18);
+    }
+    .btn-primary:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+
+    /* Pages (multipage) */
+    .page{
+      display:none;
+      animation: fadeUp .22s ease both;
+    }
+    .page.active{ display:block; }
+
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(8px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    /* Page blocks */
+    .hero{
+      border-radius: var(--r-xl);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(900px 380px at 70% 10%, rgba(30,64,175,.12), transparent 60%),
+        radial-gradient(900px 420px at 10% 30%, rgba(194,65,12,.12), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.40));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-inner{
+      padding: 24px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      align-items:stretch;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 8px 12px;
+      border: 1px solid rgba(194,65,12,.25);
+      background: rgba(194,65,12,.08);
+      color: rgba(18,33,43,.82);
+      font-size: 13px;
+      width: fit-content;
+    }
+    .kdot{
+      width: 10px; height:10px;
+      border-radius: 99px;
+      background: var(--brick);
+      box-shadow: 0 0 0 6px rgba(194,65,12,.12);
+    }
+
+    .hero h2{
+      margin: 12px 0 10px;
+      font-family: Fraunces, serif;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -0.6px;
+      color: rgba(18,33,43,.95);
+    }
+    .hero p{
+      margin:0;
+      color: rgba(18,33,43,.72);
+      line-height:1.65;
+      font-size: 14px;
+      max-width: 62ch;
+    }
+
+    .stats{
+      border-radius: var(--r-xl);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.62);
+      box-shadow: var(--shadow2);
+      padding: 14px;
+      display:grid;
+      gap: 10px;
+      align-content:start;
+    }
+    .stat{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(18,33,43,.10);
+      background: rgba(18,33,43,.03);
+    }
+    .stat strong{
+      font-size: 20px;
+      letter-spacing:-0.2px;
+    }
+    .stat span{
+      font-size: 12px;
+      color: rgba(18,33,43,.62);
+    }
+
+    /* Grids */
+    .grid{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+    }
+
+    .card{
+      border-radius: var(--r-xl);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.60);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .card .head{
+      padding: 16px 16px 10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      border-bottom: 1px solid rgba(18,33,43,.08);
+      background: rgba(255,255,255,.55);
+    }
+    .card .head h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.2px;
+    }
+    .card .head p{
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: rgba(18,33,43,.62);
+      line-height:1.5;
+    }
+    .card .body{ padding: 16px; }
+
+    .list{
+      display:grid;
+      gap: 10px;
+    }
+    .item{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(18,33,43,.10);
+      background: rgba(18,33,43,.03);
+      transition:.18s ease;
+      cursor:pointer;
+    }
+    .item:hover{
+      transform: translateY(-2px);
+      background: rgba(194,65,12,.06);
+      border-color: rgba(194,65,12,.18);
+    }
+    .item .meta{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom: 6px;
+      font-size: 12px;
+      color: rgba(18,33,43,.62);
+    }
+    .pill{
+      font-size: 12px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(18,33,43,.14);
+      background: rgba(255,255,255,.55);
+      color: rgba(18,33,43,.72);
+      white-space:nowrap;
+    }
+    .item h4{
+      margin:0 0 6px;
+      font-size: 14px;
+    }
+    .item p{
+      margin:0;
+      font-size: 13px;
+      color: rgba(18,33,43,.66);
+      line-height:1.5;
+    }
+
+    /* Table-like schedule */
+    .table{
+      display:grid;
+      gap: 8px;
+    }
+    .trow{
+      display:grid;
+      grid-template-columns: 92px 1fr 140px;
+      gap: 10px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(18,33,43,.10);
+      background: rgba(18,33,43,.03);
+    }
+    .trow b{ font-size: 13px; }
+    .trow span{ font-size: 13px; color: rgba(18,33,43,.68); }
+    .trow small{
+      font-size: 12px;
+      color: rgba(18,33,43,.58);
+      text-align:right;
+      white-space:nowrap;
+    }
+
+    /* Programs cards grid */
+    .programs{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .program{
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(18,33,43,.10);
+      background: rgba(18,33,43,.03);
+      transition:.18s ease;
+    }
+    .program:hover{
+      transform: translateY(-2px);
+      background: rgba(47,111,94,.08);
+      border-color: rgba(47,111,94,.20);
+    }
+    .program h4{ margin:0 0 6px; }
+    .program p{ margin:0 0 10px; color: rgba(18,33,43,.66); font-size: 13px; line-height:1.5; }
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+    }
+    .badge{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(18,33,43,.12);
+      background: rgba(255,255,255,.55);
+      color: rgba(18,33,43,.70);
+    }
+
+    /* Contact form */
+    .form{
+      display:grid;
+      gap: 10px;
+    }
+    .field{
+      display:grid;
+      gap: 6px;
+    }
+    label{
+      font-size: 12px;
+      color: rgba(18,33,43,.66);
+    }
+    input, textarea, select{
+      width:100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(18,33,43,.16);
+      background: rgba(255,255,255,.65);
+      color: rgba(18,33,43,.90);
+      outline:none;
+      font-size: 13px;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(194,65,12,.35);
+      box-shadow: 0 0 0 6px rgba(194,65,12,.10);
+    }
+
+    .foot{
+      margin-top: 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      flex-wrap:wrap;
+      padding: 14px 16px;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.55);
+      color: rgba(18,33,43,.62);
+      font-size: 12px;
+    }
+    .foot a{
+      border-bottom: 1px dashed rgba(18,33,43,.35);
+      padding-bottom: 2px;
+    }
+
+    /* Toast */
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom: 18px;
+      transform: translateX(-50%) translateY(8px);
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(18,33,43,.14);
+      background: rgba(255,255,255,.80);
+      box-shadow: var(--shadow2);
+      color: rgba(18,33,43,.86);
+      font-size: 13px;
+      font-weight: 600;
+      opacity:0;
+      pointer-events:none;
+      transition: .18s ease;
+      z-index: 9999;
+    }
+    .toast.show{
+      opacity:1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .app{ grid-template-columns: 1fr; }
+      .side{
+        position:relative;
+        height:auto;
+        border-right:none;
+        border-bottom: 1px solid var(--line);
+      }
+      .side-footer{ position:relative; left:auto; right:auto; bottom:auto; margin-top: 12px; }
+      .grid{ grid-template-columns: 1fr; }
+      .hero-inner{ grid-template-columns: 1fr; }
+      .programs{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1>Shop With Us</h1>
-    </header>
+  <div class="app">
+    <!-- SIDEBAR (multipage navigation) -->
+    <aside class="side" aria-label="Sidebar">
+      <div class="brand" onclick="go('home')" style="cursor:pointer;" title="Go to Home">
+        <div class="crest" aria-hidden="true"></div>
+        <div>
+          <h1>Northbridge</h1>
+          <p>School website preview</p>
+        </div>
+      </div>
 
-    <section class="products">
-        <div class="product-card">
-            <h3>Product 1</h3>
-            <p>$19.99</p>
-            <button>Buy Now</button>
-        </div>
-        <div class="product-card">
-            <h3>Product 2</h3>
-            <p>$29.99</p>
-            <button>Buy Now</button>
-        </div>
-        <div class="product-card">
-            <h3>Product 3</h3>
-            <p>$39.99</p>
-            <button>Buy Now</button>
-        </div>
-        <div class="product-card">
-            <h3>Product 4</h3>
-            <p>$49.99</p>
-            <button>Buy Now</button>
-        </div>
-    </section>
+      <div class="search" role="search" aria-label="Search (demo)">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2" opacity=".75"/>
+          <path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".75"/>
+        </svg>
+        <input id="q" placeholder="Search pages (demo)…" onkeydown="if(event.key==='Enter') demoSearch()" />
+      </div>
 
-    <footer>
-        <p>© 2025 ShopWithUs</p>
-    </footer>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#/home" data-page="home" class="active">
+          <span class="dot brick" aria-hidden="true"></span>
+          Home
+        </a>
+        <a href="#/announcements" data-page="announcements">
+          <span class="dot sky" aria-hidden="true"></span>
+          Announcements
+        </a>
+        <a href="#/academics" data-page="academics">
+          <span class="dot sage" aria-hidden="true"></span>
+          Academics
+        </a>
+        <a href="#/calendar" data-page="calendar">
+          <span class="dot gold" aria-hidden="true"></span>
+          Calendar
+        </a>
+        <a href="#/contact" data-page="contact">
+          <span class="dot rose" aria-hidden="true"></span>
+          Contact
+        </a>
+      </nav>
+
+      <div class="side-card">
+        <h3>Quick links</h3>
+        <div class="chips">
+          <span class="chip" onclick="toast('Opening student portal (demo)')">Student portal</span>
+          <span class="chip" onclick="toast('Opening parent portal (demo)')">Parent portal</span>
+          <span class="chip" onclick="toast('Opening cafeteria menu (demo)')">Cafeteria</span>
+          <span class="chip" onclick="toast('Opening library (demo)')">Library</span>
+        </div>
+      </div>
+
+      <div class="side-footer">
+        <span>© 2026 Northbridge</span>
+        <a href="#!" onclick="toast('Opening privacy (demo)')">Privacy</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="container">
+
+        <div class="top" aria-label="Top bar">
+          <div class="breadcrumbs" id="crumbs">Northbridge / Home</div>
+          <div class="actions">
+            <button class="btn btn-soft" type="button" onclick="toast('Downloading prospectus (demo)')">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Prospectus
+            </button>
+            <button class="btn btn-primary" type="button" onclick="toast('Starting application (demo)')">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 6l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Apply
+            </button>
+          </div>
+        </div>
+
+        <!-- PAGE: HOME -->
+        <section class="page active" id="page-home" aria-label="Home">
+          <div class="hero">
+            <div class="hero-inner">
+              <div>
+                <div class="kicker">
+                  <span class="kdot" aria-hidden="true"></span>
+                  Enrollment open • 2026 intake
+                </div>
+
+                <h2>School, organized — for families, students, and staff.</h2>
+                <p>
+                  This is a real multipage preview inside a single HTML file (hash routing).
+                  When you deploy to WordPress later, each “page” maps cleanly to a WP page template.
+                </p>
+
+                <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                  <button class="btn btn-primary" type="button" onclick="go('announcements')">View announcements</button>
+                  <button class="btn btn-soft" type="button" onclick="go('academics')">Explore academics</button>
+                  <button class="btn btn-soft" type="button" onclick="go('calendar')">See calendar</button>
+                </div>
+              </div>
+
+              <aside class="stats" aria-label="Highlights">
+                <div class="stat"><strong>860</strong><span>Students</span></div>
+                <div class="stat"><strong>62</strong><span>Teachers & staff</span></div>
+                <div class="stat"><strong>28</strong><span>Clubs & teams</span></div>
+                <div class="stat"><strong>4.7★</strong><span>Parent rating</span></div>
+              </aside>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>What’s happening this week</h3>
+                  <p>Short, scannable updates that look good on any screen.</p>
+                </div>
+                <span class="pill">Weekly</span>
+              </div>
+              <div class="body">
+                <div class="list">
+                  <div class="item" onclick="toast('Opening: Open Day details (demo)')">
+                    <div class="meta"><span class="pill">Event</span><span>Jan 24, 2026</span></div>
+                    <h4>Open Day: tours + Q&A</h4>
+                    <p>Meet teachers, visit labs, and learn about our programs.</p>
+                  </div>
+
+                  <div class="item" onclick="toast('Opening: Exams schedule (demo)')">
+                    <div class="meta"><span class="pill">Reminder</span><span>Jan 27, 2026</span></div>
+                    <h4>Midterm timetable published</h4>
+                    <p>Check your class page for subject-specific times and rooms.</p>
+                  </div>
+
+                  <div class="item" onclick="toast('Opening: Clubs fair (demo)')">
+                    <div class="meta"><span class="pill">Clubs</span><span>Jan 30, 2026</span></div>
+                    <h4>Clubs fair in the gym</h4>
+                    <p>Robotics, Debate, Drama, Basketball, Art Studio, and more.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>Today’s quick schedule</h3>
+                  <p>Admin-friendly structure: easy to turn into WP blocks later.</p>
+                </div>
+                <span class="pill">Today</span>
+              </div>
+              <div class="body">
+                <div class="table">
+                  <div class="trow">
+                    <b>08:10</b><span>Assembly</span><small>Main hall</small>
+                  </div>
+                  <div class="trow">
+                    <b>09:00</b><span>Math & Logic</span><small>Room 204</small>
+                  </div>
+                  <div class="trow">
+                    <b>10:15</b><span>Language Arts</span><small>Room 112</small>
+                  </div>
+                  <div class="trow">
+                    <b>12:05</b><span>Lunch</span><small>Cafeteria</small>
+                  </div>
+                  <div class="trow">
+                    <b>14:00</b><span>Clubs / Sports</span><small>Campus</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PAGE: ANNOUNCEMENTS -->
+        <section class="page" id="page-announcements" aria-label="Announcements">
+          <div class="hero">
+            <div class="hero-inner" style="grid-template-columns: 1fr;">
+              <div>
+                <div class="kicker" style="border-color: rgba(30,64,175,.25); background: rgba(30,64,175,.08);">
+                  <span class="kdot" aria-hidden="true" style="background: var(--sky); box-shadow: 0 0 0 6px rgba(30,64,175,.12);"></span>
+                  Announcements
+                </div>
+                <h2>News, alerts, and school updates.</h2>
+                <p>
+                  Use this page for posts. In WordPress, each item can become a post (category: announcements).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid" style="grid-template-columns: 1fr;">
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>Latest</h3>
+                  <p>Clean cards with tags and dates.</p>
+                </div>
+                <span class="pill">Updated</span>
+              </div>
+              <div class="body">
+                <div class="list">
+                  <div class="item" onclick="toast('Opening announcement (demo)')">
+                    <div class="meta"><span class="pill">Safety</span><span>Jan 20, 2026</span></div>
+                    <h4>Weather notice: morning arrival</h4>
+                    <p>Families are encouraged to use the main entrance drop-off area.</p>
+                  </div>
+                  <div class="item" onclick="toast('Opening announcement (demo)')">
+                    <div class="meta"><span class="pill">Academic</span><span>Jan 23, 2026</span></div>
+                    <h4>Semester progress reports</h4>
+                    <p>Available after 16:00 in the parent portal (demo).</p>
+                  </div>
+                  <div class="item" onclick="toast('Opening announcement (demo)')">
+                    <div class="meta"><span class="pill">Event</span><span>Jan 28, 2026</span></div>
+                    <h4>Science fair: registration open</h4>
+                    <p>Teams can register until Feb 12. Mentors listed on the Academics page.</p>
+                  </div>
+                  <div class="item" onclick="toast('Opening announcement (demo)')">
+                    <div class="meta"><span class="pill">Community</span><span>Feb 02, 2026</span></div>
+                    <h4>Parent volunteer program</h4>
+                    <p>Help during events, library hours, or club activities.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PAGE: ACADEMICS -->
+        <section class="page" id="page-academics" aria-label="Academics">
+          <div class="hero">
+            <div class="hero-inner" style="grid-template-columns: 1fr;">
+              <div>
+                <div class="kicker" style="border-color: rgba(47,111,94,.25); background: rgba(47,111,94,.08);">
+                  <span class="kdot" aria-hidden="true" style="background: var(--sage); box-shadow: 0 0 0 6px rgba(47,111,94,.12);"></span>
+                  Academics
+                </div>
+                <h2>Programs built for outcomes.</h2>
+                <p>
+                  A different layout: grid programs + badges. Good mapping to WP pages or CPTs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:16px;">
+            <div class="head">
+              <div>
+                <h3>Programs</h3>
+                <p>Example structure that can easily become three WP sections.</p>
+              </div>
+              <span class="pill">2025/2026</span>
+            </div>
+            <div class="body">
+              <div class="programs">
+                <div class="program">
+                  <h4>Primary School</h4>
+                  <p>Foundations, confidence, and strong reading habits.</p>
+                  <div class="badges">
+                    <span class="badge">Grades 1–4</span>
+                    <span class="badge">Arts</span>
+                    <span class="badge">Sport</span>
+                  </div>
+                </div>
+                <div class="program">
+                  <h4>Middle School</h4>
+                  <p>Project-based learning and deeper STEM work.</p>
+                  <div class="badges">
+                    <span class="badge">Grades 5–7</span>
+                    <span class="badge">STEM</span>
+                    <span class="badge">Languages</span>
+                  </div>
+                </div>
+                <div class="program">
+                  <h4>High School</h4>
+                  <p>Exam prep + pathways for universities and careers.</p>
+                  <div class="badges">
+                    <span class="badge">Grades 8–12</span>
+                    <span class="badge">Counseling</span>
+                    <span class="badge">Internships</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>Departments</h3>
+                  <p>Another structure option (accordion-like list).</p>
+                </div>
+                <span class="pill">Overview</span>
+              </div>
+              <div class="body">
+                <div class="list">
+                  <div class="item" onclick="toast('Opening department: STEM (demo)')">
+                    <div class="meta"><span class="pill">STEM</span><span>Labs + robotics</span></div>
+                    <h4>Science & Technology</h4>
+                    <p>Hands-on labs, coding clubs, and annual science fair mentoring.</p>
+                  </div>
+                  <div class="item" onclick="toast('Opening department: Humanities (demo)')">
+                    <div class="meta"><span class="pill">Humanities</span><span>Debate + writing</span></div>
+                    <h4>Language & Social Studies</h4>
+                    <p>Communication, critical thinking, and real-world topics.</p>
+                  </div>
+                  <div class="item" onclick="toast('Opening department: Arts (demo)')">
+                    <div class="meta"><span class="pill">Arts</span><span>Music + theater</span></div>
+                    <h4>Creative Arts</h4>
+                    <p>Art studio, music ensembles, performances, and exhibitions.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>Admissions checklist</h3>
+                  <p>Short list that can become a WP “Steps” block.</p>
+                </div>
+                <span class="pill">Apply</span>
+              </div>
+              <div class="body">
+                <div class="table">
+                  <div class="trow"><b>Step 1</b><span>Submit application form</span><small>Online</small></div>
+                  <div class="trow"><b>Step 2</b><span>Upload documents</span><small>PDF/JPG</small></div>
+                  <div class="trow"><b>Step 3</b><span>Schedule interview</span><small>Office</small></div>
+                  <div class="trow"><b>Step 4</b><span>Enrollment confirmation</span><small>Email</small></div>
+                </div>
+
+                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                  <button class="btn btn-primary" onclick="toast('Starting application (demo)')">Start application</button>
+                  <button class="btn btn-soft" onclick="toast('Downloading checklist (demo)')">Download checklist</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PAGE: CALENDAR -->
+        <section class="page" id="page-calendar" aria-label="Calendar">
+          <div class="hero">
+            <div class="hero-inner" style="grid-template-columns: 1fr;">
+              <div>
+                <div class="kicker" style="border-color: rgba(161,98,7,.25); background: rgba(161,98,7,.08);">
+                  <span class="kdot" aria-hidden="true" style="background: var(--gold); box-shadow: 0 0 0 6px rgba(161,98,7,.12);"></span>
+                  Calendar
+                </div>
+                <h2>Dates you won’t miss.</h2>
+                <p>Presented in a clean “agenda” layout (easy WP conversion later).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>Upcoming</h3>
+                  <p>Agenda list with room/location.</p>
+                </div>
+                <span class="pill">Next 30 days</span>
+              </div>
+              <div class="body">
+                <div class="table">
+                  <div class="trow"><b>Feb 06</b><span>Parent–teacher meetings</span><small>Hall A</small></div>
+                  <div class="trow"><b>Feb 12</b><span>Science fair submissions</span><small>Online</small></div>
+                  <div class="trow"><b>Feb 18</b><span>Basketball tournament</span><small>Gym</small></div>
+                  <div class="trow"><b>Mar 24</b><span>Spring break begins</span><small>Campus</small></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>Subscribe</h3>
+                  <p>Demo actions for calendar integrations.</p>
+                </div>
+                <span class="pill">iCal</span>
+              </div>
+              <div class="body">
+                <div class="list">
+                  <div class="item" onclick="toast('Subscribing via iCal (demo)')">
+                    <div class="meta"><span class="pill">iCal</span><span>Recommended</span></div>
+                    <h4>Subscribe to school calendar</h4>
+                    <p>Add dates to your calendar app automatically (placeholder).</p>
+                  </div>
+                  <div class="item" onclick="toast('Downloading calendar PDF (demo)')">
+                    <div class="meta"><span class="pill">PDF</span><span>Printable</span></div>
+                    <h4>Download month overview</h4>
+                    <p>A simple printable version for notice boards.</p>
+                  </div>
+                  <div class="item" onclick="toast('Opening bell schedule (demo)')">
+                    <div class="meta"><span class="pill">Schedule</span><span>Daily</span></div>
+                    <h4>Bell schedule</h4>
+                    <p>Period times, breaks, lunch windows (placeholder).</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PAGE: CONTACT -->
+        <section class="page" id="page-contact" aria-label="Contact">
+          <div class="hero">
+            <div class="hero-inner" style="grid-template-columns: 1fr;">
+              <div>
+                <div class="kicker" style="border-color: rgba(190,18,60,.25); background: rgba(190,18,60,.08);">
+                  <span class="kdot" aria-hidden="true" style="background: var(--rose); box-shadow: 0 0 0 6px rgba(190,18,60,.12);"></span>
+                  Contact
+                </div>
+                <h2>Talk to the school office.</h2>
+                <p>Includes form + contact cards. Completely different structure than your previous one.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>Send a message</h3>
+                  <p>This is a demo form (no backend). Perfect for a WP form plugin later.</p>
+                </div>
+                <span class="pill">Office</span>
+              </div>
+              <div class="body">
+                <form class="form" onsubmit="event.preventDefault(); toast('Message sent (demo)');">
+                  <div class="field">
+                    <label for="name">Full name</label>
+                    <input id="name" placeholder="Your name" required>
+                  </div>
+                  <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="name@email.com" required>
+                  </div>
+                  <div class="field">
+                    <label for="topic">Topic</label>
+                    <select id="topic">
+                      <option>Admissions</option>
+                      <option>Absences</option>
+                      <option>Parent portal</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="msg">Message</label>
+                    <textarea id="msg" placeholder="How can we help?"></textarea>
+                  </div>
+                  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
+                    <button class="btn btn-primary" type="submit">Send message</button>
+                    <button class="btn btn-soft" type="button" onclick="toast('Calling office (demo)')">Call office</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="head">
+                <div>
+                  <h3>Contact details</h3>
+                  <p>Replace with real data when presenting to a client.</p>
+                </div>
+                <span class="pill">Info</span>
+              </div>
+              <div class="body">
+                <div class="list">
+                  <div class="item" onclick="toast('Opening map (demo)')">
+                    <div class="meta"><span class="pill">Address</span><span>Mon–Fri</span></div>
+                    <h4>12 Example Street, City</h4>
+                    <p>Front office open 08:00–16:30.</p>
+                  </div>
+                  <div class="item" onclick="toast('Composing email (demo)')">
+                    <div class="meta"><span class="pill">Email</span><span>Reply within 1 day</span></div>
+                    <h4>office@northbridge.edu</h4>
+                    <p>For admissions: admissions@northbridge.edu</p>
+                  </div>
+                  <div class="item" onclick="toast('Dialing phone (demo)')">
+                    <div class="meta"><span class="pill">Phone</span><span>Direct line</span></div>
+                    <h4>+359 000 000 000</h4>
+                    <p>Emergency line available during events (placeholder).</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="foot" aria-label="Footer">
+          <span>© 2026 Northbridge School • Multipage preview (single HTML)</span>
+          <span>
+            <a href="#!" onclick="toast('Opening terms (demo)')">Terms</a> ·
+            <a href="#!" onclick="toast('Opening accessibility (demo)')">Accessibility</a>
+          </span>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script>
+    // ============================
+    // Hash router => multipage feel
+    // ============================
+    const pages = ["home","announcements","academics","calendar","contact"];
+
+    function setActive(page){
+      if(!pages.includes(page)) page = "home";
+
+      // show page
+      pages.forEach(p => {
+        const el = document.getElementById("page-" + p);
+        if(el) el.classList.toggle("active", p === page);
+      });
+
+      // nav highlight
+      document.querySelectorAll(".nav a[data-page]").forEach(a => {
+        a.classList.toggle("active", a.dataset.page === page);
+      });
+
+      // breadcrumbs
+      const pretty = page.charAt(0).toUpperCase() + page.slice(1);
+      const crumbs = document.getElementById("crumbs");
+      if(crumbs) crumbs.textContent = "Northbridge / " + pretty;
+
+      // scroll to top of main content
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function parseRoute(){
+      // Supported: #/home, #/calendar, etc.
+      const h = location.hash || "#/home";
+      const m = h.match(/^#\/([a-z-]+)$/i);
+      const page = m ? m[1] : "home";
+      setActive(page);
+    }
+
+    function go(page){
+      location.hash = "#/" + page;
+    }
+
+    // Demo search
+    function demoSearch(){
+      const q = (document.getElementById("q")?.value || "").trim().toLowerCase();
+      if(!q){ toast("Type something to search (demo)"); return; }
+
+      // very simple keyword mapping
+      if(q.includes("news") || q.includes("announce")) go("announcements");
+      else if(q.includes("acad") || q.includes("program") || q.includes("study")) go("academics");
+      else if(q.includes("date") || q.includes("calendar") || q.includes("schedule")) go("calendar");
+      else if(q.includes("contact") || q.includes("email") || q.includes("phone")) go("contact");
+      else go("home");
+
+      toast("Showing results for: " + q + " (demo)");
+    }
+
+    // Toast
+    let toastTimer = null;
+    function toast(msg){
+      const el = document.getElementById("toast");
+      if(!el) return;
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove("show"), 1400);
+    }
+
+    // Init
+    window.addEventListener("hashchange", parseRoute);
+    parseRoute();
+  </script>
 </body>
 </html>
-
-<style>
-    /* General Styles */
-    body {
-        font-family: 'Poppins', Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f5f5f5;
-        color: #333;
-        text-align: center;
-    }
-
-    /* Header */
-    header {
-        background: linear-gradient(135deg, #27ae60, #2ecc71);
-        padding: 30px;
-        color: white;
-        font-size: 1.8em;
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Product Grid */
-    .products {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        padding: 40px;
-        max-width: 1000px;
-        margin: auto;
-    }
-
-    /* Product Cards */
-    .product-card {
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-
-        .product-card h3 {
-            font-size: 1.4em;
-            color: #2c3e50;
-        }
-
-        .product-card p {
-            font-size: 1.2em;
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-    /* Buy Now Button */
-    button {
-        background: #e74c3c;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        font-size: 1em;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-    }
-
-        button:hover {
-            background: #c0392b;
-            transform: scale(1.05);
-        }
-
-    /* Footer */
-    footer {
-        background: #2c3e50;
-        color: white;
-        padding: 15px;
-        font-size: 1em;
-        border-radius: 15px 15px 0 0;
-        box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .products {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            padding: 20px;
-        }
-
-        button {
-            width: 100%;
-        }
-    }
-</style>

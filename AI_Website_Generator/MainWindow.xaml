@@ -387,6 +387,7 @@
                                 </StackPanel>
 
                                 <!-- quick counters -->
+                                <!--
                                 <WrapPanel Grid.Row="1" Margin="0,12,0,0">
                                     <Border Style="{StaticResource StatusPill}" Background="#FFF3E6" BorderBrush="#F2D6B3">
                                         <StackPanel Orientation="Horizontal">
@@ -408,8 +409,7 @@
                                             <TextBlock Text="12" Foreground="#0B4A74" FontWeight="Bold"/>
                                         </StackPanel>
                                     </Border>
-                                </WrapPanel>
-
+                                </WrapPanel> -->
                                 <!-- suggested actions -->
                                 <Border Grid.Row="2"
                                         Background="#F7FAFC"
