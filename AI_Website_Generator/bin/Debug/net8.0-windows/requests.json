@@ -8,8 +8,33 @@
     "City": "wqeqwe",
     "NewDomain": "www.yes.com",
     "PrevDomain": "www.no.com",
-    "Status": "В процес",
+    "Status": "Получена заявка",
     "Template": "1",
-    "Comment": ""
+    "Comment": "asd"
+  },
+  {
+    "Client": "sdsadsad",
+    "Email": "test@abv.bg",
+    "Phone": "324324234",
+    "Code": "12345",
+    "Institute": "sadsad",
+    "City": "sadsad",
+    "NewDomain": "www.new-domain.com",
+    "PrevDomain": "www.old-domain",
+    "Status": "За дизайнер",
+    "Template": "3",
+    "Comment": "очаквам договор"
+  },
+  {
+    "client": "",
+    "phone": "32074274302",
+    "email": "test@abv.bg",
+    "code": "387264874326",
+    "institute": "sdoisajd",
+    "city": "sjsald",
+    "prevDomain": "",
+    "newDomain": "",
+    "status": "Получена заявка",
+    "template": 1
   }
 ]

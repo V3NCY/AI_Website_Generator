@@ -1,0 +1,21 @@
+[
+  {
+    "NewDomainName": "www.new-domain.com",
+    "OldDomainName": "www.old-domain.com",
+    "Owner": "НУ Кл. Охридски",
+    "OwnerEmail": "test@abv.bg",
+    "City": "гр. Пловдив",
+    "Code": "213123213",
+    "Mol": "Мария Павлова",
+    "Phone": "0893240922",
+    "Package": "Стандарт +",
+    "AdminUsername": "admin",
+    "AdminPassword": "123",
+    "Hosting": "50GB",
+    "RequestTeamMember": "Elvira Shugova",
+    "RegistrationDate": "2025-07-21",
+    "TestDomainDate": "2025-07-17",
+    "OfficialDomainDate": "2025-07-27",
+    "Status": "Нов"
+  }
+]

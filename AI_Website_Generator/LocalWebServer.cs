@@ -40,14 +40,12 @@ public class LocalWebServer
 
     private void ProcessRequest(HttpListenerContext context)
     {
-        // ✅ Handle POST: /submit
         if (context.Request.HttpMethod == "POST" && context.Request.Url.AbsolutePath == "/submit")
         {
             HandleFormSubmission(context);
             return;
         }
 
-        // ✅ Handle GET: static file serving
         string requestedFile = context.Request.Url.LocalPath.TrimStart('/');
         if (string.IsNullOrWhiteSpace(requestedFile))
             requestedFile = "ChatBotLink.html";

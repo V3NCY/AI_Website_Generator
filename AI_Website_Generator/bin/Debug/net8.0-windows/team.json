@@ -12,10 +12,6 @@
     "Role": "Tech Team"
   },
   {
-    "Name": "Katya Kalcheva",
-    "Role": "Tester"
-  },
-  {
     "Name": "Yordan Totev",
     "Role": "Seller"
   },
@@ -26,5 +22,9 @@
   {
     "Name": "Denka Arabadziyska",
     "Role": "Request Picker"
+  },
+  {
+    "Name": "Kalina Tilova",
+    "Role": "Designer"
   }
 ]
