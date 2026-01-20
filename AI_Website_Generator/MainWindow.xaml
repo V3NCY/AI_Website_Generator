@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:AI_Website_Generator"
         Title="ORAK WebPro"
-        Width="1500"
-        Height="900"
+        Width="1300"
+        Height="800"
         Background="#ECF0F1"
         WindowStartupLocation="CenterScreen">
 
