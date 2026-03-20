@@ -1,7 +1,7 @@
-﻿<Window x:Class="AI_Website_Generator.ViewRequestsWindow"
+﻿<Window x:Class="Orak.WebPro.Admin.ViewRequestsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:AI_Website_Generator"
+        xmlns:local="clr-namespace:Orak.WebPro.Admin"
         Title="Заявки"
         Height="600"
         Width="1000"
@@ -10,7 +10,7 @@
         WindowState="Maximized">
 
     <Window.Resources>
-        <local:StatusToColorConverter x:Key="StatusToColorConverter"/>
+        <!--<local:StatusToColorConverter x:Key="StatusToColorConverter"/>-->
 
         <DropShadowEffect x:Key="ShadowEffect" BlurRadius="12" ShadowDepth="3" Opacity="0.18"/>
 

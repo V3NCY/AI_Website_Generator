@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public partial class ManageDesignsWindow : Window
     {

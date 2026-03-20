@@ -14,6 +14,32 @@
             "related": ".xml"
           }
         }
+      },
+      "Orak.WebPro.Client/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Orak.WebPro.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Orak.WebPro.Client.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Orak.WebPro.Client.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "Orak.WebPro.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Orak.WebPro.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Orak.WebPro.Shared.dll": {}
+        }
       }
     }
   },
@@ -47,11 +73,23 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "Orak.WebPro.Client/1.0.0": {
+      "type": "project",
+      "path": "../Orak.WebPro.Client/Orak.WebPro.Client.csproj",
+      "msbuildProject": "../Orak.WebPro.Client/Orak.WebPro.Client.csproj"
+    },
+    "Orak.WebPro.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Orak.WebPro.Shared/Orak.WebPro.Shared.csproj",
+      "msbuildProject": "../Orak.WebPro.Shared/Orak.WebPro.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "Newtonsoft.Json >= 13.0.3"
+      "Newtonsoft.Json >= 13.0.3",
+      "Orak.WebPro.Client >= 1.0.0",
+      "Orak.WebPro.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -61,9 +99,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\AI_Website_Generator\\AI_Website_Generator.csproj",
-      "projectName": "AI_Website_Generator",
-      "projectPath": "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\AI_Website_Generator\\AI_Website_Generator.csproj",
+      "projectUniqueName": "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\AI_Website_Generator\\Orak.WebPro.Admin.csproj",
+      "projectName": "Orak.WebPro.Admin",
+      "projectPath": "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\AI_Website_Generator\\Orak.WebPro.Admin.csproj",
       "packagesPath": "C:\\Users\\orak\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\AI_Website_Generator\\obj\\",
       "projectStyle": "PackageReference",
@@ -86,7 +124,14 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\Orak.WebPro.Client\\Orak.WebPro.Client.csproj": {
+              "projectPath": "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\Orak.WebPro.Client\\Orak.WebPro.Client.csproj"
+            },
+            "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\Orak.WebPro.Shared\\Orak.WebPro.Shared.csproj": {
+              "projectPath": "C:\\Users\\orak\\source\\repos\\AI_Website_Generator\\Orak.WebPro.Shared\\Orak.WebPro.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -129,7 +174,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

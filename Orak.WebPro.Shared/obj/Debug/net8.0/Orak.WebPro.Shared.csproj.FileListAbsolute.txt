@@ -1,0 +1,12 @@
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\bin\Debug\net8.0\Orak.WebPro.Shared.deps.json
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\bin\Debug\net8.0\Orak.WebPro.Shared.dll
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\bin\Debug\net8.0\Orak.WebPro.Shared.pdb
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\Orak.WebPro.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\Orak.WebPro.Shared.AssemblyInfoInputs.cache
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\Orak.WebPro.Shared.AssemblyInfo.cs
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\Orak.WebPro.Shared.csproj.CoreCompileInputs.cache
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\Orak.WebPro.Shared.sourcelink.json
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\Orak.WebPro.Shared.dll
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\refint\Orak.WebPro.Shared.dll
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\Orak.WebPro.Shared.pdb
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Shared\obj\Debug\net8.0\ref\Orak.WebPro.Shared.dll

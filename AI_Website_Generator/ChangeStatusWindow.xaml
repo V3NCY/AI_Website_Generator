@@ -1,4 +1,4 @@
-﻿<Window x:Class="AI_Website_Generator.ChangeStatusWindow"
+﻿<Window x:Class="Orak.WebPro.Admin.ChangeStatusWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Промяна на статус" Height="250" Width="400" Background="#ECF0F1">

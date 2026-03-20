@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public class Domain
     {

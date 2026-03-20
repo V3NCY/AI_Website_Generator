@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public partial class AddIssueWindow : Window
     {

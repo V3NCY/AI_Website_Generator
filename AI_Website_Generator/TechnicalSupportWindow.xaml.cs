@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public partial class TechnicalSupportWindow : Window
     {
@@ -66,6 +66,8 @@ namespace AI_Website_Generator
         {
             IssuesList.Items.Refresh();
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e) => Close();
 
 
     }

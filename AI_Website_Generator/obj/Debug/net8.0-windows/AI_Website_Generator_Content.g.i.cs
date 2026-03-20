@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("requests.json")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/chatbotlink.html")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/templatea.html")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("templates/templateb.html")]

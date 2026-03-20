@@ -1,4 +1,4 @@
-﻿namespace AI_Website_Generator
+﻿namespace Orak.WebPro.Admin
 {
     public class Request
     {

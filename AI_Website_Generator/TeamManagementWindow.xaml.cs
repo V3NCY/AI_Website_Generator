@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Data;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public partial class TeamManagementWindow : Window
     {

@@ -1,4 +1,4 @@
-﻿<Window x:Class="AI_Website_Generator.TechnicalSupportWindow"
+﻿<Window x:Class="Orak.WebPro.Admin.TechnicalSupportWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Tech Team Workspace"
@@ -329,7 +329,7 @@
                             Width="160"
                             Margin="10,0,0,0"
                             Content="Затвори"
-                            Click="Refresh_Click"/>
+                            Click="Close_Click"/>
                     <!-- (If you have a Close handler, replace Click above with Close_Click) -->
 
                     <!-- Right side: search -->

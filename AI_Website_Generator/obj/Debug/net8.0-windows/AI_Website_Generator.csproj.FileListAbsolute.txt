@@ -27,7 +27,6 @@ C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\n
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\AI_Website_Generator_MarkupCompile.lref
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\user\PasswordChangeDialog.baml
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\user\PasswordChangeDialog.g.cs
-C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\requests.json
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\templates\ChatBotLink.html
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\templates\templateA.html
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\templates\templateB.html

@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
 
     public partial class AddDomainWindow : Window
@@ -54,6 +54,9 @@ namespace AI_Website_Generator
 
         }
 
-
+        private void Close_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
     }
 }

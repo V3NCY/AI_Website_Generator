@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public class ChatBubbleColorConverter : IValueConverter
     {

@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public partial class ChatbotWindow : Window
     {
@@ -9,15 +10,25 @@ namespace AI_Website_Generator
         {
             InitializeComponent();
 
-            string chatbotUrl = "http://localhost:8000/ChatBotLink.html";
-
             try
             {
-                ChatbotWeb.Navigate(chatbotUrl);
+                dynamic activeX = ChatbotWeb.GetType().InvokeMember(
+                    "ActiveXInstance",
+                    BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+                    null,
+                    ChatbotWeb,
+                    new object[] { });
+
+                if (activeX != null)
+                {
+                    activeX.Silent = true;
+                }
+
+                ChatbotWeb.Navigate("http://localhost:8000/ChatBotLink.html");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Грешка при зареждане на чатбота: " + ex.Message);
+                MessageBox.Show("Грешка при зареждане на чатбота:\n" + ex.Message);
             }
         }
     }

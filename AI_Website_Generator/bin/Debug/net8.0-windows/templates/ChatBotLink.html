@@ -170,17 +170,20 @@
     </div>
 
     <script>
-        let selectedTemplate = 1;
+        var selectedTemplate = 1;
 
         function showStep(id) {
-            document.querySelectorAll(".chatbot-container > div").forEach(div => div.classList.add("hidden"));
+            var divs = document.querySelectorAll(".chatbot-container > div");
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].classList.add("hidden");
+            }
             document.getElementById(id).classList.remove("hidden");
         }
 
         function validateAndContinue() {
-            const neispuo = document.getElementById("neispuoCode").value.trim();
-            const name = document.getElementById("objectName").value.trim();
-            const location = document.getElementById("location").value.trim();
+            var neispuo = document.getElementById("neispuoCode").value.trim();
+            var name = document.getElementById("objectName").value.trim();
+            var location = document.getElementById("location").value.trim();
 
             if (!neispuo || !name || !location) {
                 alert("Моля, попълнете задължителните полета.");
@@ -192,18 +195,16 @@
 
         function loadTemplate(filename, number) {
             selectedTemplate = number;
-            const frame = document.getElementById("templateFrame");
-            const modal = document.getElementById("templateModal");
+            var frame = document.getElementById("templateFrame");
+            var modal = document.getElementById("templateModal");
 
             frame.src = "http://localhost:8000/" + filename;
-
             modal.classList.add("show");
         }
 
-
         function closeModal() {
-            const modal = document.getElementById("templateModal");
-            const frame = document.getElementById("templateFrame");
+            var modal = document.getElementById("templateModal");
+            var frame = document.getElementById("templateFrame");
 
             modal.classList.remove("show");
             frame.src = "";
@@ -216,7 +217,7 @@
         }
 
         function submitForm() {
-            const data = {
+            var data = {
                 client: document.getElementById("mol").value,
                 phone: document.getElementById("phone").value,
                 email: document.getElementById("email").value,
@@ -229,27 +230,26 @@
                 template: selectedTemplate
             };
 
-            fetch("http://localhost:8000/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            })
-                .then(response => {
-                    if (response.ok) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8000/submit", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
                         showStep("step-done");
                     } else {
                         alert("Неуспешно изпращане на заявката");
                     }
-                })
-                .catch(error => {
-                    console.error("Грешка при изпращане:", error);
-                    alert("Възникна грешка при изпращането на заявката");
-                });
+                }
+            };
 
+            xhr.onerror = function () {
+                alert("Възникна грешка при изпращането на заявката");
+            };
+
+            xhr.send(JSON.stringify(data));
         }
-
     </script>
 </body>
 </html>

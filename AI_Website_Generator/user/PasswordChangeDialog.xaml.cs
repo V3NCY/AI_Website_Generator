@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace AI_Website_Generator.user
+namespace Orak.WebPro.Admin.user
 {
     public partial class PasswordChangeDialog : Window
     {

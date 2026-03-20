@@ -1,9 +1,8 @@
-﻿<Window x:Class="AI_Website_Generator.AddDomainWindow"
+﻿<Window x:Class="Orak.WebPro.Admin.AddDomainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Добави нов уебсайт"
-        Height="900"
-        Width="1200"
+        WindowState="Maximized"
         Background="#ECF0F1"
         WindowStartupLocation="CenterScreen">
 
@@ -280,7 +279,8 @@
                                VerticalAlignment="Center"/>
 
                     <Button Grid.Column="1"
-                            Content="Отказ"
+                            Content="Отказ" 
+                            Click="Close_Click"
                             Style="{StaticResource SecondaryButton}"
                             Width="140"/>
 

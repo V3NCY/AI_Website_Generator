@@ -1,7 +1,7 @@
 ﻿// File: Models/Website.cs
 using System.ComponentModel;
 
-namespace AI_Website_Generator.Models
+namespace Orak.WebPro.Admin.Models
 {
     public class Website : INotifyPropertyChanged
     {

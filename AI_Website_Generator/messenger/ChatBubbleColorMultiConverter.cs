@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public class ChatBubbleColorMultiConverter : IMultiValueConverter
     {

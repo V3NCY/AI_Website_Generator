@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public partial class DomainListWindow : Window
     {

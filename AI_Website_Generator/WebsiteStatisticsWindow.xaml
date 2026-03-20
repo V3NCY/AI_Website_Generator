@@ -1,7 +1,7 @@
-﻿<Window x:Class="AI_Website_Generator.WebsiteStatisticsWindow"
+﻿<Window x:Class="Orak.WebPro.Admin.WebsiteStatisticsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:AI_Website_Generator.Converters"
+        xmlns:local="clr-namespace:Orak.WebPro.Admin.Converters"
         Title="Live Website AI Statistics" Height="600" Width="1000" Background="#F0F4F8" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>

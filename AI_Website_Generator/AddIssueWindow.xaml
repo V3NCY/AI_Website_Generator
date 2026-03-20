@@ -1,4 +1,4 @@
-﻿<Window x:Class="AI_Website_Generator.AddIssueWindow"
+﻿<Window x:Class="Orak.WebPro.Admin.AddIssueWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Добави проблем" Height="300" Width="400" Background="#ECF0F1">

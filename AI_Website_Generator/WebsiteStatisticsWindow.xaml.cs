@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using AI_Website_Generator.Models;
+using Orak.WebPro.Admin.Models;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public partial class WebsiteStatisticsWindow : Window
     {

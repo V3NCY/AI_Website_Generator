@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using Newtonsoft.Json;
 using Microsoft.VisualBasic;
 
-namespace AI_Website_Generator
+namespace Orak.WebPro.Admin
 {
     public partial class ViewRequestsWindow : Window
     {

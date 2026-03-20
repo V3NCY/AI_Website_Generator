@@ -1,4 +1,4 @@
-﻿<Window x:Class="AI_Website_Generator.DomainListWindow"
+﻿<Window x:Class="Orak.WebPro.Admin.DomainListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Регистрирани домейни"
