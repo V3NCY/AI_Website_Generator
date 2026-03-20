@@ -10,6 +10,7 @@
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
           "Orak.WebPro.Client": "1.0.0",
+          "Orak.WebPro.Services": "1.0.0",
           "Orak.WebPro.Shared": "1.0.0"
         },
         "runtime": {
@@ -26,10 +27,31 @@
       },
       "Orak.WebPro.Client/1.0.0": {
         "dependencies": {
+          "Orak.WebPro.Services": "1.0.0",
           "Orak.WebPro.Shared": "1.0.0"
         },
         "runtime": {
           "Orak.WebPro.Client.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Orak.WebPro.Data/1.0.0": {
+        "runtime": {
+          "Orak.WebPro.Data.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Orak.WebPro.Services/1.0.0": {
+        "dependencies": {
+          "Orak.WebPro.Data": "1.0.0",
+          "Orak.WebPro.Shared": "1.0.0"
+        },
+        "runtime": {
+          "Orak.WebPro.Services.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -59,6 +81,16 @@
       "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
     "Orak.WebPro.Client/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Orak.WebPro.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Orak.WebPro.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

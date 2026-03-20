@@ -1,0 +1,53 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Orak.WebPro.Services/1.0.0": {
+        "dependencies": {
+          "Orak.WebPro.Data": "1.0.0",
+          "Orak.WebPro.Shared": "1.0.0"
+        },
+        "runtime": {
+          "Orak.WebPro.Services.dll": {}
+        }
+      },
+      "Orak.WebPro.Data/1.0.0": {
+        "runtime": {
+          "Orak.WebPro.Data.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Orak.WebPro.Shared/1.0.0": {
+        "runtime": {
+          "Orak.WebPro.Shared.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Orak.WebPro.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Orak.WebPro.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Orak.WebPro.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

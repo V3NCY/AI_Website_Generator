@@ -78,6 +78,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Orak.WebPro.Client\Orak.WebPro.Client.csproj" />
+	  <ProjectReference Include="..\Orak.WebPro.Services\Orak.WebPro.Services.csproj" />
 	  <ProjectReference Include="..\Orak.WebPro.Shared\Orak.WebPro.Shared.csproj" />
 	</ItemGroup>
 

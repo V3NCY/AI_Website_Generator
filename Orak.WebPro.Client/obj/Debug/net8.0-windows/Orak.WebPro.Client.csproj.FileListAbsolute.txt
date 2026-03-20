@@ -3,8 +3,12 @@ C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Client.runtimeconfig.json
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Client.dll
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Client.pdb
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Data.dll
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Services.dll
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Shared.dll
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Services.pdb
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Shared.pdb
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\bin\Debug\net8.0-windows\Orak.WebPro.Data.pdb
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\obj\Debug\net8.0-windows\Orak.WebPro.Client.csproj.AssemblyReference.cache
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Client\obj\Debug\net8.0-windows\App.g.cs

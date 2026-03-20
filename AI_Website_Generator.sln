@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orak.WebPro.Client", "Orak.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orak.WebPro.Shared", "Orak.WebPro.Shared\Orak.WebPro.Shared.csproj", "{773F94B1-BBDB-437F-8B9B-9A645AE1668F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orak.WebPro.Data", "Orak.WebPro.Data\Orak.WebPro.Data.csproj", "{D7BE2C41-9D69-400E-BCD7-6AEA2CF1BFE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orak.WebPro.Services", "Orak.WebPro.Services\Orak.WebPro.Services.csproj", "{97788220-74FA-485F-A2DA-E1A668D800AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{773F94B1-BBDB-437F-8B9B-9A645AE1668F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{773F94B1-BBDB-437F-8B9B-9A645AE1668F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{773F94B1-BBDB-437F-8B9B-9A645AE1668F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7BE2C41-9D69-400E-BCD7-6AEA2CF1BFE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7BE2C41-9D69-400E-BCD7-6AEA2CF1BFE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7BE2C41-9D69-400E-BCD7-6AEA2CF1BFE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7BE2C41-9D69-400E-BCD7-6AEA2CF1BFE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97788220-74FA-485F-A2DA-E1A668D800AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97788220-74FA-485F-A2DA-E1A668D800AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97788220-74FA-485F-A2DA-E1A668D800AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97788220-74FA-485F-A2DA-E1A668D800AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

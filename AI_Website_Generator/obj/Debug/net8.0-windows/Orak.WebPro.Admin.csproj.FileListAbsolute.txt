@@ -14,9 +14,13 @@ C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\n
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Admin.pdb
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Client.dll
+C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Data.dll
+C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Services.dll
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Shared.dll
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Client.pdb
+C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Services.pdb
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Shared.pdb
+C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\bin\Debug\net8.0-windows\Orak.WebPro.Data.pdb
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\Orak.WebPro.Admin.csproj.AssemblyReference.cache
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\AddDomainWindow.baml
 C:\Users\orak\source\repos\AI_Website_Generator\AI_Website_Generator\obj\Debug\net8.0-windows\AddIssueWindow.baml
