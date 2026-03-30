@@ -1,6 +1,7 @@
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Data\bin\Debug\net8.0\Orak.WebPro.Data.deps.json
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Data\bin\Debug\net8.0\Orak.WebPro.Data.dll
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Data\bin\Debug\net8.0\Orak.WebPro.Data.pdb
+C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Data\obj\Debug\net8.0\Orak.WebPro.Data.csproj.AssemblyReference.cache
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Data\obj\Debug\net8.0\Orak.WebPro.Data.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Data\obj\Debug\net8.0\Orak.WebPro.Data.AssemblyInfoInputs.cache
 C:\Users\orak\source\repos\AI_Website_Generator\Orak.WebPro.Data\obj\Debug\net8.0\Orak.WebPro.Data.AssemblyInfo.cs
