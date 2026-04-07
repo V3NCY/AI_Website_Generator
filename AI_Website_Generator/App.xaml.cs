@@ -1,15 +1,20 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Orak.WebPro.Data.Context;
 
 namespace Orak.WebPro.Admin
 {
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         public static OrakWebProDbContext CreateDbContext()
         {
+            string dbPath = System.IO.Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "orakwebpro.db");
+
             var options = new DbContextOptionsBuilder<OrakWebProDbContext>()
-                .UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=OrakWebProDb;Trusted_Connection=True;TrustServerCertificate=True;")
+                .UseSqlite($"Data Source={dbPath}")
                 .Options;
 
             return new OrakWebProDbContext(options);
@@ -19,8 +24,29 @@ namespace Orak.WebPro.Admin
         {
             base.OnStartup(e);
 
-            using var db = CreateDbContext();
-            db.Database.EnsureCreated();
+            try
+            {
+                using var db = CreateDbContext();
+                db.Database.EnsureCreated();
+            }
+            catch
+            {
+                // DB unavailable — app continues without it
+            }
+
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            var login = new Orak.WebPro.Admin.user.LoginWindow();
+            if (login.ShowDialog() == true)
+            {
+                ShutdownMode = ShutdownMode.OnMainWindowClose;
+                var main = new MainWindow();
+                main.Show();
+            }
+            else
+            {
+                Shutdown();
+            }
         }
     }
 }

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs grep:*)",
+      "Bash(grep -E \"\\\\.\\(bat|ps1|sh\\)$\")",
+      "Bash(grep -n \"new LocalWebServer\\\\|_localWebServer.Start\\\\|Start\\(\\)\" /c/Users/orak/source/repos/AI_Website_Generator/AI_Website_Generator/*.cs)",
+      "Bash(grep -A 20 \"_localWebServer\" /c/Users/orak/source/repos/AI_Website_Generator/AI_Website_Generator/*.xaml.cs)",
+      "Bash(ls -la /c/Users/orak/source/repos/AI_Website_Generator/AI_Website_Generator/*.xaml.cs)",
+      "Bash(ls -la /c/Users/orak/source/repos/AI_Website_Generator/AI_Website_Generator/MainWindow.xaml*)",
+      "Bash(grep -E \"\\\\.\\(exe|dll\\)$\")",
+      "Bash(ls -lh /c/Users/orak/source/repos/AI_Website_Generator/AI_Website_Generator/bin/Debug/net8.0-windows/*.exe)",
+      "Bash(ls -lh /c/Users/orak/source/repos/AI_Website_Generator/Orak.WebPro.Client/bin/Debug/net8.0-windows/*.exe)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

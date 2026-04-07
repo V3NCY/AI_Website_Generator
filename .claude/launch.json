@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Python Chatbot Server",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["chatbot_server.py"],
+      "port": 8888
+    },
+    {
+      "name": "LocalWebServer (Templates)",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8000", "--directory", "AI_Website_Generator/templates"],
+      "port": 8000
+    }
+  ]
+}

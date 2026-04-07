@@ -1,0 +1,22 @@
+[
+  {
+    "Username": "venceslava.georgieva",
+    "Password": "ven112233g",
+    "Role": "Admin"
+  },
+  {
+    "Username": "elvira.shugova",
+    "Password": "elv1r@sh",
+    "Role": "Support"
+  },
+  {
+    "Username": "denka.arabadzhiyska",
+    "Password": "d3nkk@333",
+    "Role": "Team"
+  },
+  {
+    "Username": "admin.ven",
+    "Password": "admin123@",
+    "Role": "Admin"
+  }
+]

@@ -50,5 +50,5 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(error_msg.encode("utf-8"))
 
 httpd = HTTPServer(("localhost", 8888), Handler)
-print("✅ Listening on http://localhost:8888")
+print("Listening on http://localhost:8888")
 httpd.serve_forever()

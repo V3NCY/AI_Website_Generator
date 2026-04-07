@@ -9,20 +9,26 @@ namespace Orak.WebPro.Admin.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string status = value?.ToString()?.ToLower() ?? "";
+            string status = value != null ? value.ToString() ?? string.Empty : string.Empty;
 
-            return status switch
+            switch (status)
             {
-                "получена заявка" => new SolidColorBrush(Colors.SteelBlue),
-                "в процес" => new SolidColorBrush(Colors.Orange),
-                "за дизайнер" => new SolidColorBrush(Colors.Orchid),
-                "за начално тестване" => new SolidColorBrush(Colors.MediumPurple),
-                "за финално тестване" => new SolidColorBrush(Colors.MediumVioletRed),
-                "за технически екип" => new SolidColorBrush(Colors.Teal),
-                "проблем" => new SolidColorBrush(Colors.Red),
-                "онлайн" => new SolidColorBrush(Colors.Green),
-                _ => new SolidColorBrush(Colors.Gray),
-            };
+                case "OK":
+                case "Active":
+                case "Работи":
+                    return Brushes.LimeGreen;
+
+                case "Проблем":
+                case "Warning":
+                    return Brushes.Goldenrod;
+
+                case "Error":
+                case "Грешка":
+                    return Brushes.IndianRed;
+
+                default:
+                    return Brushes.Gray;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

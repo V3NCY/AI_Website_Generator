@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Orak.WebPro.Services")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3855d36604245cf39f04387bb52a692ad379897b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5932b042f03cfe7663f1f4c024267d2426bebc64")]
 [assembly: System.Reflection.AssemblyProductAttribute("Orak.WebPro.Services")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Orak.WebPro.Services")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

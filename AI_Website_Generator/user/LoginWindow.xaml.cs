@@ -71,7 +71,7 @@ namespace Orak.WebPro.Admin.user
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
+                System.Windows.MessageBox.Show(
                     $"Грешка при зареждане на потребителите: {ex.Message}",
                     "Грешка",
                     MessageBoxButton.OK,
@@ -101,7 +101,7 @@ namespace Orak.WebPro.Admin.user
             }
             else
             {
-                MessageBox.Show(
+                System.Windows.MessageBox.Show(
                     "Невалидни потребителско име или парола.",
                     "Грешка",
                     MessageBoxButton.OK,
@@ -115,7 +115,7 @@ namespace Orak.WebPro.Admin.user
 
             if (string.IsNullOrWhiteSpace(username))
             {
-                MessageBox.Show(
+                System.Windows.MessageBox.Show(
                     "Моля, въведете потребителско име, за да смените паролата.",
                     "Информация",
                     MessageBoxButton.OK,
@@ -138,7 +138,7 @@ namespace Orak.WebPro.Admin.user
                         JsonSerializer.Serialize(_users, new JsonSerializerOptions { WriteIndented = true })
                     );
 
-                    MessageBox.Show(
+                    System.Windows.MessageBox.Show(
                         "Паролата е обновена успешно!",
                         "Успех",
                         MessageBoxButton.OK,
@@ -147,7 +147,7 @@ namespace Orak.WebPro.Admin.user
             }
             else
             {
-                MessageBox.Show(
+                System.Windows.MessageBox.Show(
                     "Потребителят не е намерен.",
                     "Грешка",
                     MessageBoxButton.OK,
